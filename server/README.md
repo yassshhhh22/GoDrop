@@ -653,6 +653,23 @@ Development: http://localhost:5000/api
 Production: https://api.godrop.com/api
 ```
 
+### Endpoint Quick Links
+
+- [Auth](#auth)
+- [Business Users](#business-users)
+- [Customers](#customers)
+- [Products](#products)
+- [Categories & Branches](#categories--branches)
+- [Cart](#cart)
+- [Coupons](#coupons)
+- [Orders](#orders)
+- [Print Orders](#print-orders)
+- [Payments](#payments)
+- [Delivery Partners](#delivery-partners)
+- [Configuration](#configuration)
+- [Admin Utilities](#admin-utilities)
+- [Diagnostics](#diagnostics-development)
+
 ### Auth
 
 ```http
@@ -661,6 +678,54 @@ POST   /api/auth/verify-otp                  (Rate-limited)
 POST   /api/auth/refresh-token
 POST   /api/auth/logout
 GET    /api/auth/me                          (Auth)
+```
+
+**Send OTP**
+
+```http
+POST /api/auth/send-otp
+Content-Type: application/json
+{
+  "phone": "+911234567890",
+  "role": "Customer" | "DeliveryPartner" | "BusinessUser"
+}
+```
+
+**Verify OTP (issues tokens)**
+
+```http
+POST /api/auth/verify-otp
+Content-Type: application/json
+{
+  "phone": "+911234567890",
+  "otp": "123456",
+  "role": "Customer" | "DeliveryPartner" | "BusinessUser"
+}
+
+Response 200
+{
+  "data": {
+    "user": {
+      "_id": "...",
+      "phone": "+911234567890",
+      "role": "Customer",
+      "isActivated": true
+    },
+    "accessToken": "<jwt>",
+    "needsRegistration": false
+  },
+  "message": "Login successful"
+}
+```
+
+**Refresh Token**
+
+```http
+POST /api/auth/refresh-token
+Content-Type: application/json
+{
+  "refreshToken": "<jwt_refresh>"  // or sent via cookie
+}
 ```
 
 ### Business Users
@@ -736,6 +801,50 @@ GET    /api/orders/recent/pending            (Admin)
 POST   /api/admin/assign-partner             (Admin)
 ```
 
+**Create Order**
+
+```http
+POST /api/orders/create
+Authorization: Bearer <token>
+Content-Type: application/json
+{
+  "deliveryAddress": {
+    "address": "221B Baker Street, London",
+    "label": "Home",
+    "pincode": "560001"
+  },
+  "paymentMethod": "cod" | "razorpay",
+  "couponCode": "SAVE20",
+  "giftWrap": { "enabled": true, "message": "Happy Birthday" },
+  "deliveryInstructions": "Leave at door"
+}
+
+Response 200
+{
+  "data": {
+    "order": {
+      "orderId": "ODR12345",
+      "payment": { "method": "cod", "status": "pending" },
+      "pricing": {
+        "subtotal": 398,
+        "discount": 20,
+        "deliveryFee": 20,
+        "giftWrapFee": 0,
+        "totalPrice": 398
+      }
+    }
+  },
+  "message": "Order created successfully with discount applied."
+}
+```
+
+**Track Order**
+
+```http
+GET /api/orders/:orderId/track
+Authorization: Bearer <token>
+```
+
 ### Print Orders
 
 ```http
@@ -744,6 +853,23 @@ GET    /api/print-orders                     (Customer/Admin)
 GET    /api/print-orders/:orderId            (Customer/Admin/DeliveryPartner)
 POST   /api/print-orders/assign              (Admin)
 PUT    /api/print-orders/:orderId/status     (DeliveryPartner/Admin)
+```
+
+**Create Print Order (multipart)**
+
+```http
+POST /api/print-orders
+Authorization: Bearer <Customer token>
+Content-Type: multipart/form-data
+files: files[] (pdf/png/jpg/webp)
+body:
+  description: "Project report"
+  colorType: "bw" | "color"
+  printSides: "single-sided" | "double-sided"
+  bindingType: "none" | "stapled" | "spiral"
+  deliveryAddress[address]: "221B Baker Street"
+  deliveryAddress[pincode]: "560001"
+  paymentMethod: "cod" | "razorpay"
 ```
 
 ### Payments
@@ -759,6 +885,42 @@ POST   /api/payment/failure                  (Auth)
 GET    /api/payment/details/:paymentId       (Auth)
 POST   /api/payment/refund                   (Admin)
 POST   /api/webhook/razorpay                 (Razorpay webhook, raw body)
+```
+
+**Create Razorpay Order (cart total is used)**
+
+```http
+POST /api/payment/create-razorpay-order
+Authorization: Bearer <token>
+Content-Type: application/json
+{
+  "deliveryAddress": { "address": "221B Baker Street" },
+  "paymentMethod": "razorpay"
+}
+```
+
+**Verify Payment & Create DB Order**
+
+```http
+POST /api/payment/verify-and-create-order
+Authorization: Bearer <token>
+Content-Type: application/json
+{
+  "razorpayOrderId": "order_123",
+  "razorpayPaymentId": "pay_123",
+  "razorpaySignature": "signature",
+  "deliveryAddress": { "address": "221B Baker Street" },
+  "paymentMethod": "razorpay"
+}
+
+Response 200
+{
+  "data": {
+    "orderId": "ODR12345",
+    "paymentId": "pay_123"
+  },
+  "message": "Payment verified and order created"
+}
 ```
 
 ### Delivery Partners
