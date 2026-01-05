@@ -49,6 +49,7 @@ GoDrop Backend is a modern quick commerce platform designed for ultra-fast produ
 ## Key Features
 
 ### Customer Features
+
 - Product browsing with category filtering
 - Shopping cart management with Redis caching
 - Multiple address management with default selection
@@ -59,18 +60,21 @@ GoDrop Backend is a modern quick commerce platform designed for ultra-fast produ
 - Payment via Razorpay or COD
 
 ### Business User Features
+
 - Bulk ordering with MOQ support
 - Custom pricing and quotations
 - Business-specific coupons
 - Order history and invoicing
 
 ### Delivery Partner Features
+
 - Order assignment and pickup
 - Real-time location updates
 - Delivery confirmation
 - Earnings tracking
 
 ### Admin Features
+
 - User management (all roles)
 - Product and category management
 - Order processing and status updates
@@ -80,6 +84,7 @@ GoDrop Backend is a modern quick commerce platform designed for ultra-fast produ
 - Analytics dashboard
 
 ### Technical Features
+
 - JWT-based authentication with refresh tokens
 - Role-based access control (RBAC)
 - Request validation and sanitization
@@ -94,16 +99,19 @@ GoDrop Backend is a modern quick commerce platform designed for ultra-fast produ
 ## Technology Stack
 
 ### Backend Core
+
 - **Node.js** - JavaScript runtime
 - **Express.js** - Web application framework
 - **ES6+ Modules** - Modern JavaScript syntax
 
 ### Database & Caching
+
 - **MongoDB** - Primary NoSQL database
 - **Mongoose** - MongoDB ODM with schema validation
 - **Redis** - In-memory caching and session storage
 
 ### Authentication & Security
+
 - **JSON Web Tokens (JWT)** - Stateless authentication
 - **bcrypt** - Password hashing
 - **express-rate-limit** - API rate limiting
@@ -111,17 +119,21 @@ GoDrop Backend is a modern quick commerce platform designed for ultra-fast produ
 - **helmet** - Security headers
 
 ### File & Media Management
+
 - **Cloudinary** - Cloud-based image storage and CDN
 - **Multer** - Multipart form data handling
 
 ### Communication
+
 - **Twilio** - SMS service for OTP and notifications
 
 ### Admin & Monitoring
+
 - **AdminJS** - Auto-generated admin panel
 - **Winston** - Application logging
 
 ### Development Tools
+
 - **Jest** - Testing framework
 - **ESLint** - Code linting
 - **Prettier** - Code formatting
@@ -139,29 +151,29 @@ graph TB
         B[Web App]
         C[Admin Panel]
     end
-    
+
     subgraph "API Gateway"
         D[Express Server]
         E[Middleware Pipeline]
     end
-    
+
     subgraph "Business Logic"
         F[Controllers]
         G[Services]
         H[Validators]
     end
-    
+
     subgraph "Data Layer"
         I[(MongoDB)]
         J[(Redis Cache)]
     end
-    
+
     subgraph "External Services"
         K[Cloudinary]
         L[Twilio]
         M[Razorpay]
     end
-    
+
     A --> D
     B --> D
     C --> D
@@ -186,7 +198,7 @@ sequenceDiagram
     participant CT as Controller
     participant S as Service
     participant DB as Database
-    
+
     C->>M: HTTP Request
     M->>M: Rate Limiting
     M->>M: Authentication
@@ -291,6 +303,7 @@ GoDrop-Backend/
 ## Data Models
 
 ### User Model
+
 ```javascript
 {
   role: String, // Customer, Admin, DeliveryPartner, BusinessUser
@@ -310,6 +323,7 @@ GoDrop-Backend/
 ```
 
 ### Product Model
+
 ```javascript
 {
   name: String,
@@ -328,6 +342,7 @@ GoDrop-Backend/
 ```
 
 ### Order Model
+
 ```javascript
 {
   orderId: String, // Auto-generated
@@ -354,6 +369,7 @@ GoDrop-Backend/
 ```
 
 ### Cart Model
+
 ```javascript
 {
   userId: ObjectId,
@@ -383,7 +399,7 @@ sequenceDiagram
     participant Redis as Redis
     participant SMS as Twilio
     participant DB as MongoDB
-    
+
     U->>API: Send Phone Number
     API->>API: Generate OTP
     API->>Redis: Store OTP (5 min TTL)
@@ -430,7 +446,7 @@ sequenceDiagram
     participant API as API Server
     participant Cloud as Cloudinary
     participant DB as MongoDB
-    
+
     U->>API: Upload Document
     API->>API: Validate File Type & Size
     API->>Cloud: Upload to Cloudinary
@@ -448,25 +464,28 @@ sequenceDiagram
 ## Security Implementation
 
 ### Authentication & Authorization
-| Feature | Implementation |
-|---------|----------------|
-| Token-based Auth | JWT with access (1d) and refresh (7d) tokens |
-| Password Security | bcrypt hashing with 10 salt rounds |
-| OTP Security | Hashed storage in Redis with 5-minute expiry |
-| Role-based Access | Middleware validates user roles per endpoint |
-| Session Management | Redis-backed with automatic expiration |
+
+| Feature            | Implementation                               |
+| ------------------ | -------------------------------------------- |
+| Token-based Auth   | JWT with access (1d) and refresh (7d) tokens |
+| Password Security  | bcrypt hashing with 10 salt rounds           |
+| OTP Security       | Hashed storage in Redis with 5-minute expiry |
+| Role-based Access  | Middleware validates user roles per endpoint |
+| Session Management | Redis-backed with automatic expiration       |
 
 ### API Security
-| Feature | Implementation |
-|---------|----------------|
-| Rate Limiting | 100 requests per 15 minutes per IP |
-| Auth Rate Limit | 10 requests per 15 minutes for auth endpoints |
-| OTP Rate Limit | 3 OTP requests per hour per phone |
-| Input Validation | express-validator with custom rules |
-| Sanitization | express-mongo-sanitize for NoSQL injection |
-| Security Headers | helmet middleware for HTTP headers |
+
+| Feature          | Implementation                                |
+| ---------------- | --------------------------------------------- |
+| Rate Limiting    | 100 requests per 15 minutes per IP            |
+| Auth Rate Limit  | 10 requests per 15 minutes for auth endpoints |
+| OTP Rate Limit   | 3 OTP requests per hour per phone             |
+| Input Validation | express-validator with custom rules           |
+| Sanitization     | express-mongo-sanitize for NoSQL injection    |
+| Security Headers | helmet middleware for HTTP headers            |
 
 ### Data Protection
+
 - Environment-based configuration (no hardcoded secrets)
 - MongoDB connection with authentication
 - Redis password protection
@@ -479,14 +498,15 @@ sequenceDiagram
 
 ### Prerequisites
 
-| Software | Version | Purpose |
-|----------|---------|---------|
-| Node.js | >= 16.x | Runtime environment |
-| MongoDB | >= 4.4 | Primary database |
-| Redis | >= 6.x | Caching layer |
-| npm/yarn | Latest | Package manager |
+| Software | Version | Purpose             |
+| -------- | ------- | ------------------- |
+| Node.js  | >= 16.x | Runtime environment |
+| MongoDB  | >= 4.4  | Primary database    |
+| Redis    | >= 6.x  | Caching layer       |
+| npm/yarn | Latest  | Package manager     |
 
 ### External Services Required
+
 - Cloudinary account (image storage)
 - Twilio account (SMS notifications)
 - Razorpay account (payment processing)
@@ -494,23 +514,27 @@ sequenceDiagram
 ### Installation Steps
 
 1. **Clone Repository**
+
 ```bash
 git clone <repository-url>
 cd GoDrop-Backend
 ```
 
 2. **Install Dependencies**
+
 ```bash
 npm install
 ```
 
 3. **Configure Environment**
+
 ```bash
 cp .env.example .env
 # Edit .env with your credentials
 ```
 
 4. **Start Required Services**
+
 ```bash
 # MongoDB
 mongod
@@ -520,6 +544,7 @@ redis-server
 ```
 
 5. **Run Application**
+
 ```bash
 # Development mode
 npm run dev
@@ -584,24 +609,31 @@ ALLOWED_FILE_TYPES=image/jpeg,image/png,image/webp,application/pdf
 ## Running the Application
 
 ### Development Mode
+
 ```bash
 npm run dev
 ```
+
 Features:
+
 - Auto-restart on file changes (Nodemon)
 - Detailed error logging
 - Full stack traces
 
 ### Production Mode
+
 ```bash
 npm start
 ```
+
 Features:
+
 - Optimized performance
 - Minimal logging
 - Clean error messages
 
 ### Available Scripts
+
 ```bash
 npm start          # Start production server
 npm run dev        # Start development server
@@ -615,64 +647,151 @@ npm run format     # Format code with Prettier
 ## API Documentation
 
 ### Base URL
+
 ```
 Development: http://localhost:5000/api
 Production: https://api.godrop.com/api
 ```
 
-### Authentication Endpoints
+### Auth
+
 ```http
-POST /api/auth/send-otp
-POST /api/auth/verify-otp
-POST /api/auth/refresh-token
-POST /api/auth/logout
+POST   /api/auth/send-otp                     (Rate-limited)
+POST   /api/auth/verify-otp                  (Rate-limited)
+POST   /api/auth/refresh-token
+POST   /api/auth/logout
+GET    /api/auth/me                          (Auth)
 ```
 
-### Product Endpoints
+### Business Users
+
 ```http
-GET    /api/products
-GET    /api/products/:id
-POST   /api/products              [Admin]
-PUT    /api/products/:id          [Admin]
-DELETE /api/products/:id          [Admin]
-GET    /api/products/category/:categoryId
+POST   /api/business-users/register          (BusinessUser)
+GET    /api/business-users/profile           (BusinessUser)
+PUT    /api/business-users/profile           (BusinessUser)
+PUT    /api/business-users/profile/address   (BusinessUser)
+GET    /api/business-users/verification-status (BusinessUser)
 ```
 
-### Cart Endpoints
+### Customers
+
 ```http
-GET    /api/cart
-POST   /api/cart/add
-PUT    /api/cart/update/:itemId
-DELETE /api/cart/remove/:itemId
-DELETE /api/cart/clear
-POST   /api/cart/apply-coupon
+GET    /api/customers/profile                (Customer)
+PUT    /api/customers/profile                (Customer)
+POST   /api/customers/address                (Customer)
+PUT    /api/customers/address/:addressId     (Customer)
+DELETE /api/customers/address/:addressId     (Customer)
+PUT    /api/customers/address/:addressId/default (Customer)
 ```
 
-### Order Endpoints
+### Products
+
 ```http
-POST   /api/orders/create
-GET    /api/orders
-GET    /api/orders/:id
-PUT    /api/orders/:id/cancel
-GET    /api/orders/:id/track
-PUT    /api/orders/:id/status     [Admin/DeliveryPartner]
+GET    /api/products                         (Guest/Auth)
+GET    /api/products/search                  (Guest/Auth)
+GET    /api/products/featured                (Guest/Auth)
+GET    /api/products/category/:categoryId    (Guest/Auth)
+GET    /api/products/:id                     (Guest/Auth)
 ```
 
-### Payment Endpoints
+### Categories & Branches
+
 ```http
-POST   /api/payment/create-order
-POST   /api/payment/verify
-POST   /api/payment/webhook
+GET    /api/categories                       (Guest/Auth)
+GET    /api/categories/:id                   (Guest/Auth)
+GET    /api/categories/:id/products          (Guest/Auth)
+GET    /api/branches                         (Guest/Auth)
+GET    /api/branches/:id                     (Guest/Auth)
 ```
 
-### Print Order Endpoints
+### Cart
+
 ```http
-POST   /api/orders/print/upload
-POST   /api/orders/print/create
-GET    /api/orders/print/:id
+GET    /api/cart                             (Customer/BusinessUser)
+POST   /api/cart/add                         (Customer/BusinessUser)
+PUT    /api/cart/update/:itemId              (Customer/BusinessUser)
+DELETE /api/cart/remove/:itemId              (Customer/BusinessUser)
+DELETE /api/cart/clear                       (Customer/BusinessUser)
 ```
 
-*(Complete API documentation with request/response examples available in Postman collection)*
+### Coupons
+
+```http
+GET    /api/coupons/available                (Customer)
+POST   /api/coupons/apply                    (Customer)
+POST   /api/coupons/validate                 (Customer)
+DELETE /api/coupons/remove                   (Customer)
+```
+
+### Orders
+
+```http
+POST   /api/orders/create                    (Customer/BusinessUser)
+GET    /api/orders                           (Customer/BusinessUser)
+GET    /api/orders/:orderId                  (Customer/BusinessUser/DeliveryPartner)
+POST   /api/orders/:orderId/cancel           (Customer/BusinessUser)
+GET    /api/orders/:orderId/track            (Customer/BusinessUser/DeliveryPartner)
+GET    /api/orders/pending/count             (Admin)
+GET    /api/orders/recent/pending            (Admin)
+POST   /api/admin/assign-partner             (Admin)
+```
+
+### Print Orders
+
+```http
+POST   /api/print-orders                     (Customer) [multipart uploads]
+GET    /api/print-orders                     (Customer/Admin)
+GET    /api/print-orders/:orderId            (Customer/Admin/DeliveryPartner)
+POST   /api/print-orders/assign              (Admin)
+PUT    /api/print-orders/:orderId/status     (DeliveryPartner/Admin)
+```
+
+### Payments
+
+```http
+GET    /api/payment/debug/status             (Public)
+GET    /api/payment/razorpay-key             (Public)
+POST   /api/payment/create-razorpay-order    (Auth)
+POST   /api/payment/verify-and-create-order  (Auth)
+POST   /api/payment/create-order             (Auth, legacy)
+POST   /api/payment/verify                   (Auth, legacy)
+POST   /api/payment/failure                  (Auth)
+GET    /api/payment/details/:paymentId       (Auth)
+POST   /api/payment/refund                   (Admin)
+POST   /api/webhook/razorpay                 (Razorpay webhook, raw body)
+```
+
+### Delivery Partners
+
+```http
+GET    /api/delivery/orders                  (DeliveryPartner)
+PUT    /api/delivery/orders/:orderId/status  (DeliveryPartner)
+PUT    /api/delivery/location                (DeliveryPartner)
+PUT    /api/delivery/availability            (DeliveryPartner)
+```
+
+### Configuration
+
+```http
+GET    /api/config/delivery                  (Public)
+GET    /api/config/public                    (Public)
+```
+
+### Admin Utilities
+
+```http
+POST   /api/admin/upload-image               (Admin)
+```
+
+### Diagnostics (development)
+
+```http
+GET    /api/test/status
+POST   /api/test/send-otp
+POST   /api/test/verify-otp
+```
+
+> Role tags indicate required role(s). Guest/Auth means endpoint works unauthenticated but will use user context if available.
 
 ---
 
@@ -680,40 +799,43 @@ GET    /api/orders/print/:id
 
 ### Completed Phases
 
-| Phase | Status | Description |
-|-------|--------|-------------|
-| Infrastructure Setup | ✓ | Node.js, Express, MongoDB, Redis configuration |
-| Core Configuration | ✓ | Database, caching, external services integration |
-| Database Models | ✓ | All schemas with validations and middleware |
-| Middleware Layer | ✓ | Auth, validation, error handling, rate limiting |
-| Business Services | ✓ | Cart, order, payment, notification services |
-| Admin Panel | ✓ | AdminJS with complete CRUD operations |
-| API Routes | ✓ | All RESTful endpoints implemented |
-| Controllers | ✓ | Business logic for all features |
-| Real-time Features | ✓ | Socket.IO for order tracking |
-| Payment Integration | ✓ | Razorpay and COD support |
-| Advanced Features | ✓ | Search, filters, geolocation, delivery calculations |
-| Documentation | ✓ | README, code comments, API structure |
-| Unit Tests | ✓ | Models, utilities, services tested |
-| Integration Tests | ✓ | API endpoints, workflows validated |
-| E2E Tests | ✓ | Complete user journeys tested |
-| Performance Testing | ✓ | Load testing and optimization |
-| Security Audits | ✓ | Vulnerability scanning and fixes |
+| Phase                | Status | Description                                         |
+| -------------------- | ------ | --------------------------------------------------- |
+| Infrastructure Setup | ✓      | Node.js, Express, MongoDB, Redis configuration      |
+| Core Configuration   | ✓      | Database, caching, external services integration    |
+| Database Models      | ✓      | All schemas with validations and middleware         |
+| Middleware Layer     | ✓      | Auth, validation, error handling, rate limiting     |
+| Business Services    | ✓      | Cart, order, payment, notification services         |
+| Admin Panel          | ✓      | AdminJS with complete CRUD operations               |
+| API Routes           | ✓      | All RESTful endpoints implemented                   |
+| Controllers          | ✓      | Business logic for all features                     |
+| Real-time Features   | ✓      | Socket.IO for order tracking                        |
+| Payment Integration  | ✓      | Razorpay and COD support                            |
+| Advanced Features    | ✓      | Search, filters, geolocation, delivery calculations |
+| Documentation        | ✓      | README, code comments, API structure                |
+| Unit Tests           | ✓      | Models, utilities, services tested                  |
+| Integration Tests    | ✓      | API endpoints, workflows validated                  |
+| E2E Tests            | ✓      | Complete user journeys tested                       |
+| Performance Testing  | ✓      | Load testing and optimization                       |
+| Security Audits      | ✓      | Vulnerability scanning and fixes                    |
 
 ### Current Phase: Final Testing & Optimization
 
-| Test Type | Status | Description |
-|-----------|--------|-------------|
-| Jest Configuration | ⏳ In Progress | Final Jest setup and test suite organization |
-| Load Testing | ⏳ In Progress | Performance benchmarking under load |
-| Production Deployment | ⏳ Pending | Awaiting test completion |
+| Test Type             | Status         | Description                                  |
+| --------------------- | -------------- | -------------------------------------------- |
+| Jest Configuration    | ⏳ In Progress | Final Jest setup and test suite organization |
+| Load Testing          | ⏳ In Progress | Performance benchmarking under load          |
+| Production Deployment | ⏳ Pending     | Awaiting test completion                     |
 
 **Legend:**
+
 - ✓ Completed
 - ⏳ In Progress
 
 ### Completion Status
+
 **Backend Development: ~98% Complete**
+
 - All core features implemented and functional
 - Only performance testing and Jest configuration refinement remaining
 - Ready for production deployment after final testing phase
@@ -723,6 +845,7 @@ GET    /api/orders/print/:id
 ## Testing
 
 ### Test Structure
+
 ```
 tests/
 ├── unit/
@@ -736,6 +859,7 @@ tests/
 ```
 
 ### Running Tests
+
 ```bash
 # All tests
 npm test
@@ -754,12 +878,14 @@ npm run test:load
 ```
 
 ### Testing Strategy
+
 - **Unit Tests**: ✓ Individual functions and methods tested
 - **Integration Tests**: ✓ API endpoints with database operations validated
 - **E2E Tests**: ✓ Complete user workflows verified
 - **Load Tests**: ⏳ Performance under concurrent users (in progress)
 
 ### Test Coverage Goals
+
 - **Unit Tests**: 90%+ coverage achieved
 - **Integration Tests**: All critical API paths covered
 - **E2E Tests**: Complete user journeys validated
@@ -795,6 +921,6 @@ SOFTWARE.
 
 **GoDrop Backend** | Built with Node.js, Express, MongoDB, and Redis
 
-*Developed by [@yassshhhh22](https://github.com/yassshhhh22) and [@anuj-1402](https://github.com/anuj-1402)*
+_Developed by [@yassshhhh22](https://github.com/yassshhhh22) and [@anuj-1402](https://github.com/anuj-1402)_
 
-*Last Updated: 11/11*
+_Last Updated: 11/11_
