@@ -1,50 +1,51 @@
-# Welcome to your Expo app 👋
+# GoDrop Mobile App (Expo / React Native)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Consumer mobile app for GoDrop with OTP auth, cart, ordering, payments, and live tracking.
 
-## Get started
+## Prerequisites
 
-1. Install dependencies
+- Node.js 18+
+- Expo CLI (`npm install -g expo`)
+- iOS simulator (Xcode) or Android emulator (Android Studio), or a physical device with Expo Go
+- Backend API reachable from the device (use your LAN IP)
 
-   ```bash
-   npm install
-   ```
+## Environment
 
-2. Start the app
+Create `.env` (or set in `app.config.js`):
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+EXPO_PUBLIC_API_URL=http://<your-local-ip>:5000/api
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+For real devices, **use the LAN IP**, not localhost.
 
-## Learn more
+## Running
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+cd app
+npm install
+npx expo start
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Select your target (Expo Go, emulator, or simulator). The app reads `EXPO_PUBLIC_API_URL` for all API calls and token refresh.
 
-## Join the community
+## Useful Scripts
 
-Join our community of developers creating universal apps.
+- `npm run start` / `npx expo start` — start Metro bundler
+- `npm run android` — run on Android emulator/device
+- `npm run ios` — run on iOS simulator (macOS)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Notes
+
+- Auth tokens are stored in AsyncStorage; 401s trigger refresh flow automatically.
+- Payments and notifications rely on backend integrations (Razorpay/Fast2SMS). Ensure the backend env vars are set when testing flows.
+
+## QA Checklist
+
+- [ ] `.env` uses LAN API URL; verify in both dev and release builds
+- [ ] OTP auth: success + failure messages, retry timing
+- [ ] Cart: add/update/remove, price totals reflect API responses
+- [ ] Order placement and tracking screens display live status updates
+- [ ] Payment flow (Razorpay) works on device/emulator; failure path handled
+- [ ] Empty/loading states for products, cart, orders; show offline/errors clearly
+- [ ] Device coverage: Android & iOS layouts, touch targets, keyboard avoidance
