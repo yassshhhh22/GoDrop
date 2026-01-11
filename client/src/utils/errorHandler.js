@@ -78,8 +78,7 @@ export const handleApiError = (
  */
 export const logError = (error, context = "") => {
   if (import.meta.env.DEV) {
-    console.error(`[${context}]`, error);
-  }
+    }
 };
 
 /**

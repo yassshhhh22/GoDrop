@@ -38,7 +38,6 @@ const Profile = () => {
         // ✅ Also update auth store with fresh data
         updateUser(profile);
       } catch (error) {
-        console.error("❌ Failed to fetch profile:", error);
         errorAlert("Failed to load profile data");
       } finally {
         setIsLoading(false);
@@ -66,8 +65,6 @@ const Profile = () => {
       // ✅ Backend returns { customer: { id, name, email, phone } }
       const updatedData = await updateProfile(formData);
 
-      console.log("✅ Profile updated, new data:", updatedData);
-
       // ✅ Fetch full profile again to get complete data
       const fullProfile = await getProfile();
 
@@ -83,7 +80,6 @@ const Profile = () => {
       successAlert("Profile updated successfully");
       setIsEditing(false);
     } catch (error) {
-      console.error("❌ Profile update failed:", error);
       errorAlert(error.response?.data?.message || "Failed to update profile");
     } finally {
       setIsLoading(false);

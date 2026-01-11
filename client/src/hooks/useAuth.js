@@ -29,8 +29,7 @@ const useAuth = () => {
     try {
       await logoutAPI(); // Call backend to clear cookies
     } catch (error) {
-      console.error("Logout error:", error);
-    } finally {
+      } finally {
       logoutStore(); // Clear local state regardless
     }
   }, [logoutStore]);

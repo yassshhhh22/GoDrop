@@ -34,8 +34,7 @@ const DeliveryPartnerDashboard = () => {
         updateLocation(latitude, longitude);
       },
       (error) => {
-        console.error("Location error:", error);
-      },
+        },
       {
         enableHighAccuracy: true,
         timeout: 5000,

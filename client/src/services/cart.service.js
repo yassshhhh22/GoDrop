@@ -23,30 +23,15 @@ export const getCart = async () => {
  * @returns Updated cart
  */
 export const addToCart = async (productId, count = 1) => {
-  console.log("📡 Cart Service: Sending request", {
-    endpoint: "/cart/add",
-    payload: { item: productId, count },
-  });
-
   try {
     const response = await api.post("/cart/add", {
       item: productId,
       count,
     });
 
-    console.log("✅ Cart Service: Response received", {
-      status: response.status,
-      data: response.data,
-    });
-
     // ✅ FIX: Return the cart object directly from data.data
     return response.data.data;
   } catch (error) {
-    console.error("❌ Cart Service: Request failed", {
-      status: error.response?.status,
-      message: error.response?.data?.message,
-      data: error.response?.data,
-    });
     throw error;
   }
 };

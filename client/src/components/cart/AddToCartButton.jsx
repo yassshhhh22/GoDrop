@@ -69,7 +69,6 @@ const AddToCartButton = ({ data, className = "" }) => {
       setIsLoading(true);
       await updateQuantity(cartItemId, quantity + 1);
     } catch (error) {
-      console.error("Failed to increase quantity:", error);
       toast.error("Failed to update quantity");
     } finally {
       setIsLoading(false);
@@ -92,7 +91,6 @@ const AddToCartButton = ({ data, className = "" }) => {
         await updateQuantity(cartItemId, newQuantity);
       }
     } catch (error) {
-      console.error("Failed to decrease quantity:", error);
       toast.error("Failed to update quantity");
     } finally {
       setIsLoading(false);

@@ -78,8 +78,7 @@ const useCartStore = create(
           set(newState);
         } catch (error) {
           set({ isLoading: false, error: error.message });
-          console.error("Failed to fetch cart:", error);
-        }
+          }
       },
 
       addItem: async (product, quantity = 1) => {
@@ -128,14 +127,7 @@ const useCartStore = create(
 
         // Authenticated cart
         try {
-          console.log("📤 Sending to backend:", {
-            productId: product._id,
-            count: quantity,
-          });
-
           const data = await cartService.addToCart(product._id, product.moq);
-
-          console.log("✅ Backend response:", data);
 
           set({
             items: data.items || [],
@@ -146,11 +138,6 @@ const useCartStore = create(
 
           return data;
         } catch (error) {
-          console.error("❌ Add to cart error:", {
-            message: error.response?.data?.message,
-            status: error.response?.status,
-            data: error.response?.data,
-          });
           errorAlert(error.response?.data?.message || "Failed to add item");
           throw error;
         }
@@ -360,12 +347,8 @@ const useCartStore = create(
           throw new Error("Please login to apply coupons");
         }
         try {
-          console.log("🎟️ Cart store: Applying coupon:", code);
-
           // ✅ Call backend service to apply coupon
           const { coupon, pricing } = await couponService.applyCoupon(code);
-
-          console.log("✅ Coupon response:", { coupon, pricing });
 
           // ✅ Update state immediately with response
           set({
@@ -374,16 +357,9 @@ const useCartStore = create(
           });
 
           // ✅ CRITICAL: Fetch full cart to ensure all values are synced
-          console.log("🔄 Fetching full cart after coupon apply...");
           await get().fetchCart();
 
-          console.log("✅ Cart state after fetch:", {
-            appliedCoupon: get().appliedCoupon,
-            couponDiscount: get().couponDiscount,
-            _backendSubtotal: get()._backendSubtotal,
-          });
-        } catch (error) {
-          console.error("❌ Coupon error in store:", error);
+          } catch (error) {
           throw error;
         }
       },
@@ -394,8 +370,6 @@ const useCartStore = create(
           throw new Error("Cannot remove coupon from guest cart");
         }
         try {
-          console.log("🗑️ Removing coupon from store...");
-
           // Call backend service to remove coupon
           await couponService.removeCoupon();
 
@@ -406,12 +380,9 @@ const useCartStore = create(
           });
 
           // Fetch cart to ensure sync
-          console.log("🔄 Fetching cart after coupon remove...");
           await get().fetchCart();
 
-          console.log("✅ Coupon removed, cart updated");
-        } catch (error) {
-          console.error("❌ Remove coupon error in store:", error);
+          } catch (error) {
           throw error;
         }
       },

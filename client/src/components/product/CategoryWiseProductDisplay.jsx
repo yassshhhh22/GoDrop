@@ -24,7 +24,6 @@ const CategoryWiseProductDisplay = ({ id, name }) => {
 
       setProducts(validProducts);
     } catch (error) {
-      console.error(`Failed to fetch products for ${name}:`, error);
       setProducts([]);
     } finally {
       setLoading(false);

@@ -14,8 +14,6 @@ export const connectSocket = (orderId) => {
   });
 
   socket.on("connect", () => {
-    console.log("✅ Socket.IO connected");
-
     if (orderId) {
       socket.emit("joinOrder", orderId);
     }
@@ -28,12 +26,10 @@ export const connectSocket = (orderId) => {
 
   socket.on("deliveryPartnerLocation", ({ latitude, longitude }) => {
     // Update tracking map
-    console.log("Delivery partner location:", latitude, longitude);
-  });
+    });
 
   socket.on("disconnect", () => {
-    console.log("❌ Socket.IO disconnected");
-  });
+    });
 
   return socket;
 };

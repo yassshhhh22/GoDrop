@@ -47,18 +47,6 @@ const CheckoutPage = () => {
   const giftWrapFee = giftWrap.enabled ? giftWrapCharge : 0;
   const total = subtotal + deliveryFee - couponDiscount + giftWrapFee;
 
-  console.log("💳 Checkout breakdown:", {
-    subtotal,
-    deliveryFee,
-    giftWrapCharge,
-    giftWrapFee,
-    couponDiscount,
-    appliedCoupon: appliedCoupon?.code, // Log applied coupon code
-    total,
-    configLoaded,
-    note: "No tax included",
-  });
-
   const { addresses, fetchAddresses, selectedAddress, selectAddress } =
     useAddressStore();
 
@@ -80,7 +68,6 @@ const CheckoutPage = () => {
     const initializeCheckout = async () => {
       try {
         const config = await fetchDeliveryConfig();
-        console.log("✅ Config loaded:", config);
         setConfigLoaded(true);
 
         await fetchCart();
@@ -91,7 +78,6 @@ const CheckoutPage = () => {
           setRegisteredAddress(user.registeredAddress);
         }
       } catch (error) {
-        console.error("❌ Checkout initialization error:", error);
         setConfigLoaded(true);
       }
     };
@@ -133,15 +119,6 @@ const CheckoutPage = () => {
       setIsProcessing(true);
 
       // ✅ Log coupon details before sending
-      console.log("📝 COD Order Summary:", {
-        subtotal,
-        couponDiscount,
-        appliedCoupon: appliedCoupon?.code,
-        deliveryFee,
-        giftWrapFee,
-        total,
-      });
-
       const orderData = {
         deliveryAddress: {
           label: selectedAddress.label,
@@ -159,22 +136,10 @@ const CheckoutPage = () => {
         couponCode: appliedCoupon?.code, // ✅ Pass coupon code
       };
 
-      console.log("📤 Sending order data:", orderData);
-
       const newOrder = await createOrder(orderData);
-
-      console.log("✅ Order created:", newOrder);
 
       if (newOrder) {
         // ✅ Verify discount was applied in order
-        console.log("💾 Order details from backend:", {
-          orderId: newOrder.orderId,
-          subtotal: newOrder.pricing.subtotal,
-          discount: newOrder.pricing.discount,
-          deliveryFee: newOrder.pricing.deliveryFee,
-          totalPrice: newOrder.pricing.totalPrice,
-        });
-
         if (newOrder.status === "pending") {
           successAlert(
             "Order placed! Your order is pending admin approval. You'll be notified once confirmed."
@@ -187,7 +152,6 @@ const CheckoutPage = () => {
         navigate(`/order-success?orderId=${newOrder.orderId}`);
       }
     } catch (error) {
-      console.error("❌ Order creation error:", error);
       errorAlert(error.response?.data?.message || "Failed to place order");
     } finally {
       setIsProcessing(false);
@@ -204,15 +168,6 @@ const CheckoutPage = () => {
       setIsProcessing(true);
 
       // ✅ Log coupon details before sending
-      console.log("📝 Online Payment Order Summary:", {
-        subtotal,
-        couponDiscount,
-        appliedCoupon: appliedCoupon?.code,
-        deliveryFee,
-        giftWrapFee,
-        total,
-      });
-
       const orderData = {
         deliveryAddress: {
           label: selectedAddress.label,
@@ -230,11 +185,8 @@ const CheckoutPage = () => {
         couponCode: appliedCoupon?.code, // ✅ Pass coupon code
       };
 
-      console.log("📤 Sending payment order data:", orderData);
-
       await initiatePayment(orderData);
     } catch (error) {
-      console.error("❌ Payment initiation error:", error);
       errorAlert("Failed to initiate payment");
       setIsProcessing(false);
     }

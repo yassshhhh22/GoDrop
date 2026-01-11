@@ -18,7 +18,6 @@ export const useRazorpay = () => {
       script.src = "https://checkout.razorpay.com/v1/checkout.js";
       script.onload = () => resolve(true);
       script.onerror = () => {
-        console.error("Failed to load Razorpay script");
         resolve(false);
       };
       document.body.appendChild(script);
@@ -29,8 +28,6 @@ export const useRazorpay = () => {
     try {
       setIsLoading(true);
 
-      console.log("🔑 Initiating payment with order data:", orderData);
-
       // ✅ NEW: Step 1 - Create Razorpay order WITHOUT creating DB order
       // This endpoint will return razorpayOrderId and amount from cart
       const paymentOrder = await api.post("/payment/create-razorpay-order", {
@@ -38,8 +35,6 @@ export const useRazorpay = () => {
         paymentMethod: orderData.paymentMethod,
         giftWrap: giftWrap, // Pass giftWrap
       });
-
-      console.log("💳 Razorpay order created:", paymentOrder.data);
 
       const { razorpayOrderId, amount, currency } = paymentOrder.data.data;
 
@@ -102,7 +97,6 @@ export const useRazorpay = () => {
               return false;
             }
           } catch (error) {
-            console.error("❌ Error creating order:", error);
             errorAlert(
               error.response?.data?.message ||
                 "Payment successful but order creation failed."
@@ -127,8 +121,6 @@ export const useRazorpay = () => {
         },
       };
 
-      console.log("🚀 Opening Razorpay checkout...");
-
       if (!window.Razorpay) {
         errorAlert("Razorpay is not loaded. Please refresh and try again.");
         setIsLoading(false);
@@ -138,7 +130,6 @@ export const useRazorpay = () => {
       const rzp = new window.Razorpay(options);
 
       rzp.on("payment.failed", function (response) {
-        console.error("❌ Payment failed:", response.error);
         setIsLoading(false);
         errorAlert(
           response.error.description || "Payment failed. Please try again."
@@ -150,7 +141,6 @@ export const useRazorpay = () => {
       // ✅ IMPORTANT: Return true immediately, actual success is handled in the handler
       return true;
     } catch (error) {
-      console.error("❌ Payment initiation error:", error);
       errorAlert(
         error.response?.data?.message ||
           error.message ||

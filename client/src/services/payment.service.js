@@ -14,7 +14,6 @@ import api from "./api";
  */
 export const createRazorpayOrderOnly = async (orderData) => {
   const response = await api.post("/payment/create-razorpay-order", orderData);
-  console.log("💳 Razorpay order created:", response.data);
   return response.data.data;
 };
 
@@ -32,7 +31,6 @@ export const verifyPaymentAndCreateOrder = async (paymentData) => {
  */
 export const createPaymentOrder = async (orderId) => {
   const response = await api.post("/payment/create-order", { orderId });
-  console.log("💳 Payment order created:", response.data);
   return response.data.data;
 };
 

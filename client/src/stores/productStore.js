@@ -48,7 +48,6 @@ const useProductStore = create((set, get) => ({
         loading: false,
       });
     } catch (error) {
-      console.error("❌ Failed to fetch categories:", error);
       set({
         error: error.message,
         loading: false,
@@ -97,7 +96,6 @@ const useProductStore = create((set, get) => ({
         loading: false,
       });
     } catch (error) {
-      console.error("❌ Failed to fetch products:", error);
       set({ loading: false, error: error.message, products: [] });
     }
   },
@@ -126,7 +124,6 @@ const useProductStore = create((set, get) => ({
 
       return response;
     } catch (error) {
-      console.error("❌ Failed to fetch category products:", error);
       set({ loading: false, error: error.message, products: [] });
       return { products: [] };
     }
@@ -187,8 +184,7 @@ const useProductStore = create((set, get) => ({
         featuredProducts: response.products || [],
       });
     } catch (error) {
-      console.error("❌ Failed to fetch featured products:", error);
-    }
+      }
   },
 
   // ========================================

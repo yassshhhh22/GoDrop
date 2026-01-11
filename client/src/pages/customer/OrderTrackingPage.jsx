@@ -66,8 +66,6 @@ const OrderTrackingPage = () => {
           setDeliveryPartnerLocation({ lat: latitude, lng: longitude });
         }
       } catch (error) {
-        console.error("Failed to fetch partner location:", error);
-
         // ✅ Check if it's a 401 error
         if (error.response?.status === 401) {
           errorAlert("Session expired. Please login again.");

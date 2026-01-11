@@ -56,11 +56,7 @@ export const cancelOrder = async (orderId, reason) => {
  */
 export const trackOrder = async (orderId) => {
   // ✅ Add debug logging
-  console.log("🔍 Tracking order:", orderId);
-
   const response = await api.get(`/orders/${orderId}/track`);
-
-  console.log("✅ Track response:", response.data);
 
   return response.data.data;
 };

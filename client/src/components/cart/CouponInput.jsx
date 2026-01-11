@@ -34,22 +34,16 @@ const CouponInput = () => {
 
     setLoading(true);
     try {
-      console.log("🎟️ Applying coupon:", data.couponCode);
-
       const result = await couponService.applyCoupon(data.couponCode);
 
       if (result && result.coupon) {
-        console.log("✅ Coupon applied:", result);
         successAlert(`Coupon ${result.coupon.code} applied successfully!`);
         reset();
 
         // ✅ CRITICAL: Fetch cart to update ALL state including discount
-        console.log("🔄 Fetching updated cart...");
         await fetchCart();
-        console.log("✅ Cart updated with coupon discount");
-      }
+        }
     } catch (err) {
-      console.error("❌ Coupon error:", err.response?.data || err.message);
       errorAlert(err.response?.data?.message || "Failed to apply coupon");
     } finally {
       setLoading(false);
@@ -59,17 +53,11 @@ const CouponInput = () => {
   const handleRemoveCoupon = async () => {
     setLoading(true);
     try {
-      console.log("🗑️ Removing coupon...");
       await removeCouponCode();
       successAlert("Coupon removed successfully!");
 
       // No need to call fetchCart again, store does it
-      console.log("✅ Cart updated after removing coupon");
-    } catch (err) {
-      console.error(
-        "❌ Remove coupon error:",
-        err.response?.data || err.message
-      );
+      } catch (err) {
       errorAlert(err.response?.data?.message || "Failed to remove coupon");
     } finally {
       setLoading(false);

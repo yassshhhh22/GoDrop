@@ -56,7 +56,6 @@ const useDeliveryPartnerStore = create((set, get) => ({
       set({ currentLocation: { latitude, longitude } });
       return true;
     } catch (error) {
-      console.error("Location update failed:", error);
       return false;
     }
   },

@@ -56,7 +56,6 @@ const useConfigStore = create(
 
           return deliveryConfig;
         } catch (error) {
-          console.error("Error fetching delivery config:", error);
           set({
             isLoading: false,
             error: error.message,

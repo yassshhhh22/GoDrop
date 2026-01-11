@@ -32,15 +32,7 @@ const CartSummary = ({ onCheckout, showCouponSection = true }) => {
     fetchDeliveryConfig();
 
     // ✅ Log cart changes
-    console.log("📊 CartSummary state updated:", {
-      subtotal,
-      couponDiscount,
-      deliveryFee,
-      giftWrapFee,
-      total,
-      appliedCoupon: appliedCoupon?.code,
-    });
-  }, [
+    }, [
     fetchDeliveryConfig,
     subtotal,
     couponDiscount,
