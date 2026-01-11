@@ -24,13 +24,13 @@ const HomePage = () => {
   }
 
   return (
-    <section className="bg-gray-50 min-h-screen">
+    <section className="bg-white min-h-screen">
       {/* Banner Section */}
-      <div className="w-full flex justify-center px-4 sm:px-6 lg:px-8 pt-8 pb-12">
+      <div className="w-full flex justify-center px-4 sm:px-6 lg:px-8 pt-6 pb-8">
         <div
-          className={`w-full max-w-7xl h-auto rounded-2xl overflow-hidden shadow-lg border border-gray-200 ${
-            !banner && "animate-pulse bg-gray-200 min-h-48"
-          } hover:shadow-xl transition-shadow duration-300`}
+          className={`w-full max-w-7xl h-auto rounded-xl overflow-hidden ${
+            !banner && "animate-pulse bg-secondary-100 min-h-48"
+          }`}
         >
           <img
             src={banner}
@@ -46,47 +46,35 @@ const HomePage = () => {
       </div>
 
       {/* Small Banners Section */}
-      <div className="w-full flex justify-center px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      <div className="w-full flex justify-center px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           {[1, 2, 3].map((i) => (
             <div
               key={i}
-              className="rounded-xl overflow-hidden min-h-[160px] flex items-center justify-center touch-pan-x bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer group"
+              className="rounded-lg overflow-hidden min-h-[180px] flex items-center justify-center touch-pan-x bg-white border border-secondary-200"
             >
               <img
                 src={banner}
                 alt={`banner-${i}`}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover"
               />
             </div>
           ))}
         </div>
       </div>
 
-      {/* Categories Section Header */}
-      <div className="w-full flex justify-center px-4 sm:px-6 lg:px-8 pb-8">
-        <div className="w-full max-w-7xl">
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
-            Shop by Category
-          </h2>
-          <p className="text-gray-600 text-sm">
-            Browse our wide range of products
-          </p>
-        </div>
-      </div>
-
       {/* Categories Grid */}
-      <div className="w-full flex justify-center px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-8 xl:grid-cols-10 gap-4 sm:gap-5 w-full max-w-7xl">
+      <div className="w-full flex justify-center px-4 sm:px-6 lg:px-8 pb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-8 xl:grid-cols-10 gap-3 sm:gap-4 w-full max-w-7xl">
           {loading ? (
             // Loading Skeleton
             new Array(12).fill(null).map((c, index) => (
               <div
                 key={index + "loadingcategory"}
-                className="bg-white rounded-xl p-4 aspect-square flex flex-col gap-3 animate-pulse border border-gray-200 shadow-sm"
+                className="bg-white rounded-lg p-3 aspect-square flex flex-col gap-3 animate-pulse border border-secondary-200"
               >
-                <div className="bg-gray-200 flex-1 rounded-lg"></div>
-                <div className="bg-gray-200 h-3 rounded"></div>
+                <div className="bg-secondary-100 flex-1 rounded-lg"></div>
+                <div className="bg-secondary-100 h-3 rounded"></div>
               </div>
             ))
           ) : Array.isArray(categories) && categories.length > 0 ? (
@@ -96,33 +84,35 @@ const HomePage = () => {
                 className="cursor-pointer group"
                 onClick={() => handleCategoryClick(cat._id)}
               >
-                <div className="bg-white rounded-xl p-4 h-full flex flex-col border border-gray-200 shadow-sm hover:shadow-lg hover:border-green-600 transition-all duration-200">
-                  <div className="aspect-square mb-3 flex items-center justify-center overflow-hidden rounded-lg bg-gray-50 group-hover:bg-green-50 transition-colors duration-200">
+                <div className="bg-white rounded-lg p-3 h-full flex flex-col border border-secondary-200 hover:border-secondary-300 transition-all duration-200">
+                  <div className="aspect-square mb-2 flex items-center justify-center overflow-hidden rounded-lg bg-secondary-50">
                     <img
                       src={cat.images?.[0] || "/placeholder.png"}
                       alt={cat.name}
-                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                       onError={(e) => {
                         e.target.src = "/placeholder.png";
                       }}
                     />
                   </div>
-                  <p className="text-center text-xs sm:text-sm font-semibold text-gray-900 line-clamp-2 group-hover:text-green-600 transition-colors duration-200">
+                  <p className="text-center text-xs sm:text-sm font-semibold text-secondary-900 line-clamp-2 mt-1">
                     {cat.name}
                   </p>
                 </div>
               </div>
             ))
           ) : (
-            <div className="col-span-full text-center py-16">
-              <p className="text-gray-600 text-base">No categories available</p>
+            <div className="col-span-full text-center py-12">
+              <p className="text-secondary-600 text-base">
+                No categories available
+              </p>
             </div>
           )}
         </div>
       </div>
 
       {/* Category-wise Product Display */}
-      <div className="w-full px-4 sm:px-6 lg:px-8 pb-16 space-y-16">
+      <div className="w-full px-4 sm:px-6 lg:px-8 pb-10 space-y-12">
         {Array.isArray(categories) &&
           categories.length > 0 &&
           categories.map((c) => (

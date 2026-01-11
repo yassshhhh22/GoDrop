@@ -284,79 +284,75 @@ const CheckoutPage = () => {
   }
 
   return (
-    <section className="bg-gray-50 min-h-screen py-8">
-      <div className="container mx-auto p-4 flex flex-col lg:flex-row w-full gap-8 max-w-7xl">
+    <section className="bg-secondary-50 min-h-screen">
+      <div className="container mx-auto p-4 flex flex-col lg:flex-row w-full gap-8 justify-between">
         {/* Left Section - Address Selection */}
-        <div className="w-full lg:flex-1">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">
+        <div className="w-full">
+          <h3 className="text-lg font-semibold text-gray-900 mb-6">
             {user?.role === "BusinessUser"
               ? "Delivery Address"
               : "Choose your delivery address"}
           </h3>
 
-          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4">
+          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-6">
             {user?.role === "BusinessUser" ? (
               registeredAddress ? (
-                <div className="border-2 border-green-600 bg-green-50 rounded-xl p-5">
+                <div className="border-2 border-primary-600 bg-primary-50 rounded-lg p-4">
                   <div className="flex items-center justify-between mb-3">
                     <span className="font-semibold text-gray-900">
                       Registered Business Address
                     </span>
                     <Link
                       to="/business/profile"
-                      className="text-xs text-green-600 hover:text-green-700 font-semibold"
+                      className="text-xs text-primary-600 hover:underline"
                     >
                       Edit
                     </Link>
                   </div>
-                  <p className="text-gray-900 font-medium mb-1">
+                  <p className="text-gray-900 mb-1">
                     {registeredAddress.street}
                   </p>
                   {registeredAddress.landmark && (
-                    <p className="text-gray-600 text-sm mb-1">
+                    <p className="text-secondary-500 text-sm mb-1">
                       Landmark: {registeredAddress.landmark}
                     </p>
                   )}
-                  <div className="flex flex-wrap gap-2 text-gray-600 text-sm">
+                  <div className="flex flex-wrap gap-2 text-secondary-500 text-sm">
                     {registeredAddress.city && (
                       <span>{registeredAddress.city}</span>
                     )}
-                    {registeredAddress.state && <span>•</span>}
                     {registeredAddress.state && (
-                      <span>{registeredAddress.state}</span>
+                      <span>• {registeredAddress.state}</span>
                     )}
-                    {registeredAddress.pincode && <span>•</span>}
                     {registeredAddress.pincode && (
-                      <span>{registeredAddress.pincode}</span>
+                      <span>• {registeredAddress.pincode}</span>
                     )}
                   </div>
                 </div>
               ) : (
-                <div className="text-center py-12">
-                  <p className="text-red-600 mb-4 font-semibold">
+                <div className="text-center py-8">
+                  <p className="text-error mb-4">
                     No registered address found. Please update your business
                     profile.
                   </p>
                   <Link
                     to="/business/profile"
-                    className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors inline-block"
+                    className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-gray-50 rounded-lg font-medium transition-colors inline-block"
                   >
                     Update Business Profile
                   </Link>
                 </div>
               )
             ) : addresses.length === 0 ? (
-              <div className="text-center py-12">
+              <div className="text-center py-8">
                 <MdLocationOn
                   size={48}
-                  className="mx-auto text-gray-300 mb-4"
+                  className="mx-auto text-secondary-300 mb-3"
                 />
-                <p className="text-gray-600 mb-4 font-medium">
-                  No saved addresses
-                </p>
+                <p className="text-secondary-500 mb-4">No saved addresses</p>
                 <button
                   onClick={() => setOpenAddressModal(true)}
-                  className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors"
+                  className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-gray-50 rounded-lg font-medium transition-colors"
                 >
                   Add Delivery Address
                 </button>
@@ -370,10 +366,10 @@ const CheckoutPage = () => {
                     className="block cursor-pointer"
                   >
                     <div
-                      className={`border-2 rounded-xl p-4 transition-all ${
+                      className={`border-2 rounded-lg p-4 transition-all ${
                         selectedAddressId === address._id
-                          ? "border-green-600 bg-green-50"
-                          : "border-gray-200 bg-white hover:border-gray-300"
+                          ? "border-primary-600 bg-primary-50"
+                          : "border-gray-200 bg-gray-50 hover:bg-secondary-50"
                       }`}
                     >
                       <div className="flex gap-3">
@@ -385,7 +381,7 @@ const CheckoutPage = () => {
                             checked={selectedAddressId === address._id}
                             onChange={() => handleAddressSelect(address._id)}
                             name="address"
-                            className="w-4 h-4 accent-green-600"
+                            className="w-4 h-4 accent-primary-600"
                           />
                         </div>
                         <div className="flex-1">
@@ -394,25 +390,25 @@ const CheckoutPage = () => {
                               {address.label}
                             </span>
                             {address.isDefault && (
-                              <span className="px-2 py-0.5 bg-green-600 text-white rounded-full text-xs font-semibold">
+                              <span className="px-2 py-0.5 bg-primary-600 text-gray-50 rounded-full text-xs font-medium">
                                 Default
                               </span>
                             )}
                           </div>
-                          <p className="text-gray-900 font-medium mb-1">
+                          <p className="text-gray-900 mb-1">
                             {address.address}
                           </p>
                           {address.landmark && (
-                            <p className="text-gray-600 text-sm mb-1">
+                            <p className="text-secondary-500 text-sm mb-1">
                               Landmark: {address.landmark}
                             </p>
                           )}
-                          <div className="flex flex-wrap gap-2 text-gray-600 text-sm">
+                          <div className="flex flex-wrap gap-2 text-secondary-500 text-sm">
                             {address.city && <span>{address.city}</span>}
-                            {address.state && <span>•</span>}
-                            {address.state && <span>{address.state}</span>}
-                            {address.pincode && <span>•</span>}
-                            {address.pincode && <span>{address.pincode}</span>}
+                            {address.state && <span>• {address.state}</span>}
+                            {address.pincode && (
+                              <span>• {address.pincode}</span>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -422,13 +418,13 @@ const CheckoutPage = () => {
 
                 <button
                   onClick={() => setOpenAddressModal(true)}
-                  className="w-full h-20 bg-white border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center gap-2 cursor-pointer hover:border-green-600 hover:bg-green-50 transition-all duration-200 group"
+                  className="w-full h-16 bg-secondary-50 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center gap-2 cursor-pointer hover:border-primary-600 hover:bg-primary-50 transition-colors group"
                 >
                   <MdAdd
                     size={24}
-                    className="text-gray-400 group-hover:text-green-600"
+                    className="text-secondary-500 group-hover:text-primary-600"
                   />
-                  <span className="font-semibold text-gray-600 group-hover:text-green-600">
+                  <span className="font-medium text-secondary-500 group-hover:text-primary-600">
                     Add New Address
                   </span>
                 </button>
@@ -438,43 +434,37 @@ const CheckoutPage = () => {
         </div>
 
         {/* Right Section - Order Summary */}
-        <div className="w-full lg:max-w-sm">
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 sticky top-24">
-            <h3 className="text-xl font-bold text-gray-900 mb-6">
+        <div className="w-full max-w-md">
+          <div className="bg-gray-50 rounded-lg border border-gray-200 p-8 sticky top-24">
+            <h3 className="text-lg font-semibold text-gray-900 mb-6">
               Order Summary
             </h3>
 
             {/* Bill Details */}
-            <div className="space-y-4 mb-6 pb-6 border-b border-gray-200">
-              <div className="flex justify-between text-gray-700 items-center text-sm">
+            <div className="space-y-6 mb-6 pb-6 border-b border-gray-200">
+              <div className="flex justify-between text-gray-900 items-center">
                 <p>Items Total ({cartCount} items)</p>
-                <p className="font-semibold text-gray-900">
-                  {formatPrice(subtotal)}
-                </p>
+                <p className="font-medium">{formatPrice(subtotal)}</p>
               </div>
 
               {deliveryFee > 0 ? (
-                <div className="flex justify-between text-gray-700 text-sm">
+                <div className="flex justify-between text-gray-900 items-center">
                   <p>Delivery Fee</p>
-                  <p className="font-semibold text-gray-900">
-                    {formatPrice(deliveryFee)}
-                  </p>
+                  <p className="font-medium">{formatPrice(deliveryFee)}</p>
                 </div>
               ) : (
-                <div className="flex justify-between text-green-600 text-sm">
+                <div className="flex justify-between text-primary-600 items-center">
                   <p className="flex items-center gap-1">
                     Delivery Fee <span className="text-xs">🎉</span>
                   </p>
-                  <p className="font-semibold">FREE</p>
+                  <p className="font-medium">FREE</p>
                 </div>
               )}
 
               {couponDiscount > 0 && user?.role !== "BusinessUser" && (
-                <div className="flex justify-between text-green-600 text-sm">
+                <div className="flex justify-between text-primary-600 items-center">
                   <p>Coupon Discount</p>
-                  <p className="font-semibold">
-                    -{formatPrice(couponDiscount)}
-                  </p>
+                  <p className="font-medium">-{formatPrice(couponDiscount)}</p>
                 </div>
               )}
 
@@ -491,18 +481,18 @@ const CheckoutPage = () => {
                         id="giftWrapToggle"
                         checked={giftWrap.enabled}
                         onChange={toggleGiftWrap}
-                        className="w-4 h-4 accent-green-600"
+                        className="w-4 h-4 accent-primary-600"
                       />
-                      <span className="font-medium">Gift Wrap</span>
+                      <span>Gift Wrap</span>
                     </label>
-                    <span className="font-semibold">
+                    <span className="font-medium">
                       {formatPrice(giftWrapFee)}
                     </span>
                   </div>
 
                   {giftWrap.enabled && (
                     <textarea
-                      className="w-full p-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                      className="w-full p-3 border border-gray-200 rounded-lg text-sm"
                       rows="2"
                       placeholder="Add a gift message (optional, max 200 characters)"
                       value={giftWrap.message}
@@ -524,39 +514,39 @@ const CheckoutPage = () => {
             {/* Grand Total */}
             <div className="flex justify-between items-center mb-8 pb-6 border-b border-gray-200">
               <p className="font-semibold text-gray-900 text-lg">Grand Total</p>
-              <p className="font-bold text-green-600 text-2xl">
+              <p className="font-bold text-gray-900 text-2xl">
                 {formatPrice(total)}
               </p>
             </div>
 
             {/* Payment Method Selection */}
             <div className="mb-8">
-              <p className="font-semibold text-gray-900 mb-4">
+              <p className="font-medium text-gray-900 mb-4">
                 Select Payment Method
               </p>
-              <div className="space-y-3">
-                <label className="flex items-center gap-3 p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:bg-green-50 hover:border-green-300 transition-all">
+              <div className="space-y-4">
+                <label className="flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-secondary-50 transition-colors">
                   <input
                     type="radio"
                     name="paymentMethod"
                     value="razorpay"
                     checked={paymentMethod === "razorpay"}
                     onChange={(e) => setPaymentMethod(e.target.value)}
-                    className="w-4 h-4 accent-green-600"
+                    className="w-4 h-4 accent-primary-600"
                   />
                   <span className="text-gray-900 font-medium">
                     Online Payment
                   </span>
                 </label>
 
-                <label className="flex items-center gap-3 p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:bg-green-50 hover:border-green-300 transition-all">
+                <label className="flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-secondary-50 transition-colors">
                   <input
                     type="radio"
                     name="paymentMethod"
                     value="COD"
                     checked={paymentMethod === "COD"}
                     onChange={(e) => setPaymentMethod(e.target.value)}
-                    className="w-4 h-4 accent-green-600"
+                    className="w-4 h-4 accent-primary-600"
                   />
                   <span className="text-gray-900 font-medium">
                     Cash on Delivery
@@ -566,12 +556,12 @@ const CheckoutPage = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               {paymentMethod === "razorpay" ? (
                 <button
                   onClick={handleOnlinePayment}
                   disabled={!selectedAddressId || isProcessing}
-                  className="w-full py-3 px-6 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white rounded-lg font-bold transition-colors flex items-center justify-center gap-2"
+                  className="w-full py-4 px-6 bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-gray-50 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 text-lg"
                 >
                   {isProcessing ? <>Processing...</> : "Pay Online"}
                 </button>
@@ -579,7 +569,7 @@ const CheckoutPage = () => {
                 <button
                   onClick={handleCashOnDelivery}
                   disabled={!selectedAddressId || isProcessing}
-                  className="w-full py-3 px-6 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white rounded-lg font-bold transition-colors flex items-center justify-center gap-2"
+                  className="w-full py-4 px-6 bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-gray-50 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 text-lg"
                 >
                   {isProcessing ? <>Placing Order...</> : "Place Order"}
                 </button>
@@ -587,7 +577,7 @@ const CheckoutPage = () => {
             </div>
 
             {/* Info Text */}
-            <p className="text-xs text-gray-600 text-center mt-6">
+            <p className="text-xs text-secondary-500 text-center mt-8">
               By placing this order, you agree to our Terms & Conditions
             </p>
           </div>
@@ -602,9 +592,9 @@ const CheckoutPage = () => {
       {/* Processing Overlay */}
       {isProcessing && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded-2xl text-center shadow-xl">
+          <div className="bg-gray-50 p-6 rounded-lg text-center">
             <Loading size={100} />
-            <p className="mt-4 text-gray-900 font-semibold">
+            <p className="mt-4 text-gray-900 font-medium">
               Processing your order...
             </p>
           </div>
