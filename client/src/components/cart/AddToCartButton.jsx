@@ -16,10 +16,8 @@ const AddToCartButton = ({ data, className = "" }) => {
   const [cartItemId, setCartItemId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // ✅ Get MOQ for business users
   const moq = customerType === "BusinessUser" && data?.moq ? data.moq : 1;
 
-  // Check if item exists in cart
   useEffect(() => {
     if (!data?._id) return;
 
@@ -51,21 +49,10 @@ const AddToCartButton = ({ data, className = "" }) => {
       return;
     }
 
-    console.log("🛒 AddToCartButton: Adding item", {
-      productId: data._id,
-      productName: data.name,
-      moq,
-      customerType,
-      isAuthenticated,
-    });
-
     try {
       setIsLoading(true);
-      // ✅ Add with MOQ quantity for business users initially
       await addItem(data, moq);
-      console.log("✅ Item added successfully");
     } catch (error) {
-      console.error("❌ Failed to add to cart:", error);
       toast.error(error.response?.data?.message || "Failed to add to cart");
     } finally {
       setIsLoading(false);
@@ -80,7 +67,6 @@ const AddToCartButton = ({ data, className = "" }) => {
 
     try {
       setIsLoading(true);
-      // ✅ Increase by 1
       await updateQuantity(cartItemId, quantity + 1);
     } catch (error) {
       console.error("Failed to increase quantity:", error);
@@ -100,7 +86,6 @@ const AddToCartButton = ({ data, className = "" }) => {
       setIsLoading(true);
       const newQuantity = quantity - 1;
 
-      // ✅ Remove if going below MOQ
       if (newQuantity < moq) {
         await removeItem(cartItemId);
       } else {
@@ -119,30 +104,30 @@ const AddToCartButton = ({ data, className = "" }) => {
   return (
     <div className="w-full">
       {isInCart ? (
-        <div className="flex w-full h-full gap-0.5 p-0.5 border border-green-600 rounded-md bg-[#f8fff8]">
+        <div className="flex w-full h-7 gap-0.5 p-0.5 border border-primary-500 rounded-md bg-primary-100">
           <button
             onClick={handleDecreaseQty}
             disabled={isDisabled}
-            className="flex-1 h-6 rounded-sm text-green-700 flex items-center justify-center hover:bg-green-50 transition"
+            className="flex-1 rounded-sm text-primary-700 flex items-center justify-center hover:bg-primary-200 transition"
           >
             {isDisabled ? (
-              <div className="w-3 h-3 border border-grey-50 border-t-transparent rounded-full animate-spin" />
+              <div className="w-3 h-3 border border-gray-50 border-t-transparent rounded-full animate-spin" />
             ) : (
               "-"
             )}
           </button>
 
-          <p className="flex-1 font-semibold flex items-center justify-center text-grey-900 text-xs">
+          <p className="flex-1 font-semibold flex items-center justify-center text-gray-900 text-xs">
             {quantity}
           </p>
 
           <button
             onClick={handleIncreaseQty}
             disabled={isDisabled}
-            className="flex-1 h-6 rounded-sm text-green-700 flex items-center justify-center hover:bg-green-50 transition"
+            className="flex-1 rounded-sm text-primary-700 flex items-center justify-center hover:bg-primary-200 transition"
           >
             {isDisabled ? (
-              <div className="w-3 h-3 border border-grey-50 border-t-transparent rounded-full animate-spin" />
+              <div className="w-3 h-3 border border-gray-50 border-t-transparent rounded-full animate-spin" />
             ) : (
               "+"
             )}
@@ -152,10 +137,10 @@ const AddToCartButton = ({ data, className = "" }) => {
         <button
           onClick={handleAddToCart}
           disabled={isDisabled}
-          className={`bg-primary-600 hover:bg-primary-700 disabled:bg-grey-300 disabled:cursor-not-allowed text-grey-50 px-2 lg:px-4 py-1 rounded w-full font-medium transition-colors flex items-center justify-center gap-1 ${className}`}
+          className={`h-7 bg-success hover:bg-success/90 disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-2 lg:px-4 py-1 rounded w-full font-medium transition-colors flex items-center justify-center gap-1 text-xs ${className}`}
         >
           {isDisabled ? (
-            <div className="w-4 h-4 border-2 border-grey-50 border-t-transparent rounded-full animate-spin" />
+            <div className="w-4 h-4 border-2 border-gray-50 border-t-transparent rounded-full animate-spin" />
           ) : moq > 1 ? (
             <>
               <span>Add</span>

@@ -42,8 +42,8 @@ const CancelledOrderAlert = ({ order, onDismiss }) => {
           <Text fontSize="xl" mb="md">
             Order #{order.orderId}
           </Text>
-          <Text color="grey80">Customer: {order.customerName}</Text>
-          <Text color="grey80" mt="md">
+          <Text color="gray80">Customer: {order.customerName}</Text>
+          <Text color="gray80" mt="md">
             Reason: "{order.cancellationReason}"
           </Text>
           <Button variant="primary" onClick={onDismiss} size="lg" mt="lg">
@@ -86,8 +86,8 @@ const NewOrderAlert = ({ order, onDismiss }) => {
           <Text fontSize="xl" mb="md">
             Order #{order.orderId}
           </Text>
-          <Text color="grey80">Customer: {order.customerName}</Text>
-          <Text color="grey80" fontSize="xxl" fontWeight="bold" my="md">
+          <Text color="gray80">Customer: {order.customerName}</Text>
+          <Text color="gray80" fontSize="xxl" fontWeight="bold" my="md">
             ₹{order.totalPrice?.toFixed(2) || '0.00'}
           </Text>
           <Button variant="primary" onClick={onDismiss} size="lg" mt="lg">
@@ -279,7 +279,7 @@ const Dashboard = () => {
               (e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)')
             }
           >
-            <Text fontSize="xl" color="grey60">
+            <Text fontSize="xl" color="gray60">
               Total Pending Orders
             </Text>
             <H2 fontSize="xxl" my="md">
@@ -311,7 +311,7 @@ const Dashboard = () => {
                   >
                     <Box>
                       <Text fontWeight="bold">Order #{order.orderId}</Text>
-                      <Text fontSize="sm" color="grey60">
+                      <Text fontSize="sm" color="gray60">
                         {order.customerName}
                       </Text>
                     </Box>
@@ -324,7 +324,7 @@ const Dashboard = () => {
                 ))}
               </Box>
             ) : (
-              <Text textAlign="center" p="xl" color="grey60">
+              <Text textAlign="center" p="xl" color="gray60">
                 No recent cancellations.
               </Text>
             )}
@@ -335,42 +335,42 @@ const Dashboard = () => {
       {/* Existing Latest Incoming Orders Section */}
       <Section>
         <Box variant="white" p="xxl" boxShadow="card">
-            <H5 mb="lg">Latest Incoming Orders</H5>
+          <H5 mb="lg">Latest Incoming Orders</H5>
 
-            {latestOrders && latestOrders.length > 0 ? (
-              <Box>
-                {latestOrders.map((order) => (
-                  <Box
-                    key={order._id || order.orderId}
-                    display="flex"
-                    justifyContent="space-between"
-                    py="md"
-                    borderBottom="1px solid #EEE"
-                    alignItems="center"
-                  >
-                    <Box flex="1">
-                      <Text fontWeight="bold">Order #{order.orderId}</Text>
-                      <Text fontSize="sm" color="grey60">
-                        {order.customerName}
-                      </Text>
-                    </Box>
-                    <Box textAlign="right">
-                      <Text fontWeight="bold" fontSize="lg">
-                        ₹{order.totalPrice?.toFixed(2) || '0.00'}
-                      </Text>
-                      <Text fontSize="sm" color="grey60">
-                        {order.status}
-                      </Text>
-                    </Box>
+          {latestOrders && latestOrders.length > 0 ? (
+            <Box>
+              {latestOrders.map((order) => (
+                <Box
+                  key={order._id || order.orderId}
+                  display="flex"
+                  justifyContent="space-between"
+                  py="md"
+                  borderBottom="1px solid #EEE"
+                  alignItems="center"
+                >
+                  <Box flex="1">
+                    <Text fontWeight="bold">Order #{order.orderId}</Text>
+                    <Text fontSize="sm" color="gray60">
+                      {order.customerName}
+                    </Text>
                   </Box>
-                ))}
-              </Box>
-            ) : (
-              <Text textAlign="center" p="xl" color="grey60">
-                Waiting for new orders...
-              </Text>
-            )}
-          </Box>
+                  <Box textAlign="right">
+                    <Text fontWeight="bold" fontSize="lg">
+                      ₹{order.totalPrice?.toFixed(2) || '0.00'}
+                    </Text>
+                    <Text fontSize="sm" color="gray60">
+                      {order.status}
+                    </Text>
+                  </Box>
+                </Box>
+              ))}
+            </Box>
+          ) : (
+            <Text textAlign="center" p="xl" color="gray60">
+              Waiting for new orders...
+            </Text>
+          )}
+        </Box>
       </Section>
     </Box>
   );

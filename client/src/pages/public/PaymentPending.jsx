@@ -51,12 +51,12 @@ const PaymentPending = () => {
       <div className="w-full max-w-md bg-warning bg-opacity-10 border-2 border-warning rounded-lg p-6 py-8 mx-auto flex flex-col justify-center items-center gap-6 shadow-lg">
         {/* Icon with animation */}
         <div className="bg-warning rounded-full p-4 animate-pulse">
-          <MdHourglassEmpty size={64} className="text-grey-900" />
+          <MdHourglassEmpty size={64} className="text-gray-900" />
         </div>
 
         {/* Message */}
         <div className="text-center">
-          <p className="text-grey-900 font-bold text-2xl mb-2">
+          <p className="text-gray-900 font-bold text-2xl mb-2">
             Payment Pending
           </p>
           <p className="text-secondary-600 text-sm mb-4">
@@ -71,13 +71,13 @@ const PaymentPending = () => {
         </div>
 
         {/* Auto-refresh info */}
-        <div className="w-full bg-grey-50 border border-grey-200 rounded p-4 text-center">
+        <div className="w-full bg-gray-50 border border-gray-200 rounded p-4 text-center">
           <p className="text-sm text-secondary-600">
             Auto-refreshing in{" "}
-            <span className="font-bold text-grey-900">{countdown}</span>{" "}
+            <span className="font-bold text-gray-900">{countdown}</span>{" "}
             seconds...
           </p>
-          <div className="w-full bg-grey-200 rounded-full h-2 mt-2">
+          <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
             <div
               className="bg-warning h-2 rounded-full transition-all duration-1000"
               style={{ width: `${(countdown / 30) * 100}%` }}
@@ -89,7 +89,7 @@ const PaymentPending = () => {
         <div className="flex flex-col sm:flex-row gap-3 w-full">
           <button
             onClick={checkPaymentStatus}
-            className="flex-1 flex items-center justify-center gap-2 bg-warning hover:bg-yellow-500 text-grey-900 px-6 py-3 rounded-lg font-medium transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 bg-warning hover:bg-yellow-500 text-gray-900 px-6 py-3 rounded-lg font-medium transition-colors"
           >
             <MdRefresh size={20} />
             Check Status
@@ -97,7 +97,7 @@ const PaymentPending = () => {
 
           <Link
             to="/"
-            className="flex-1 flex items-center justify-center gap-2 border-2 border-warning text-grey-900 hover:bg-warning transition-all px-6 py-3 rounded-lg font-medium"
+            className="flex-1 flex items-center justify-center gap-2 border-2 border-warning text-gray-900 hover:bg-warning transition-all px-6 py-3 rounded-lg font-medium"
           >
             <MdHome size={20} />
             Go To Home

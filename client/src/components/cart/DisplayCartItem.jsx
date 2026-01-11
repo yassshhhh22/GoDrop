@@ -3,6 +3,7 @@ import { IoClose } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { FaCaretRight } from "react-icons/fa";
 import { BsCart4 } from "react-icons/bs";
+import { MdShoppingCart } from "react-icons/md";
 import useCartStore from "../../stores/cartStore";
 import useConfigStore from "../../stores/configStore.js";
 import useAuthStore from "../../stores/authStore.js";
@@ -92,18 +93,18 @@ const DisplayCartItem = ({ close }) => {
 
   return (
     <div
-      className="fixed top-0 right-0 w-full max-w-md h-screen bg-white shadow-2xl flex flex-col z-50 border-l border-grey-200"
+      className="fixed top-0 right-0 w-full max-w-md h-screen bg-white shadow-2xl flex flex-col z-50 border-l border-gray-200"
       style={{ animation: "slideInRight 0.3s ease-out" }}
     >
       {/* Header */}
-      <div className="flex items-center p-4 shadow-sm gap-3 justify-between bg-white border-b border-grey-200">
-        <h2 className="font-bold text-grey-900 text-xl flex items-center gap-2">
-          <BsCart4 size={26} />
+      <div className="flex items-center p-4 gap-3 justify-between bg-white border-b border-secondary-200">
+        <h2 className="font-semibold text-gray-800 text-lg flex items-center gap-2">
+          <BsCart4 size={24} />
           <span>Cart ({cartCount})</span>
         </h2>
         <button
           onClick={close}
-          className="hover:text-error transition-colors p-2 hover:bg-grey-100 rounded-full"
+          className="hover:text-error transition-colors p-2 hover:bg-secondary-100 rounded-full"
         >
           <IoClose size={26} />
         </button>
@@ -115,14 +116,14 @@ const DisplayCartItem = ({ close }) => {
           <div className="space-y-6 px-5 py-5">
             {/* Savings Banner */}
             {savings > 0 && (
-              <div className="flex items-center justify-between px-4 py-2 bg-[#e9f8e5] text-green-700 rounded-lg text-base font-semibold">
+              <div className="flex items-center justify-between px-3 py-1.5 bg-green-100 text-green-700 rounded-lg text-xs font-medium">
                 <span>Your total savings</span>
                 <span>{formatPrice(savings)}</span>
               </div>
             )}
 
             {/* Cart Items */}
-            <div className="bg-white rounded-2xl p-5 space-y-6 shadow-md">
+            <div className="bg-white rounded-2xl p-5 space-y-6 border border-secondary-200">
               {items.map((cartItem, index) => {
                 const product = isAuthenticated ? cartItem.item : cartItem;
                 const quantity = cartItem.count || 0;
@@ -140,7 +141,7 @@ const DisplayCartItem = ({ close }) => {
                     key={product?._id + "cartItemDisplay" + index}
                     className="flex w-full gap-4 items-center"
                   >
-                    <div className="w-20 h-20 bg-[#f6f6f6] border border-grey-200 rounded-xl overflow-hidden shrink-0 flex items-center justify-center">
+                    <div className="w-20 h-20 bg-secondary-50 border border-secondary-200 rounded-xl overflow-hidden shrink-0 flex items-center justify-center">
                       <img
                         src={product?.images?.[0] || "/placeholder.png"}
                         alt={product?.name}
@@ -148,22 +149,22 @@ const DisplayCartItem = ({ close }) => {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-base text-grey-900 font-semibold truncate">
+                      <p className="text-base text-secondary-900 font-semibold truncate">
                         {product?.name}
                       </p>
                       <p className="text-secondary-500 text-sm mt-1">
                         {product?.unit || "piece"}
                       </p>
-                      <p className="font-bold text-grey-900 mt-1 text-lg">
+                      <p className="font-bold text-secondary-900 mt-1 text-lg">
                         {formatPrice(price)}
                       </p>
                     </div>
                     <div className="flex items-center">
-                      <div className="flex items-center bg-[#f6f6f6] rounded-lg border border-grey-200">
+                      <div className="flex items-center bg-secondary-50 rounded-lg border border-secondary-200">
                         <AddToCartButton
                           data={product}
-                          className="w-10 h-10 text-xl font-bold"
-                          btnClassName="w-10 h-10 text-xl"
+                          className="w-14 h-12 text-lg font-bold"
+                          btnClassName="w-14 h-12 text-lg"
                         />
                       </div>
                     </div>
@@ -173,32 +174,32 @@ const DisplayCartItem = ({ close }) => {
             </div>
 
             {/* Bill Details */}
-            <div className="bg-white rounded-2xl p-5 shadow-md">
-              <h3 className="font-bold text-grey-900 mb-4 text-lg tracking-wide">
+            <div className="bg-white rounded-2xl p-4 border border-secondary-200">
+              <h3 className="font-semibold text-gray-700 mb-3 text-xs tracking-wide uppercase">
                 Bill details
               </h3>
-              <div className="space-y-4 text-base">
+              <div className="space-y-3 text-sm">
                 <div className="flex justify-between items-center">
-                  <span className="text-secondary-700 font-medium">
+                  <span className="text-gray-600 font-normal text-xs">
                     Items subtotal
                   </span>
-                  <span className="text-grey-900 font-semibold">
+                  <span className="text-gray-900 font-semibold text-sm">
                     {formatPrice(subtotal)}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-secondary-700 font-medium">
+                  <span className="text-gray-600 font-normal text-xs">
                     Total quantity
                   </span>
-                  <span className="text-grey-900 font-semibold">
+                  <span className="text-gray-900 font-semibold text-sm">
                     {cartCount} {cartCount === 1 ? "item" : "items"}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-secondary-700 font-medium">
+                  <span className="text-gray-600 font-normal text-xs">
                     Delivery charge
                   </span>
-                  <span className="text-grey-900 font-semibold">
+                  <span className="text-gray-900 font-semibold text-sm">
                     {deliveryFee === 0 ? (
                       <span className="text-primary-600 font-semibold">
                         FREE
@@ -210,28 +211,30 @@ const DisplayCartItem = ({ close }) => {
                 </div>
                 {couponDiscount > 0 && (
                   <div className="flex justify-between items-center">
-                    <span className="text-primary-600 font-medium">
+                    <span className="text-green-600 font-normal text-xs">
                       Coupon discount
                     </span>
-                    <span className="text-primary-600 font-semibold">
+                    <span className="text-green-600 font-semibold text-sm">
                       -{formatPrice(couponDiscount)}
                     </span>
                   </div>
                 )}
                 {giftWrap.enabled && (
                   <div className="flex justify-between items-center">
-                    <span className="text-secondary-700 font-medium">
+                    <span className="text-gray-600 font-normal text-xs">
                       Gift Wrap
                     </span>
-                    <span className="font-semibold text-grey-900">
+                    <span className="font-semibold text-gray-900 text-sm">
                       {formatPrice(giftWrapFee)}
                     </span>
                   </div>
                 )}
-                <div className="border-t border-grey-200 my-2"></div>
-                <div className="flex justify-between items-center font-bold text-lg">
-                  <span className="text-grey-900">Grand total</span>
-                  <span className="text-grey-900">{formatPrice(total)}</span>
+                <div className="border-t border-secondary-200 my-2"></div>
+                <div className="flex justify-between items-center font-semibold text-sm">
+                  <span className="text-gray-900">Grand total</span>
+                  <span className="text-primary-600 font-bold text-base">
+                    {formatPrice(total)}
+                  </span>
                 </div>
                 {deliveryFee > 0 && (
                   <p className="text-xs text-secondary-500 mt-2">
@@ -243,35 +246,32 @@ const DisplayCartItem = ({ close }) => {
             </div>
           </div>
         ) : (
-          <div className="bg-white rounded-xl flex flex-col justify-center items-center py-8 h-full min-h-[380px] shadow-sm mx-2 mt-4">
-            <img
-              src={imageEmpty}
-              alt="Empty Cart"
-              className="w-full max-w-xs h-auto object-scale-down mb-0"
-            />
-            <div className="flex flex-col items-center justify-center flex-1 w-full mt-2">
-              <p className="text-secondary-700 mb-10 text-2xl font-bold text-center">
+          <div className="bg-secondary-50 rounded-xl flex flex-col justify-center items-center py-12 h-full min-h-[380px] border border-secondary-200 mx-2 mt-4 gap-6">
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-14 h-14 bg-primary-100 rounded-full flex items-center justify-center shrink-0">
+                <MdShoppingCart size={28} className="text-primary-600" />
+              </div>
+              <p className="text-gray-900 text-base font-semibold">
                 Your cart is empty
               </p>
-              <Link
-                onClick={close}
-                to="/"
-                className="bg-green-600 hover:bg-green-700 px-10 py-4 text-white rounded-md font-semibold text-lg shadow-md transition-all duration-200 flex items-center justify-center"
-                style={{ minWidth: 200, letterSpacing: "0.01em" }}
-              >
-                Shop Now
-              </Link>
             </div>
+            <Link
+              onClick={close}
+              to="/"
+              className="bg-secondary-300 hover:bg-secondary-800 px-10 py-3 text-white font-bold text-base transition-colors rounded-lg whitespace-nowrap border-2 border-secondary-800 shadow-sm"
+            >
+              Shop Now
+            </Link>
           </div>
         )}
       </div>
 
       {/* Checkout Button - Fixed at Bottom */}
       {hasItems && (
-        <div className="p-0 bg-white border-t border-grey-200 shadow-lg">
+        <div className="p-0 bg-white border-t border-secondary-200">
           <button
             onClick={redirectToCheckoutPage}
-            className="bg-[#13a538] hover:bg-[#0e8c2c] text-white w-full px-6 font-bold text-lg py-5 rounded-md flex items-center justify-between transition-colors"
+            className="bg-primary-600 hover:bg-primary-700 text-white w-full px-6 font-bold text-lg py-5 rounded-md flex items-center justify-between transition-colors"
             style={{ minHeight: "60px" }}
           >
             <div className="flex flex-col items-start">

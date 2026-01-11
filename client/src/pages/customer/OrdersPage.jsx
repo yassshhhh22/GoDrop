@@ -68,96 +68,104 @@ const OrdersPage = () => {
   }
 
   return (
-    <div className="bg-grey-50 min-h-screen py-8 px-2 sm:px-4 flex flex-col items-center">
-      <div className="w-full max-w-2xl mx-auto">
+    <div className="bg-gray-50 min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+      <div className="w-full">
         {/* Header */}
-        <div className="mb-10 text-center">
-          <h1 className="text-3xl font-bold text-grey-900 mb-2">My Orders</h1>
-          <p className="text-secondary-500 text-base">View and track your orders</p>
+        <div className="mb-10 text-center max-w-4xl mx-auto">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">My Orders</h1>
+          <p className="text-gray-600 text-base">View and track your orders</p>
         </div>
 
-        {/* Orders List */}
+        {/* Orders Grid */}
         {orders.length === 0 ? (
-          <div className="bg-white border border-grey-200 rounded-2xl p-12 text-center shadow-sm">
-            <MdShoppingBag
-              size={64}
-              className="mx-auto text-secondary-300 mb-4"
-            />
-            <h3 className="text-xl font-semibold text-grey-900 mb-2">
+          <div className="bg-white border border-gray-200 rounded-2xl p-12 text-center shadow-sm max-w-2xl mx-auto">
+            <MdShoppingBag size={64} className="mx-auto text-gray-300 mb-4" />
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">
               No orders yet
             </h3>
-            <p className="text-secondary-500 mb-6">
+            <p className="text-gray-600 mb-6">
               Start shopping to see your orders here
             </p>
             <Link
               to="/"
-              className="inline-block px-6 py-3 bg-primary-600 hover:bg-primary-700 text-grey-50 rounded-lg font-medium transition-colors"
+              className="inline-block px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors"
             >
               Start Shopping
             </Link>
           </div>
         ) : (
-          <div className="flex flex-col gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-full">
             {orders.map((order) => (
               <div
                 key={order._id}
-                className="bg-white border border-grey-200 rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center"
+                className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-lg transition-all duration-200 flex flex-col"
               >
-                <div className="w-full flex flex-col gap-6">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-2">
-                    <div>
-                      <h3 className="text-lg font-semibold text-grey-900 mb-2">
+                {/* Header */}
+                <div className="mb-4 pb-4 border-b border-gray-200">
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-base font-bold text-gray-900 truncate">
                         Order #{order.orderId}
                       </h3>
-                      <p className="text-sm text-secondary-500 mb-2">
+                      <p className="text-xs text-gray-500 mt-1">
                         {new Date(order.createdAt).toLocaleDateString("en-IN", {
                           day: "numeric",
                           month: "short",
                           year: "numeric",
-                          hour: "2-digit",
-                          minute: "2-digit",
                         })}
                       </p>
                     </div>
-                    <div className="flex items-center">{getStatusBadge(order.status)}</div>
-                  </div>
-
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-secondary-600 mb-2">
-                    <span>
-                      {order.orderType === "print"
-                        ? `${order.printDetails?.totalPages || "N/A"} Pages`
-                        : `${order.items?.length || 0} ${
-                            order.items?.length === 1 ? "item" : "items"
-                          }`}
-                    </span>
-                    <span className="hidden sm:inline">•</span>
-                    <span>
-                      {order.payment?.method === "cod"
-                        ? "Cash on Delivery"
-                        : "Online Payment"}
-                    </span>
-                  </div>
-
-                  <div className="border-t border-grey-200 pt-6 mt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-                    <div>
-                      <p className="text-sm text-secondary-500 mb-2">Total Amount</p>
-                      <p className="text-xl font-bold text-grey-900">
-                        {formatPrice(order.totalPrice)}
-                      </p>
-                    </div>
-                    <div className="flex flex-col gap-3 w-full sm:w-auto">
-                      <Link
-                        to={`/order/${order.orderId}`}
-                        className="flex items-center gap-2 px-5 py-2 border border-primary-600 text-primary-600 rounded-lg hover:bg-primary-600 hover:text-grey-50 transition-colors font-medium text-base w-full sm:w-auto justify-center"
-                      >
-                        <MdReceipt size={20} />
-                        View Details
-                      </Link>
-                     
-                      
+                    <div className="shrink-0">
+                      {getStatusBadge(order.status)}
                     </div>
                   </div>
                 </div>
+
+                {/* Details */}
+                <div className="space-y-3 mb-4 flex-1">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">
+                      {order.orderType === "print" ? "Pages" : "Items"}
+                    </span>
+                    <span className="font-semibold text-gray-900">
+                      {order.orderType === "print"
+                        ? order.printDetails?.totalPages || "N/A"
+                        : order.items?.length || 0}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">Payment Method</span>
+                    <span className="font-semibold text-gray-900">
+                      {order.payment?.method === "cod" ? "COD" : "Online"}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between pt-2 border-t border-gray-200">
+                    <span className="text-gray-600 font-medium">Total</span>
+                    <span className="text-lg font-bold text-green-600">
+                      {formatPrice(order.totalPrice)}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Action Button */}
+                <Link
+                  to={`/order/${order.orderId}`}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 border border-green-600 bg-white rounded-lg transition-colors duration-200 font-semibold text-sm group"
+                  style={{
+                    color: "#16a34a",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "#16a34a";
+                    e.currentTarget.style.color = "#ffffff";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = "#ffffff";
+                    e.currentTarget.style.color = "#16a34a";
+                  }}
+                >
+                  <MdReceipt size={18} />
+                  View Details
+                </Link>
               </div>
             ))}
           </div>

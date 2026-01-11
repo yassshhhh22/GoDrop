@@ -46,23 +46,6 @@ function App() {
   const { isCartOpen, closeCart, isLoginModalOpen } = useUIStore();
 
   useEffect(() => {
-    // Detect device type
-    const checkDevice = () => {
-      const width = window.innerWidth;
-      const isMobile = width < 768;
-      const isTablet = width >= 768 && width < 1024;
-      const isDesktop = width >= 1024;
-
-      setDeviceType(isMobile, isTablet, isDesktop);
-    };
-
-    checkDevice();
-    window.addEventListener("resize", checkDevice);
-
-    return () => window.removeEventListener("resize", checkDevice);
-  }, [setDeviceType]);
-
-  useEffect(() => {
     const initializeAuth = async () => {
       if (isAuthenticated && refreshToken && !accessToken) {
         await refreshAccessToken();
@@ -90,7 +73,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-grey-50">
+      <div className="min-h-screen flex flex-col bg-gray-50">
         {/* Toast Notifications */}
         <Toaster
           position="top-center"
@@ -115,16 +98,28 @@ function App() {
             <Route path={ROUTES.PUBLIC.SEARCH} element={<SearchPage />} />
             <Route path={ROUTES.PUBLIC.PRODUCTS} element={<ProductsPage />} />
             <Route path={ROUTES.PUBLIC.CATEGORY} element={<CategoryPage />} />
-            <Route path={ROUTES.PUBLIC.PRODUCT_DETAIL} element={<ProductDetailPage />} />
+            <Route
+              path={ROUTES.PUBLIC.PRODUCT_DETAIL}
+              element={<ProductDetailPage />}
+            />
 
             {/* ---------- Utility Routes ---------- */}
             <Route path={ROUTES.PUBLIC.CART} element={<CartMobilePage />} />
-            <Route path={ROUTES.PUBLIC.USER_MENU} element={<UserMenuMobile />} />
-            <Route path={ROUTES.PUBLIC.PRINT_ORDER} element={<PrintOrderPage />} />
+            <Route
+              path={ROUTES.PUBLIC.USER_MENU}
+              element={<UserMenuMobile />}
+            />
+            <Route
+              path={ROUTES.PUBLIC.PRINT_ORDER}
+              element={<PrintOrderPage />}
+            />
 
             {/* ---------- Payment/Status Routes ---------- */}
             <Route path={ROUTES.PAYMENT.SUCCESS} element={<OrderSuccess />} />
-            <Route path={ROUTES.PAYMENT.CANCELLED} element={<OrderCancelled />} />
+            <Route
+              path={ROUTES.PAYMENT.CANCELLED}
+              element={<OrderCancelled />}
+            />
             <Route path={ROUTES.PAYMENT.PENDING} element={<PaymentPending />} />
 
             {/* ---------- Customer Routes (Protected) ---------- */}
@@ -214,7 +209,10 @@ function App() {
             />
 
             {/* ---------- Fallback ---------- */}
-            <Route path={ROUTES.FALLBACK} element={<Navigate to={ROUTES.PUBLIC.HOME} replace />} />
+            <Route
+              path={ROUTES.FALLBACK}
+              element={<Navigate to={ROUTES.PUBLIC.HOME} replace />}
+            />
           </Routes>
         </main>
 

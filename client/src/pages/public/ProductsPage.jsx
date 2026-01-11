@@ -59,75 +59,107 @@ const ProductsPage = () => {
   };
 
   return (
-    <section className="bg-grey-50 min-h-screen">
-      <div className="container mx-auto p-4">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h1 className="text-2xl lg:text-3xl font-bold text-grey-900">
-              {searchQuery
-                ? `Search results for "${searchQuery}"`
-                : categoryId
-                ? "Products"
-                : "All Products"}
-            </h1>
-            {!loading && (
-              <p className="text-secondary-500 text-sm mt-1">
-                {products.length} products found
-              </p>
-            )}
-          </div>
+    <section className="bg-white min-h-screen">
+      {/* Sticky Header */}
+      <header className="sticky top-16 z-30 bg-white border-b border-gray-100 shadow-sm">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-semibold text-gray-900">
+                {searchQuery
+                  ? `Search results for "${searchQuery}"`
+                  : categoryId
+                  ? "Products"
+                  : "All Products"}
+              </h1>
+              {!loading && (
+                <p className="text-gray-600 text-sm mt-1">
+                  {products.length} products found
+                </p>
+              )}
+            </div>
 
-          {/* View Controls */}
-          <div className="flex items-center gap-3">
-            {/* Filter Toggle (Mobile) */}
-            <button
-              onClick={() => setShowFilters(!showFilters)}
-              className="lg:hidden flex items-center gap-2 px-4 py-2 bg-grey-50 border border-grey-200 rounded-lg hover:bg-secondary-50 transition-colors"
-            >
-              <MdFilterList size={20} />
-              Filters
-            </button>
+            {/* View Controls */}
+            <div className="flex items-center gap-2">
+              {/* Filter Toggle (Mobile) */}
+              <button
+                onClick={() => setShowFilters(!showFilters)}
+                className="lg:hidden flex items-center gap-2 px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <MdFilterList size={18} />
+                <span className="text-sm font-semibold text-gray-900">
+                  Filters
+                </span>
+              </button>
 
-            {/* View Mode Toggle */}
-            <div className="flex items-center gap-1 bg-grey-50 border border-grey-200 rounded-lg p-1">
-              <button
-                onClick={() => setViewMode("grid")}
-                className={`p-2 rounded transition-colors ${
-                  viewMode === "grid"
-                    ? "bg-primary-600 text-grey-50"
-                    : "text-secondary-500 hover:bg-secondary-50"
-                }`}
-              >
-                <MdGridView size={20} />
-              </button>
-              <button
-                onClick={() => setViewMode("list")}
-                className={`p-2 rounded transition-colors ${
-                  viewMode === "list"
-                    ? "bg-primary-600 text-grey-50"
-                    : "text-secondary-500 hover:bg-secondary-50"
-                }`}
-              >
-                <MdViewList size={20} />
-              </button>
+              {/* View Mode Toggle */}
+              <div className="flex items-center gap-1 bg-white border border-gray-300 rounded-lg p-1">
+                <button
+                  onClick={() => setViewMode("grid")}
+                  className={`p-2 rounded transition-colors ${
+                    viewMode === "grid"
+                      ? "bg-primary-600 text-white"
+                      : "text-gray-600 hover:bg-gray-100"
+                  }`}
+                >
+                  <MdGridView size={18} />
+                </button>
+                <button
+                  onClick={() => setViewMode("list")}
+                  className={`p-2 rounded transition-colors ${
+                    viewMode === "list"
+                      ? "bg-primary-600 text-white"
+                      : "text-gray-600 hover:bg-gray-100"
+                  }`}
+                >
+                  <MdViewList size={18} />
+                </button>
+              </div>
             </div>
           </div>
         </div>
+      </header>
 
-        <div className="grid lg:grid-cols-[250px_1fr] gap-6">
+      <div className="container mx-auto p-4">
+        <div className="flex relative gap-6">
+          {/* Mobile Overlay */}
+          {showFilters && (
+            <div
+              className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+              onClick={() => setShowFilters(false)}
+            />
+          )}
           {/* Filters Sidebar */}
           <aside
-            className={`${
-              showFilters ? "block" : "hidden"
-            } lg:block bg-grey-50 border border-grey-200 rounded-lg p-6 h-fit sticky top-4`}
+            className={`
+              fixed lg:sticky top-0 left-0 h-screen lg:h-auto z-50 lg:z-10
+              w-80 lg:w-72 bg-white overflow-y-auto
+              border-r border-gray-100 lg:border
+              transition-transform duration-300 ease-in-out
+              ${
+                showFilters
+                  ? "translate-x-0"
+                  : "-translate-x-full lg:translate-x-0"
+              }
+            `}
+            style={{ top: "72px" }}
           >
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-grey-900">Filters</h3>
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-6 lg:hidden">
+                <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
+                <button
+                  onClick={() => setShowFilters(false)}
+                  className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                >
+                  <MdFilterList className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="flex items-center justify-between mb-6 hidden lg:flex">
+                <h3 className="text-sm font-semibold text-gray-900">Filters</h3>
                 <button
                   onClick={handleResetFilters}
-                  className="text-sm text-primary-600 hover:text-primary-700"
+                  className="text-xs text-primary-600 hover:text-primary-700 font-semibold transition-colors"
                 >
                   Reset
                 </button>
@@ -137,6 +169,13 @@ const ProductsPage = () => {
                 filters={filters}
                 onFilterChange={handleFilterChange}
               />
+
+              <button
+                onClick={handleResetFilters}
+                className="w-full mt-6 px-4 py-2 bg-white text-primary-600 font-semibold text-sm rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors duration-200 lg:hidden"
+              >
+                Reset Filters
+              </button>
             </div>
           </aside>
 
@@ -154,15 +193,12 @@ const ProductsPage = () => {
                 <div
                   className={
                     viewMode === "grid"
-                      ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+                      ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-0"
                       : "flex flex-col gap-4"
                   }
                 >
                   {products.map((product) => (
-                    <ProductCard
-                      key={product._id}
-                      data={product} // ✅ Changed from 'product' to 'data' to match ProductCard props
-                    />
+                    <ProductCard key={product._id} data={product} />
                   ))}
                 </div>
 

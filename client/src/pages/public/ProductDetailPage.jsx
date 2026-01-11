@@ -52,7 +52,7 @@ const ProductDetailPage = () => {
           <p className="text-secondary-500 mb-4">Product not found</p>
           <button
             onClick={() => navigate("/")}
-            className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-grey-50 rounded-lg font-medium transition-colors"
+            className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-gray-50 rounded-lg font-medium transition-colors"
           >
             Go to Home
           </button>
@@ -90,7 +90,7 @@ const ProductDetailPage = () => {
       <div className="w-full px-2 sm:px-4 py-6 sm:py-10 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
         {/* Left: Product Image & Thumbnails */}
         <div className="flex flex-col items-center">
-          <div className="bg-white border border-grey-200 rounded-lg flex items-center justify-center w-full max-w-[400px] min-h-[220px] sm:min-h-[340px] max-h-[400px] mx-auto">
+          <div className="bg-white border border-gray-200 rounded-lg flex items-center justify-center w-full max-w-[400px] min-h-[220px] sm:min-h-[340px] max-h-[400px] mx-auto">
             <img
               src={images[selectedImageIndex] || "/placeholder.png"}
               alt={product.name}
@@ -107,7 +107,7 @@ const ProductDetailPage = () => {
                 className={`border rounded-lg w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-white ${
                   idx === selectedImageIndex
                     ? "border-primary-600"
-                    : "border-grey-200"
+                    : "border-gray-200"
                 }`}
               >
                 <img
@@ -123,7 +123,7 @@ const ProductDetailPage = () => {
         {/* Right: Product Info */}
         <div className="flex flex-col justify-start mt-8 md:mt-0">
           {/* Product Name */}
-          <h1 className="text-2xl sm:text-3xl font-bold text-grey-900 mb-4 sm:mb-5">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-5">
             {product.name}
           </h1>
           {/* Rating */}
@@ -147,7 +147,7 @@ const ProductDetailPage = () => {
           {/* Price + Add to Cart (mobile: row, desktop: stacked) */}
           <div className="flex flex-col sm:block">
             <div className="flex items-center gap-3 sm:gap-4 mb-2 sm:mb-3 flex-wrap">
-              <span className="text-xl sm:text-2xl font-bold text-grey-900">
+              <span className="text-xl sm:text-2xl font-bold text-gray-900">
                 {formatPrice(currentPrice)}
               </span>
               {originalPrice && discount > 0 && (
@@ -195,13 +195,13 @@ const ProductDetailPage = () => {
           </div>
           {/* Description */}
           <div className="mb-3">
-            <span className="font-semibold text-grey-900">Description: </span>
+            <span className="font-semibold text-gray-900">Description: </span>
             <span className="text-secondary-600">{product.description}</span>
           </div>
           {/* Unit (below description) */}
           {product.unit && product.quantity && (
             <div className="mb-4 sm:mb-5">
-              <span className="font-semibold text-grey-900">Unit: </span>
+              <span className="font-semibold text-gray-900">Unit: </span>
               <span className="text-secondary-600">
                 {product.quantity} {product.unit}
               </span>
@@ -223,32 +223,42 @@ const ProductDetailPage = () => {
           {/* MOQ for Business */}
           {customerType === "Business" && product.moq && (
             <div className="mb-5 sm:mb-7">
-              <span className="font-semibold text-grey-900">Minimum Order Quantity (MOQ): </span>
+              <span className="font-semibold text-gray-900">
+                Minimum Order Quantity (MOQ):{" "}
+              </span>
               <span className="text-secondary-600">{product.moq} units</span>
             </div>
           )}
           {/* Why Shop Section */}
           <div className="mt-8 sm:mt-10">
-            <h2 className="font-semibold text-grey-900 text-lg mb-3 sm:mb-4">
+            <h2 className="font-semibold text-gray-900 text-lg mb-3 sm:mb-4">
               Why shop from GoDrop?
             </h2>
             <div className="space-y-4 sm:space-y-6">
               <div className="flex items-start gap-3 sm:gap-4">
-                <img src={image1} alt="Superfast delivery" className="w-10 h-10 sm:w-12 sm:h-12" />
+                <img
+                  src={image1}
+                  alt="Superfast delivery"
+                  className="w-10 h-10 sm:w-12 sm:h-12"
+                />
                 <div>
-                  <div className="font-semibold text-grey-900 text-base">
+                  <div className="font-semibold text-gray-900 text-base">
                     Superfast Delivery
                   </div>
                   <div className="text-sm text-secondary-600">
-                    Get your order delivered to your doorstep at the earliest from
-                    dark stores near you.
+                    Get your order delivered to your doorstep at the earliest
+                    from dark stores near you.
                   </div>
                 </div>
               </div>
               <div className="flex items-start gap-3 sm:gap-4">
-                <img src={image2} alt="Best prices offers" className="w-10 h-10 sm:w-12 sm:h-12" />
+                <img
+                  src={image2}
+                  alt="Best prices offers"
+                  className="w-10 h-10 sm:w-12 sm:h-12"
+                />
                 <div>
-                  <div className="font-semibold text-grey-900 text-base">
+                  <div className="font-semibold text-gray-900 text-base">
                     Best Prices & Offers
                   </div>
                   <div className="text-sm text-secondary-600">
@@ -258,9 +268,13 @@ const ProductDetailPage = () => {
                 </div>
               </div>
               <div className="flex items-start gap-3 sm:gap-4">
-                <img src={image3} alt="Wide Assortment" className="w-10 h-10 sm:w-12 sm:h-12" />
+                <img
+                  src={image3}
+                  alt="Wide Assortment"
+                  className="w-10 h-10 sm:w-12 sm:h-12"
+                />
                 <div>
-                  <div className="font-semibold text-grey-900 text-base">
+                  <div className="font-semibold text-gray-900 text-base">
                     Wide Assortment
                   </div>
                   <div className="text-sm text-secondary-600">
@@ -276,7 +290,7 @@ const ProductDetailPage = () => {
       {/* Products in this category */}
       {categoryId && (
         <div className="w-full mt-10 sm:mt-12">
-          <h2 className="text-xl sm:text-2xl font-bold text-grey-900 mb-4 sm:mb-6 px-2 sm:px-4">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 px-2 sm:px-4">
             Products in this category
           </h2>
           <CategoryWiseProductDisplay id={categoryId} name={categoryName} />

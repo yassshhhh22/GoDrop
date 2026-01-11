@@ -42,7 +42,7 @@ const CategoryWiseProductDisplay = ({ id, name }) => {
       {/* Increased spacing between categories */}
       <div className="w-full max-w-7xl px-8 flex items-center justify-between gap-4 mb-6">
         {/* Softer, cleaner font style with increased size */}
-        <h3 className="font-sans font-bold text-3xl text-grey-800 tracking-normal">
+        <h3 className="font-sans font-bold text-3xl text-gray-800 tracking-normal">
           {name}
         </h3>
         <Link
@@ -55,9 +55,9 @@ const CategoryWiseProductDisplay = ({ id, name }) => {
       {/* Add extra margin here */}
       <div className="h-4" />
       {/* Normal Grid – no slider */}
-      <div 
+      <div
         className="w-full max-w-4xl grid grid-cols-2 lg:grid-cols-5 gap-x-2"
-        style={{ marginLeft: 70, marginRight: 'auto' }}
+        style={{ marginLeft: 70, marginRight: "auto" }}
       >
         {loading &&
           loadingCardNumber.map((_, index) => (

@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Text } from '@adminjs/design-system';
 const ImageGallery = (props) => {
   const { record } = props;
-  
+
   // Unflatten the params
   const images = [];
   let index = 0;
@@ -16,7 +16,7 @@ const ImageGallery = (props) => {
   }
   return (
     <Box>
-      <Text fontSize="sm" marginBottom="default" color="grey60">
+      <Text fontSize="sm" marginBottom="default" color="gray60">
         {images.length} image(s) - First image is primary
       </Text>
       <Box

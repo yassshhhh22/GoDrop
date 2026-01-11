@@ -36,7 +36,7 @@ const UserMenu = ({ close }) => {
   return (
     <div className="min-w-[250px]">
       {/* User Info */}
-      <div className="font-semibold text-grey-900">My Account</div>
+      <div className="font-semibold text-gray-900">My Account</div>
       <div className="text-sm flex items-center gap-2 mt-1">
         <p className="text-secondary-500">{displayName}</p>
         {customerType && (
@@ -53,14 +53,14 @@ const UserMenu = ({ close }) => {
         <Link
           onClick={handleClose}
           to="/profile"
-          className="px-3 py-2 hover:bg-primary-100 rounded transition-colors text-grey-900"
+          className="px-3 py-2 hover:bg-primary-100 rounded transition-colors text-gray-900"
         >
           My Profile
         </Link>
         <Link
           onClick={handleClose}
           to="/orders"
-          className="px-3 py-2 hover:bg-primary-100 rounded transition-colors text-grey-900"
+          className="px-3 py-2 hover:bg-primary-100 rounded transition-colors text-gray-900"
         >
           My Orders
         </Link>
@@ -70,7 +70,7 @@ const UserMenu = ({ close }) => {
           <Link
             onClick={handleClose}
             to="/addresses"
-            className="px-3 py-2 hover:bg-primary-100 rounded transition-colors text-grey-900"
+            className="px-3 py-2 hover:bg-primary-100 rounded transition-colors text-gray-900"
           >
             My Addresses
           </Link>
@@ -86,7 +86,7 @@ const UserMenu = ({ close }) => {
             <Link
               onClick={handleClose}
               to="/business/dashboard"
-              className="px-3 py-2 hover:bg-primary-100 rounded transition-colors text-grey-900 flex items-center justify-between"
+              className="px-3 py-2 hover:bg-primary-100 rounded transition-colors text-gray-900 flex items-center justify-between"
             >
               <span>Business Dashboard</span>
               <HiOutlineExternalLink />
@@ -94,14 +94,14 @@ const UserMenu = ({ close }) => {
             <Link
               onClick={handleClose}
               to="/business/orders"
-              className="px-3 py-2 hover:bg-primary-100 rounded transition-colors text-grey-900"
+              className="px-3 py-2 hover:bg-primary-100 rounded transition-colors text-gray-900"
             >
               Business Orders
             </Link>
             <Link
               onClick={handleClose}
               to="/business/profile"
-              className="px-3 py-2 hover:bg-primary-100 rounded transition-colors text-grey-900"
+              className="px-3 py-2 hover:bg-primary-100 rounded transition-colors text-gray-900"
             >
               Company Details
             </Link>
@@ -114,7 +114,7 @@ const UserMenu = ({ close }) => {
       {/* Logout */}
       <button
         onClick={() => setShowLogoutConfirm(true)}
-        className="w-full text-left px-3 py-2 hover:bg-red hover:bg-opacity-10 hover:text-error rounded transition-colors text-grey-900"
+        className="w-full text-left px-3 py-2 hover:bg-red hover:bg-opacity-10 hover:text-error rounded transition-colors text-gray-900"
       >
         Log Out
       </button>

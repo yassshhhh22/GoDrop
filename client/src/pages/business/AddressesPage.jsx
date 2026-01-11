@@ -77,109 +77,113 @@ const AddressesPage = () => {
   }
 
   return (
-    <div>
-      {/* Header */}
-      <div className="bg-grey-50 shadow-sm px-4 py-3 flex justify-between gap-4 items-center rounded-lg border border-grey-200 mb-4">
-        <h2 className="font-semibold text-grey-900 text-ellipsis line-clamp-1">
-          Saved Addresses
-        </h2>
-        <button
-          onClick={() => setOpenAddModal(true)}
-          className="border border-primary-600 text-primary-600 px-4 py-2 rounded-lg hover:bg-primary-600 hover:text-grey-50 transition-colors flex items-center gap-2 font-medium"
-        >
-          <IoAdd size={20} />
-          Add Address
-        </button>
-      </div>
+    <div className="bg-gray-50 min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between gap-4 mb-2">
+            <h1 className="text-3xl font-bold text-gray-900">
+              Saved Addresses
+            </h1>
+            <button
+              onClick={() => setOpenAddModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors text-sm"
+            >
+              <IoAdd size={18} />
+              Add Address
+            </button>
+          </div>
+          <p className="text-gray-600">Manage your delivery addresses</p>
+        </div>
 
-      {/* Address List */}
-      <div className="bg-secondary-50 p-4 grid gap-4 rounded-lg">
+        {/* Addresses Grid */}
         {addresses.length === 0 ? (
-          <div className="text-center py-12 bg-grey-50 rounded-lg border border-grey-200">
-            <MdLocationOn
-              size={64}
-              className="mx-auto text-secondary-300 mb-4"
-            />
-            <h3 className="text-lg font-semibold text-grey-900 mb-2">
+          <div className="bg-white border border-gray-200 rounded-2xl p-12 text-center shadow-sm">
+            <MdLocationOn size={64} className="mx-auto text-gray-300 mb-4" />
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">
               No addresses saved
             </h3>
-            <p className="text-secondary-500 mb-6">
+            <p className="text-gray-600 mb-6">
               Add your delivery address to place orders
             </p>
             <button
               onClick={() => setOpenAddModal(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-grey-50 rounded-lg font-medium transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors"
             >
               <IoAdd size={20} />
               Add Your First Address
             </button>
           </div>
         ) : (
-          <>
+          <div className="space-y-4">
             {addresses.map((address, index) => (
               <div
                 key={address._id || index}
-                className="border border-grey-200 rounded-lg p-4 flex gap-4 bg-grey-50 hover:shadow-md transition-shadow"
+                className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200"
               >
-                {/* Address Icon & Content */}
-                <div className="w-full">
-                  <div className="flex items-start gap-3 mb-3">
-                    {getAddressIcon(address.label)}
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <h3 className="font-semibold text-grey-900">
+                <div className="flex items-start justify-between gap-4">
+                  {/* Address Content */}
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex items-center gap-2">
+                        {getAddressIcon(address.label)}
+                        <h3 className="text-lg font-semibold text-gray-900">
                           {address.label}
                         </h3>
-                        {address.isDefault && (
-                          <span className="px-3 py-1 bg-primary-600 text-grey-50 rounded-full text-xs font-medium">
-                            Default
-                          </span>
-                        )}
                       </div>
-
-                      <p className="text-grey-900 mb-1">{address.address}</p>
-
-                      {address.landmark && (
-                        <p className="text-secondary-500 text-sm mb-1">
-                          Landmark: {address.landmark}
-                        </p>
+                      {address.isDefault && (
+                        <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold border border-green-200">
+                          Default
+                        </span>
                       )}
-
-                      <div className="flex flex-wrap gap-2 text-secondary-500 text-sm">
-                        {address.city && <span>{address.city}</span>}
-                        {address.state && <span>• {address.state}</span>}
-                        {address.pincode && <span>• {address.pincode}</span>}
-                      </div>
                     </div>
+
+                    <p className="text-gray-900 font-medium mb-1">
+                      {address.address}
+                    </p>
+
+                    {address.landmark && (
+                      <p className="text-gray-600 text-sm mb-2">
+                        Landmark: {address.landmark}
+                      </p>
+                    )}
+
+                    <div className="flex flex-wrap gap-2 text-gray-600 text-sm">
+                      {address.city && <span>{address.city}</span>}
+                      {address.state && <span>•</span>}
+                      {address.state && <span>{address.state}</span>}
+                      {address.pincode && <span>•</span>}
+                      {address.pincode && <span>{address.pincode}</span>}
+                    </div>
+
+                    {/* Set Default Button */}
+                    {!address.isDefault && (
+                      <button
+                        onClick={() => handleSetDefault(address._id)}
+                        className="text-green-600 hover:text-green-700 text-sm font-semibold transition-colors mt-3"
+                      >
+                        Set as default
+                      </button>
+                    )}
                   </div>
 
-                  {/* Set Default Button */}
-                  {!address.isDefault && (
+                  {/* Action Buttons */}
+                  <div className="flex gap-2 shrink-0">
                     <button
-                      onClick={() => handleSetDefault(address._id)}
-                      className="text-primary-600 hover:text-primary-700 text-sm font-medium transition-colors"
+                      onClick={() => handleEditClick(address)}
+                      className="p-2.5 bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg transition-colors"
+                      title="Edit address"
                     >
-                      Set as default
+                      <MdEdit size={18} />
                     </button>
-                  )}
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex flex-col gap-2">
-                  <button
-                    onClick={() => handleEditClick(address)}
-                    className="bg-primary-100 text-primary-600 p-2 rounded hover:bg-primary-600 hover:text-grey-50 transition-colors"
-                    title="Edit address"
-                  >
-                    <MdEdit size={20} />
-                  </button>
-                  <button
-                    onClick={() => handleDeleteClick(address._id)}
-                    className="bg-error bg-opacity-10 text-error p-2 rounded hover:bg-error hover:text-grey-50 transition-colors"
-                    title="Delete address"
-                  >
-                    <MdDelete size={20} />
-                  </button>
+                    <button
+                      onClick={() => handleDeleteClick(address._id)}
+                      className="p-2.5 bg-red-100 text-red-600 hover:bg-red-600 hover:text-white rounded-lg transition-colors"
+                      title="Delete address"
+                    >
+                      <MdDelete size={18} />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -187,14 +191,14 @@ const AddressesPage = () => {
             {/* Add More Button */}
             <button
               onClick={() => setOpenAddModal(true)}
-              className="h-20 bg-secondary-50 border-2 border-dashed border-grey-300 rounded-lg flex justify-center items-center cursor-pointer hover:border-primary-600 hover:bg-primary-50 transition-colors group"
+              className="w-full h-32 bg-white border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center hover:border-green-600 hover:bg-green-50 transition-all duration-200 group"
             >
-              <div className="flex items-center gap-2 text-secondary-500 group-hover:text-primary-600">
-                <IoAdd size={24} />
-                <span className="font-medium">Add New Address</span>
+              <div className="flex flex-col items-center gap-2 text-gray-500 group-hover:text-green-600">
+                <IoAdd size={28} />
+                <span className="font-semibold text-sm">Add New Address</span>
               </div>
             </button>
-          </>
+          </div>
         )}
       </div>
 

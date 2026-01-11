@@ -11,10 +11,10 @@ const UserMenuMobile = () => {
   };
 
   return (
-    <section className="bg-grey-50 min-h-screen w-full py-2">
+    <section className="bg-gray-50 min-h-screen w-full py-2">
       <button
         onClick={handleClose}
-        className="text-grey-900 block w-fit ml-auto mr-4 hover:bg-secondary-100 p-2 rounded-full transition-colors"
+        className="text-gray-900 block w-fit ml-auto mr-4 hover:bg-secondary-100 p-2 rounded-full transition-colors"
         aria-label="Close menu"
       >
         <IoClose size={25} />

@@ -103,7 +103,8 @@ const AssignPartner = (props) => {
 
   // Check if already assigned
   // ✅ CHANGE: Better check for already assigned partner
-  const isAssigned = record.params.deliveryPartner && 
+  const isAssigned =
+    record.params.deliveryPartner &&
     record.params.deliveryPartner.toString().length > 0;
 
   if (isAssigned) {
@@ -123,7 +124,7 @@ const AssignPartner = (props) => {
         <Text fontSize="h4" fontWeight="bold">
           Assign Delivery Partner
         </Text>
-        <Text fontSize="sm" color="grey60" marginTop="sm">
+        <Text fontSize="sm" color="gray60" marginTop="sm">
           Select an available delivery partner to assign this order
         </Text>
       </Box>
@@ -131,16 +132,16 @@ const AssignPartner = (props) => {
       <Box
         marginBottom="xl"
         padding="default"
-        bg="grey20"
+        bg="gray20"
         borderRadius="default"
       >
         <Text fontSize="sm" fontWeight="bold">
           Order ID: {record.params.orderId}
         </Text>
-        <Text fontSize="sm" color="grey60">
+        <Text fontSize="sm" color="gray60">
           Customer: {record.populated?.customer?.params?.name || 'N/A'}
         </Text>
-        <Text fontSize="sm" color="grey60">
+        <Text fontSize="sm" color="gray60">
           Total: ₹{record.params.totalPrice}
         </Text>
       </Box>
@@ -179,7 +180,7 @@ const AssignPartner = (props) => {
             />
 
             {partners.length === 0 && !loading && (
-              <Text fontSize="sm" color="grey60" marginTop="sm">
+              <Text fontSize="sm" color="gray60" marginTop="sm">
                 No available delivery partners found
               </Text>
             )}
@@ -187,7 +188,8 @@ const AssignPartner = (props) => {
             {/* ✅ DEBUG: Show selected value */}
             {selectedPartner && (
               <Text fontSize="sm" color="primary" marginTop="sm">
-                Selected: {partners.find((p) => p.value === selectedPartner)?.label}
+                Selected:{' '}
+                {partners.find((p) => p.value === selectedPartner)?.label}
               </Text>
             )}
           </Box>

@@ -36,15 +36,28 @@ const useCartStore = create(
       // ========================================
 
       fetchCart: async () => {
-        const { isAuthenticated } = useAuthStore.getState();
+        const { isAuthenticated, getCustomerType } = useAuthStore.getState();
+        const customerType = getCustomerType();
+
         if (!isAuthenticated) {
+          // For guest users, recalculate subtotal from persisted items
+          const { items } = get();
+          const guestSubtotal = items.reduce((total, item) => {
+            const itemPrice =
+              customerType === "Business"
+                ? item.businessPrice || item.price || 0
+                : item.discountPrice || item.price || 0;
+            return total + itemPrice * item.count;
+          }, 0);
+
+          const guestTotalItems = items.reduce(
+            (total, item) => total + (item.count || 0),
+            0
+          );
+
           set({
-            items: [],
-            _backendSubtotal: 0,
-            _backendTotalItems: 0,
-            giftWrap: { enabled: false, message: "" }, // Reset gift wrap for guest
-            appliedCoupon: null, // Reset coupon for guest
-            couponDiscount: 0, // Reset coupon discount for guest
+            _backendSubtotal: guestSubtotal,
+            _backendTotalItems: guestTotalItems,
           });
           return;
         }
@@ -73,35 +86,43 @@ const useCartStore = create(
         const { isAuthenticated, getCustomerType } = useAuthStore.getState();
         const customerType = getCustomerType();
 
-        console.log("🛒 Adding to cart:", {
-          productId: product._id,
-          productName: product.name,
-          quantity,
-          customerType,
-          moq: product.moq,
-          isAuthenticated,
-        });
-
         if (!isAuthenticated) {
           // Guest cart
           const { items } = get();
           const existingItem = items.find((item) => item._id === product._id);
 
+          let updatedItems;
           if (existingItem) {
-            set({
-              items: items.map((item) =>
-                item._id === product._id
-                  ? { ...item, count: item.count + quantity }
-                  : item
-              ),
-            });
+            updatedItems = items.map((item) =>
+              item._id === product._id
+                ? { ...item, count: item.count + quantity }
+                : item
+            );
             successAlert(`Added ${quantity} item(s)`);
           } else {
-            set({
-              items: [...items, { ...product, count: quantity }],
-            });
+            updatedItems = [...items, { ...product, count: quantity }];
             successAlert(`Added ${quantity} item(s) to cart`);
           }
+
+          // Calculate subtotal and total items for guest cart
+          const guestSubtotal = updatedItems.reduce((total, item) => {
+            const itemPrice =
+              customerType === "Business"
+                ? item.businessPrice || item.price || 0
+                : item.discountPrice || item.price || 0;
+            return total + itemPrice * item.count;
+          }, 0);
+
+          const guestTotalItems = updatedItems.reduce(
+            (total, item) => total + (item.count || 0),
+            0
+          );
+
+          set({
+            items: updatedItems,
+            _backendSubtotal: guestSubtotal,
+            _backendTotalItems: guestTotalItems,
+          });
           return;
         }
 
@@ -136,14 +157,35 @@ const useCartStore = create(
       },
 
       updateQuantity: async (productId, quantity) => {
-        const { isAuthenticated } = useAuthStore.getState();
+        const { isAuthenticated, getCustomerType } = useAuthStore.getState();
+        const customerType = getCustomerType();
 
         if (!isAuthenticated) {
           const { items } = get();
-          set({
-            items: items.map((item) =>
+          const updatedItems = items
+            .map((item) =>
               item._id === productId ? { ...item, count: quantity } : item
-            ),
+            )
+            .filter((item) => item.count > 0);
+
+          // Calculate guest subtotal and total items
+          const guestSubtotal = updatedItems.reduce((total, item) => {
+            const itemPrice =
+              customerType === "Business"
+                ? item.businessPrice || item.price || 0
+                : item.discountPrice || item.price || 0;
+            return total + itemPrice * item.count;
+          }, 0);
+
+          const guestTotalItems = updatedItems.reduce(
+            (total, item) => total + (item.count || 0),
+            0
+          );
+
+          set({
+            items: updatedItems,
+            _backendSubtotal: guestSubtotal,
+            _backendTotalItems: guestTotalItems,
           });
           successAlert(quantity > 0 ? "Quantity updated" : "Item removed");
           return;
@@ -195,12 +237,31 @@ const useCartStore = create(
       },
 
       removeItem: async (productId) => {
-        const { isAuthenticated } = useAuthStore.getState();
+        const { isAuthenticated, getCustomerType } = useAuthStore.getState();
+        const customerType = getCustomerType();
 
         if (!isAuthenticated) {
           const { items } = get();
+          const updatedItems = items.filter((item) => item._id !== productId);
+
+          // Calculate guest subtotal and total items
+          const guestSubtotal = updatedItems.reduce((total, item) => {
+            const itemPrice =
+              customerType === "Business"
+                ? item.businessPrice || item.price || 0
+                : item.discountPrice || item.price || 0;
+            return total + itemPrice * item.count;
+          }, 0);
+
+          const guestTotalItems = updatedItems.reduce(
+            (total, item) => total + (item.count || 0),
+            0
+          );
+
           set({
-            items: items.filter((item) => item._id !== productId),
+            items: updatedItems,
+            _backendSubtotal: guestSubtotal,
+            _backendTotalItems: guestTotalItems,
           });
           successAlert("Item removed from cart");
           return;

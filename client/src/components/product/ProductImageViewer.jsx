@@ -12,7 +12,7 @@ const ProductImageViewer = ({ product }) => {
 
   if (images.length === 0) {
     return (
-      <div className="w-full aspect-square bg-grey-100 rounded-lg flex items-center justify-center">
+      <div className="w-full aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
         <p className="text-secondary-500">No image available</p>
       </div>
     );
@@ -33,7 +33,7 @@ const ProductImageViewer = ({ product }) => {
       <div className="relative">
         <div
           onClick={() => handleImageClick(0)}
-          className="w-full aspect-square bg-grey-100 rounded-lg overflow-hidden cursor-pointer group"
+          className="w-full aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer group"
         >
           <img
             src={primaryImage}
@@ -41,8 +41,8 @@ const ProductImageViewer = ({ product }) => {
             className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-grey-900 bg-opacity-0 group-hover:bg-opacity-10 transition-opacity flex items-center justify-center">
-            <span className="opacity-0 group-hover:opacity-100 text-grey-50 bg-grey-900 bg-opacity-75 px-4 py-2 rounded text-sm">
+          <div className="absolute inset-0 bg-gray-900 bg-opacity-0 group-hover:bg-opacity-10 transition-opacity flex items-center justify-center">
+            <span className="opacity-0 group-hover:opacity-100 text-gray-50 bg-gray-900 bg-opacity-75 px-4 py-2 rounded text-sm">
               Click to view
             </span>
           </div>
@@ -50,7 +50,7 @@ const ProductImageViewer = ({ product }) => {
 
         {/* Image Count Badge */}
         {images.length > 1 && (
-          <div className="absolute top-2 right-2 bg-grey-900 bg-opacity-75 text-grey-50 px-3 py-1 rounded-full text-xs font-medium">
+          <div className="absolute top-2 right-2 bg-gray-900 bg-opacity-75 text-gray-50 px-3 py-1 rounded-full text-xs font-medium">
             {images.length} photos
           </div>
         )}
@@ -63,7 +63,7 @@ const ProductImageViewer = ({ product }) => {
             <button
               key={index}
               onClick={() => handleImageClick(index)}
-              className="aspect-square bg-grey-100 rounded overflow-hidden border-2 border-grey-200 hover:border-primary-500 transition-colors"
+              className="aspect-square bg-gray-100 rounded overflow-hidden border-2 border-gray-200 hover:border-primary-500 transition-colors"
             >
               <img
                 src={img}
@@ -71,7 +71,7 @@ const ProductImageViewer = ({ product }) => {
                 className="w-full h-full object-cover"
               />
               {index === 3 && images.length > 4 && (
-                <div className="absolute inset-0 bg-grey-900 bg-opacity-60 flex items-center justify-center text-grey-50 font-medium">
+                <div className="absolute inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center text-gray-50 font-medium">
                   +{images.length - 4}
                 </div>
               )}

@@ -30,25 +30,25 @@ const CartMobilePage = () => {
 
   if (isLoading && items.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-grey-50">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <Loading size={150} />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-grey-50 pb-24">
+    <div className="min-h-screen bg-gray-50 pb-24">
       {/* Mobile Header */}
-      <div className="sticky top-0 z-30 bg-grey-50 border-b border-grey-200 shadow-sm">
+      <div className="sticky top-0 z-30 bg-gray-50 border-b border-gray-200 shadow-sm">
         <div className="flex items-center gap-3 p-4">
           <button
             onClick={handleBackClick}
             className="p-2 hover:bg-secondary-100 rounded-full transition-colors"
           >
-            <IoArrowBack size={24} className="text-grey-900" />
+            <IoArrowBack size={24} className="text-gray-900" />
           </button>
           <div className="flex-1">
-            <h1 className="text-lg font-semibold text-grey-900 flex items-center gap-2">
+            <h1 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <MdShoppingCart size={24} />
               My Cart
               {cartCount > 0 && (
@@ -72,7 +72,7 @@ const CartMobilePage = () => {
           </div>
 
           {/* Bottom Fixed Checkout Section */}
-          <div className="fixed bottom-0 left-0 right-0 bg-grey-50 border-t border-grey-200 shadow-lg z-40">
+          <div className="fixed bottom-0 left-0 right-0 bg-gray-50 border-t border-gray-200 shadow-lg z-40">
             <CartSummary onCheckout={handleCheckout} />
           </div>
         </>

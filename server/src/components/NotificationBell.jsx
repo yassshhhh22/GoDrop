@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Icon, Badge, DropDown, DropDownItem, H3, Text } from '@adminjs/design-system';
+import {
+  Icon,
+  Badge,
+  DropDown,
+  DropDownItem,
+  H3,
+  Text,
+} from '@adminjs/design-system';
 import { ApiClient } from 'adminjs';
 import { io } from 'socket.io-client';
 
@@ -9,11 +16,14 @@ const NotificationBell = () => {
 
   useEffect(() => {
     // Fetch initial count of pending orders
-    api.get('/orders/pending/count')
-      .then(response => {
+    api
+      .get('/orders/pending/count')
+      .then((response) => {
         setCount(response.data.data.count);
       })
-      .catch(error => console.error('Error fetching pending order count:', error));
+      .catch((error) =>
+        console.error('Error fetching pending order count:', error)
+      );
 
     // Connect to the Socket.IO server
     // Make sure the URL points to your backend server
@@ -28,7 +38,7 @@ const NotificationBell = () => {
     });
 
     const handleNewOrder = (data) => {
-      setCount(prevCount => prevCount + 1);
+      setCount((prevCount) => prevCount + 1);
     };
 
     // Listen for new order events
@@ -51,9 +61,12 @@ const NotificationBell = () => {
     <div style={{ position: 'relative', margin: '0 16px' }}>
       <DropDown>
         <DropDown.Trigger>
-          <Icon icon="Bell" size={24} color="grey100" />
+          <Icon icon="Bell" size={24} color="gray100" />
           {count > 0 && (
-            <Badge variant="danger" style={{ position: 'absolute', top: '-5px', right: '-5px' }}>
+            <Badge
+              variant="danger"
+              style={{ position: 'absolute', top: '-5px', right: '-5px' }}
+            >
               {count}
             </Badge>
           )}

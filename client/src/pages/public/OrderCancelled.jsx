@@ -51,7 +51,7 @@ const OrderCancelled = () => {
       <div className="w-full max-w-md bg-error bg-opacity-10 border-2 border-error rounded-lg p-6 py-8 mx-auto flex flex-col justify-center items-center gap-6 shadow-lg">
         {/* Icon */}
         <div className="bg-error rounded-full p-4">
-          <MdCancel size={64} className="text-grey-50" />
+          <MdCancel size={64} className="text-gray-50" />
         </div>
 
         {/* Message */}
@@ -79,7 +79,7 @@ const OrderCancelled = () => {
         {/* Payment Info (if payment failed) */}
         {searchParams.get("error") && (
           <div className="w-full bg-warning bg-opacity-10 border border-warning rounded p-3">
-            <p className="text-sm text-grey-900 text-center">
+            <p className="text-sm text-gray-900 text-center">
               <strong>Payment Failed:</strong>{" "}
               {decodeURIComponent(searchParams.get("error"))}
             </p>
@@ -90,7 +90,7 @@ const OrderCancelled = () => {
         <div className="flex flex-col sm:flex-row gap-3 w-full">
           <Link
             to="/"
-            className="flex-1 flex items-center justify-center gap-2 border-2 border-error text-error hover:bg-error hover:text-grey-50 transition-all px-6 py-3 rounded-lg font-medium"
+            className="flex-1 flex items-center justify-center gap-2 border-2 border-error text-error hover:bg-error hover:text-gray-50 transition-all px-6 py-3 rounded-lg font-medium"
           >
             <MdHome size={20} />
             Go To Home
@@ -98,7 +98,7 @@ const OrderCancelled = () => {
 
           <button
             onClick={handleRetry}
-            className="flex-1 bg-primary-600 hover:bg-primary-700 text-grey-50 px-6 py-3 rounded-lg font-medium transition-colors"
+            className="flex-1 bg-primary-600 hover:bg-primary-700 text-gray-50 px-6 py-3 rounded-lg font-medium transition-colors"
           >
             Retry Order
           </button>

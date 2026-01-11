@@ -180,12 +180,12 @@ const BusinessUserProfile = () => {
   };
 
   return (
-    <div className="bg-grey-50 min-h-screen flex items-start justify-center pt-6 md:pt-12 pb-4 md:pb-8">
+    <div className="bg-gray-50 min-h-screen flex items-start justify-center pt-6 md:pt-12 pb-4 md:pb-8">
       <div className="w-full max-w-xl bg-white rounded-2xl shadow-lg p-0 flex flex-col justify-center mx-2">
         <div className="px-4 md:px-6 pt-2 md:pt-4 pb-2">
           <div className="flex items-center gap-3 justify-center mb-2">
             <MdBusiness size={32} className="text-primary-600" />
-            <h2 className="text-2xl md:text-3xl font-bold text-grey-900">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
               Business Profile
             </h2>
           </div>
@@ -195,9 +195,9 @@ const BusinessUserProfile = () => {
         </div>
         <div className="px-4 md:px-6 pb-6 md:pb-8">
           {/* Verification Status */}
-          <div className="mb-6 p-4 bg-secondary-50 rounded-lg border border-grey-200">
+          <div className="mb-6 p-4 bg-secondary-50 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
-              <span className="text-grey-900 font-medium">
+              <span className="text-gray-900 font-medium">
                 Verification Status:
               </span>
               <span
@@ -220,17 +220,20 @@ const BusinessUserProfile = () => {
               )}
           </div>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-6 md:gap-8">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-6 md:gap-8"
+          >
             {/* Phone (Read-only) */}
             <div>
-              <label className="block text-sm font-medium text-grey-900 mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 Phone Number
               </label>
               <input
                 type="text"
                 value={user?.phone || ""}
                 disabled
-                className="w-full bg-secondary-50 border border-grey-200 rounded-lg px-4 py-2 text-base font-medium text-secondary-500 cursor-not-allowed shadow-sm"
+                className="w-full bg-secondary-50 border border-gray-200 rounded-lg px-4 py-2 text-base font-medium text-secondary-500 cursor-not-allowed shadow-sm"
                 style={{
                   boxShadow: "0 1px 3px 0 rgba(0,0,0,0.03)",
                   minHeight: 44,
@@ -240,7 +243,7 @@ const BusinessUserProfile = () => {
 
             {/* Company Name */}
             <div>
-              <label className="block text-sm font-medium text-grey-900 mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 Company Name <span className="text-error">*</span>
               </label>
               <input
@@ -249,10 +252,10 @@ const BusinessUserProfile = () => {
                 value={formData.companyName}
                 onChange={handleChange}
                 disabled={!isEditing}
-                className={`w-full px-4 py-2 border rounded-lg transition-colors text-base font-medium text-grey-900 shadow-sm ${
+                className={`w-full px-4 py-2 border rounded-lg transition-colors text-base font-medium text-gray-900 shadow-sm ${
                   isEditing
-                    ? "border-grey-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-600"
-                    : "border-grey-200 bg-secondary-50 cursor-not-allowed"
+                    ? "border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-600"
+                    : "border-gray-200 bg-secondary-50 cursor-not-allowed"
                 } outline-none`}
                 style={{
                   boxShadow: "0 1px 3px 0 rgba(0,0,0,0.03)",
@@ -264,7 +267,7 @@ const BusinessUserProfile = () => {
 
             {/* GST Number */}
             <div>
-              <label className="block text-sm font-medium text-grey-900 mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 GST Number <span className="text-error">*</span>
               </label>
               <input
@@ -273,10 +276,10 @@ const BusinessUserProfile = () => {
                 value={formData.gstNumber}
                 onChange={handleChange}
                 disabled={!isEditing}
-                className={`w-full px-4 py-2 border rounded-lg transition-colors uppercase text-base font-medium text-grey-900 shadow-sm ${
+                className={`w-full px-4 py-2 border rounded-lg transition-colors uppercase text-base font-medium text-gray-900 shadow-sm ${
                   isEditing
-                    ? "border-grey-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-600"
-                    : "border-grey-200 bg-secondary-50 cursor-not-allowed"
+                    ? "border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-600"
+                    : "border-gray-200 bg-secondary-50 cursor-not-allowed"
                 } outline-none`}
                 style={{
                   boxShadow: "0 1px 3px 0 rgba(0,0,0,0.03)",
@@ -293,7 +296,7 @@ const BusinessUserProfile = () => {
 
             {/* Contact Person */}
             <div>
-              <label className="block text-sm font-medium text-grey-900 mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 Contact Person <span className="text-error">*</span>
               </label>
               <input
@@ -302,10 +305,10 @@ const BusinessUserProfile = () => {
                 value={formData.contactPerson}
                 onChange={handleChange}
                 disabled={!isEditing}
-                className={`w-full px-4 py-2 border rounded-lg transition-colors text-base font-medium text-grey-900 shadow-sm ${
+                className={`w-full px-4 py-2 border rounded-lg transition-colors text-base font-medium text-gray-900 shadow-sm ${
                   isEditing
-                    ? "border-grey-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-600"
-                    : "border-grey-200 bg-secondary-50 cursor-not-allowed"
+                    ? "border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-600"
+                    : "border-gray-200 bg-secondary-50 cursor-not-allowed"
                 } outline-none`}
                 style={{
                   boxShadow: "0 1px 3px 0 rgba(0,0,0,0.03)",
@@ -317,7 +320,7 @@ const BusinessUserProfile = () => {
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-grey-900 mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 Email Address <span className="text-error">*</span>
               </label>
               <input
@@ -326,10 +329,10 @@ const BusinessUserProfile = () => {
                 value={formData.email}
                 onChange={handleChange}
                 disabled={!isEditing}
-                className={`w-full px-4 py-2 border rounded-lg transition-colors text-base font-medium text-grey-900 shadow-sm ${
+                className={`w-full px-4 py-2 border rounded-lg transition-colors text-base font-medium text-gray-900 shadow-sm ${
                   isEditing
-                    ? "border-grey-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-600"
-                    : "border-grey-200 bg-secondary-50 cursor-not-allowed"
+                    ? "border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-600"
+                    : "border-gray-200 bg-secondary-50 cursor-not-allowed"
                 } outline-none`}
                 style={{
                   boxShadow: "0 1px 3px 0 rgba(0,0,0,0.03)",
@@ -341,7 +344,7 @@ const BusinessUserProfile = () => {
 
             {/* Address */}
             <div>
-              <label className="block text-sm font-medium text-grey-900 mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 Business Address <span className="text-error">*</span>
               </label>
               <textarea
@@ -350,10 +353,10 @@ const BusinessUserProfile = () => {
                 onChange={handleChange}
                 disabled={!isEditing}
                 rows={3}
-                className={`w-full px-4 py-2 border rounded-lg transition-colors text-base font-medium text-grey-900 shadow-sm ${
+                className={`w-full px-4 py-2 border rounded-lg transition-colors text-base font-medium text-gray-900 shadow-sm ${
                   isEditing
-                    ? "border-grey-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-600"
-                    : "border-grey-200 bg-secondary-50 cursor-not-allowed"
+                    ? "border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-600"
+                    : "border-gray-200 bg-secondary-50 cursor-not-allowed"
                 } outline-none`}
                 style={{
                   boxShadow: "0 1px 3px 0 rgba(0,0,0,0.03)",
@@ -369,7 +372,7 @@ const BusinessUserProfile = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 disabled:bg-grey-300 text-grey-50 rounded-lg font-medium transition-colors"
+                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 text-gray-50 rounded-lg font-medium transition-colors"
                   style={{ minHeight: "48px" }}
                 >
                   <MdSave size={20} />
@@ -379,7 +382,7 @@ const BusinessUserProfile = () => {
                   type="button"
                   onClick={handleCancel}
                   disabled={isLoading}
-                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-secondary-200 hover:bg-secondary-300 text-grey-900 rounded-lg font-medium transition-colors"
+                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-secondary-200 hover:bg-secondary-300 text-gray-900 rounded-lg font-medium transition-colors"
                   style={{ minHeight: "48px" }}
                 >
                   <MdCancel size={20} />
@@ -390,9 +393,9 @@ const BusinessUserProfile = () => {
           </form>
 
           {/* Registered Address Section */}
-          <div className="border-t border-grey-200 pt-6 mt-6">
+          <div className="border-t border-gray-200 pt-6 mt-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-grey-900">
+              <h3 className="text-lg font-semibold text-gray-900">
                 Registered Delivery Address
               </h3>
               {!isEditingAddress && (
@@ -406,10 +409,10 @@ const BusinessUserProfile = () => {
             </div>
 
             {isEditingAddress ? (
-              <div className="space-y-4 p-4 bg-secondary-50 rounded-lg border border-grey-200">
+              <div className="space-y-4 p-4 bg-secondary-50 rounded-lg border border-gray-200">
                 {/* Street Address */}
                 <div>
-                  <label className="block text-sm font-medium text-grey-900 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-2">
                     Street Address <span className="text-error">*</span>
                   </label>
                   <textarea
@@ -417,7 +420,7 @@ const BusinessUserProfile = () => {
                     value={formData.registeredAddress?.street || ""}
                     onChange={handleAddressChange}
                     rows={2}
-                    className="w-full px-4 py-2 border border-grey-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-600 outline-none text-base font-medium text-grey-900 shadow-sm"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-600 outline-none text-base font-medium text-gray-900 shadow-sm"
                     placeholder="Building no, Street name, Area"
                     style={{
                       boxShadow: "0 1px 3px 0 rgba(0,0,0,0.03)",
@@ -429,7 +432,7 @@ const BusinessUserProfile = () => {
                 <div className="grid grid-cols-2 gap-4">
                   {/* City */}
                   <div>
-                    <label className="block text-sm font-medium text-grey-900 mb-2">
+                    <label className="block text-sm font-medium text-gray-900 mb-2">
                       City <span className="text-error">*</span>
                     </label>
                     <input
@@ -437,7 +440,7 @@ const BusinessUserProfile = () => {
                       name="city"
                       value={formData.registeredAddress?.city || ""}
                       onChange={handleAddressChange}
-                      className="w-full px-4 py-2 border border-grey-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-600 outline-none text-base font-medium text-grey-900 shadow-sm"
+                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-600 outline-none text-base font-medium text-gray-900 shadow-sm"
                       style={{
                         boxShadow: "0 1px 3px 0 rgba(0,0,0,0.03)",
                         minHeight: 44,
@@ -447,7 +450,7 @@ const BusinessUserProfile = () => {
 
                   {/* State */}
                   <div>
-                    <label className="block text-sm font-medium text-grey-900 mb-2">
+                    <label className="block text-sm font-medium text-gray-900 mb-2">
                       State <span className="text-error">*</span>
                     </label>
                     <input
@@ -455,7 +458,7 @@ const BusinessUserProfile = () => {
                       name="state"
                       value={formData.registeredAddress?.state || ""}
                       onChange={handleAddressChange}
-                      className="w-full px-4 py-2 border border-grey-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-600 outline-none text-base font-medium text-grey-900 shadow-sm"
+                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-600 outline-none text-base font-medium text-gray-900 shadow-sm"
                       style={{
                         boxShadow: "0 1px 3px 0 rgba(0,0,0,0.03)",
                         minHeight: 44,
@@ -467,7 +470,7 @@ const BusinessUserProfile = () => {
                 <div className="grid grid-cols-2 gap-4">
                   {/* Pincode */}
                   <div>
-                    <label className="block text-sm font-medium text-grey-900 mb-2">
+                    <label className="block text-sm font-medium text-gray-900 mb-2">
                       Pincode <span className="text-error">*</span>
                     </label>
                     <input
@@ -476,7 +479,7 @@ const BusinessUserProfile = () => {
                       value={formData.registeredAddress?.pincode || ""}
                       onChange={handleAddressChange}
                       pattern="\d{6}"
-                      className="w-full px-4 py-2 border border-grey-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-600 outline-none text-base font-medium text-grey-900 shadow-sm"
+                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-600 outline-none text-base font-medium text-gray-900 shadow-sm"
                       placeholder="600001"
                       style={{
                         boxShadow: "0 1px 3px 0 rgba(0,0,0,0.03)",
@@ -487,7 +490,7 @@ const BusinessUserProfile = () => {
 
                   {/* Landmark */}
                   <div>
-                    <label className="block text-sm font-medium text-grey-900 mb-2">
+                    <label className="block text-sm font-medium text-gray-900 mb-2">
                       Landmark (Optional)
                     </label>
                     <input
@@ -495,7 +498,7 @@ const BusinessUserProfile = () => {
                       name="landmark"
                       value={formData.registeredAddress?.landmark || ""}
                       onChange={handleAddressChange}
-                      className="w-full px-4 py-2 border border-grey-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-600 outline-none text-base font-medium text-grey-900 shadow-sm"
+                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-600 outline-none text-base font-medium text-gray-900 shadow-sm"
                       placeholder="Near landmark"
                       style={{
                         boxShadow: "0 1px 3px 0 rgba(0,0,0,0.03)",
@@ -509,7 +512,7 @@ const BusinessUserProfile = () => {
                 <div className="flex gap-3 mt-4">
                   <button
                     onClick={() => setIsEditingAddress(false)}
-                    className="flex-1 px-4 py-2 bg-secondary-200 hover:bg-secondary-300 text-grey-900 rounded-lg font-medium transition-colors"
+                    className="flex-1 px-4 py-2 bg-secondary-200 hover:bg-secondary-300 text-gray-900 rounded-lg font-medium transition-colors"
                     style={{ minHeight: "44px" }}
                   >
                     Cancel
@@ -517,7 +520,7 @@ const BusinessUserProfile = () => {
                   <button
                     onClick={handleRegisteredAddressSave}
                     disabled={isProcessing}
-                    className="flex-1 px-4 py-2 bg-primary-600 hover:bg-primary-700 disabled:bg-grey-300 text-grey-50 rounded-lg font-medium transition-colors disabled:cursor-not-allowed"
+                    className="flex-1 px-4 py-2 bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 text-gray-50 rounded-lg font-medium transition-colors disabled:cursor-not-allowed"
                     style={{ minHeight: "44px" }}
                   >
                     {isProcessing ? "Saving..." : "Save Address"}
@@ -526,7 +529,7 @@ const BusinessUserProfile = () => {
               </div>
             ) : (
               // Display Mode
-              <div className="p-4 bg-secondary-50 rounded-lg border border-grey-200">
+              <div className="p-4 bg-secondary-50 rounded-lg border border-gray-200">
                 {formData.registeredAddress?.street ? (
                   <div className="text-secondary-600 space-y-1 text-sm">
                     <p>{formData.registeredAddress.street}</p>

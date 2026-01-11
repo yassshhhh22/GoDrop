@@ -120,7 +120,7 @@ const OrderDetailPage = () => {
           <p className="text-secondary-500 mb-4">Order not found</p>
           <Link
             to="/orders"
-            className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-grey-50 rounded-lg font-medium transition-colors inline-block"
+            className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-gray-50 rounded-lg font-medium transition-colors inline-block"
           >
             Back to Orders
           </Link>
@@ -132,7 +132,7 @@ const OrderDetailPage = () => {
   const order = selectedOrder;
 
   return (
-    <div className="bg-grey-50 min-h-screen flex items-start justify-center py-8 px-2 sm:px-4">
+    <div className="bg-gray-50 min-h-screen flex items-start justify-center py-8 px-2 sm:px-4">
       <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-0 flex flex-col justify-center mt-8">
         {/* Header */}
         <div className="px-4 md:px-6 pt-6 md:pt-8 pb-2">
@@ -145,7 +145,7 @@ const OrderDetailPage = () => {
           </button>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-grey-900 mb-1">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
                 Order #{order.orderId}
               </h1>
               <p className="text-secondary-500">
@@ -163,8 +163,8 @@ const OrderDetailPage = () => {
         </div>
 
         {/* Order Items */}
-        <div className="bg-grey-50 border border-grey-200 rounded-xl p-6 mb-6 mx-4 mt-6">
-          <h2 className="font-semibold text-grey-900 text-lg mb-4">
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-6 mx-4 mt-6">
+          <h2 className="font-semibold text-gray-900 text-lg mb-4">
             {order.orderType === "print" ? "Print Files" : "Items"}
           </h2>
           <div className="space-y-6">
@@ -173,7 +173,7 @@ const OrderDetailPage = () => {
                 order.printDetails.files.map((file, index) => (
                   <div
                     key={index}
-                    className="flex gap-4 pb-4 border-b border-grey-200 last:border-0 items-center"
+                    className="flex gap-4 pb-4 border-b border-gray-200 last:border-0 items-center"
                   >
                     <img
                       src={file.url}
@@ -181,7 +181,7 @@ const OrderDetailPage = () => {
                       className="w-20 h-20 object-cover rounded"
                     />
                     <div className="flex-1">
-                      <h3 className="font-medium text-grey-900 mb-1">
+                      <h3 className="font-medium text-gray-900 mb-1">
                         {file.filename}
                       </h3>
                       <p className="text-sm text-secondary-500 mb-1">
@@ -207,7 +207,7 @@ const OrderDetailPage = () => {
               order.items?.map((item, index) => (
                 <div
                   key={index}
-                  className="flex gap-4 pb-4 border-b border-grey-200 last:border-0"
+                  className="flex gap-4 pb-4 border-b border-gray-200 last:border-0"
                 >
                   <img
                     src={item.item?.images?.[0] || "/placeholder.png"}
@@ -215,7 +215,7 @@ const OrderDetailPage = () => {
                     className="w-20 h-20 object-cover rounded"
                   />
                   <div className="flex-1">
-                    <h3 className="font-medium text-grey-900 mb-1">
+                    <h3 className="font-medium text-gray-900 mb-1">
                       {item.item?.name}
                     </h3>
                     <p className="text-sm text-secondary-500 mb-1">
@@ -223,7 +223,7 @@ const OrderDetailPage = () => {
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="font-semibold text-grey-900">
+                    <p className="font-semibold text-gray-900">
                       {formatPrice(
                         customerType === "Business"
                           ? (item.item?.businessPrice || 0) * (item.count || 1)
@@ -238,8 +238,8 @@ const OrderDetailPage = () => {
         </div>
 
         {/* Delivery Address */}
-        <div className="bg-grey-50 border border-grey-200 rounded-xl p-6 mb-6 mx-4">
-          <h2 className="font-semibold text-grey-900 text-lg mb-4 flex items-center gap-2">
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-6 mx-4">
+          <h2 className="font-semibold text-gray-900 text-lg mb-4 flex items-center gap-2">
             <MdLocalShipping size={24} />
             Delivery Address
           </h2>
@@ -256,21 +256,21 @@ const OrderDetailPage = () => {
         </div>
 
         {/* Payment & Pricing */}
-        <div className="bg-grey-50 border border-grey-200 rounded-xl p-6 mb-6 mx-4">
-          <h2 className="font-semibold text-grey-900 text-lg mb-4 flex items-center gap-2">
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-6 mx-4">
+          <h2 className="font-semibold text-gray-900 text-lg mb-4 flex items-center gap-2">
             <MdPayment size={24} />
             Payment Details
           </h2>
           <div className="space-y-3">
             <div className="flex justify-between">
               <span className="text-secondary-600">Items Total</span>
-              <span className="font-medium text-grey-900">
+              <span className="font-medium text-gray-900">
                 {formatPrice(order.pricing?.subtotal || 0)}
               </span>
             </div>
             <div className="flex justify-between">
               <span className="text-secondary-600">Delivery Fee</span>
-              <span className="font-medium text-grey-900">
+              <span className="font-medium text-gray-900">
                 {formatPrice(order.pricing?.deliveryFee || 0)}
               </span>
             </div>
@@ -278,7 +278,7 @@ const OrderDetailPage = () => {
             {order.pricing?.giftWrapFee > 0 && (
               <div className="flex justify-between">
                 <span className="text-secondary-600">Giftwrap</span>
-                <span className="font-medium text-grey-900">
+                <span className="font-medium text-gray-900">
                   {formatPrice(order.pricing.giftWrapFee)}
                 </span>
               </div>
@@ -294,15 +294,15 @@ const OrderDetailPage = () => {
                 </span>
               </div>
             )}
-            <div className="border-t border-grey-200 pt-3 flex justify-between">
-              <span className="font-semibold text-grey-900">Total Amount</span>
-              <span className="font-bold text-grey-900 text-xl">
+            <div className="border-t border-gray-200 pt-3 flex justify-between">
+              <span className="font-semibold text-gray-900">Total Amount</span>
+              <span className="font-bold text-gray-900 text-xl">
                 {formatPrice(order.pricing?.totalPrice || 0)}
               </span>
             </div>
             <div className="flex justify-between">
               <span className="text-secondary-600">Payment Method</span>
-              <span className="font-medium text-grey-900">
+              <span className="font-medium text-gray-900">
                 {order.payment?.method === "cod"
                   ? "Cash on Delivery"
                   : "Online Payment"}
@@ -312,8 +312,8 @@ const OrderDetailPage = () => {
         </div>
 
         {/* Order Actions */}
-        <div className="bg-grey-50 border border-grey-200 rounded-xl p-6 mx-4 mb-8">
-          <h2 className="font-semibold text-grey-900 text-lg mb-4">
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 mx-4 mb-8">
+          <h2 className="font-semibold text-gray-900 text-lg mb-4">
             Order Actions
           </h2>
           <div className="flex flex-col gap-4">
@@ -332,7 +332,7 @@ const OrderDetailPage = () => {
             {["picked", "arriving"].includes(order.status) && (
               <Link
                 to={`/track-order/${orderId}`}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-grey-50 rounded-xl font-semibold transition-all duration-200 focus:outline-none text-base"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-xl font-semibold transition-all duration-200 focus:outline-none text-base"
                 style={{ minHeight: "48px" }}
               >
                 <MdLocalShipping size={20} />
@@ -353,8 +353,8 @@ const OrderDetailPage = () => {
       {/* Cancel Confirmation Modal */}
       {showCancelConfirm && (
         <div className="fixed backdrop-blur-xl inset-0 flex items-center justify-center z-50 p-4">
-          <div className="bg-grey-50 rounded-2xl max-w-xl w-full p-6 shadow-2xl">
-            <h3 className="text-xl font-bold text-grey-900 mb-4">
+          <div className="bg-gray-50 rounded-2xl max-w-xl w-full p-6 shadow-2xl">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">
               Cancel Order
             </h3>
             <p className="text-secondary-600 mb-4">
@@ -364,7 +364,7 @@ const OrderDetailPage = () => {
 
             {/* Cancellation Reason */}
             <div className="mb-6">
-              <label className="block text-sm font-medium text-grey-900 mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 Reason for cancellation <span className="text-error">*</span>
               </label>
               <textarea
@@ -372,7 +372,7 @@ const OrderDetailPage = () => {
                 onChange={(e) => setCancelReason(e.target.value)}
                 placeholder="e.g., Changed my mind, Found better price..."
                 rows={3}
-                className="w-full px-4 py-3 border border-grey-200 rounded-lg focus:ring-2 focus:ring-error focus:border-error outline-none"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-error focus:border-error outline-none"
               />
             </div>
 
@@ -383,7 +383,7 @@ const OrderDetailPage = () => {
                   setShowCancelConfirm(false);
                   setCancelReason("");
                 }}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-secondary-200 hover:bg-secondary-300 text-grey-900 rounded-xl font-semibold transition-all duration-200 focus:outline-none text-base"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-secondary-200 hover:bg-secondary-300 text-gray-900 rounded-xl font-semibold transition-all duration-200 focus:outline-none text-base"
                 style={{ minHeight: "48px" }}
               >
                 Keep Order
@@ -391,7 +391,7 @@ const OrderDetailPage = () => {
               <button
                 onClick={handleCancelOrder}
                 disabled={!cancelReason.trim() || isLoading}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-error hover:bg-error/90 disabled:bg-grey-300 disabled:cursor-not-allowed text-white rounded-xl font-semibold transition-all duration-200 focus:outline-none text-base"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-error hover:bg-error/90 disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded-xl font-semibold transition-all duration-200 focus:outline-none text-base"
                 style={{ minHeight: "48px" }}
               >
                 {isLoading ? "Cancelling..." : "Cancel Order"}

@@ -38,19 +38,19 @@ const ViewImage = ({ url, close, alt = "Image preview" }) => {
 
   return (
     <div
-      className="fixed top-0 bottom-0 right-0 left-0 bg-grey-900 bg-opacity-80 flex justify-center items-center z-50 p-4 animate-fadeIn"
+      className="fixed top-0 bottom-0 right-0 left-0 bg-gray-900 bg-opacity-80 flex justify-center items-center z-50 p-4 animate-fadeIn"
       onClick={handleBackdropClick}
       role="dialog"
       aria-modal="true"
       aria-label="Image preview"
     >
-      <div className="w-full max-w-4xl max-h-[90vh] bg-grey-50 rounded-lg shadow-2xl overflow-hidden">
+      <div className="w-full max-w-4xl max-h-[90vh] bg-gray-50 rounded-lg shadow-2xl overflow-hidden">
         {/* Header */}
-        <div className="flex justify-between items-center p-4 border-b border-grey-200 bg-grey-50">
-          <h3 className="text-grey-900 font-medium">Image Preview</h3>
+        <div className="flex justify-between items-center p-4 border-b border-gray-200 bg-gray-50">
+          <h3 className="text-gray-900 font-medium">Image Preview</h3>
           <button
             onClick={close}
-            className="hover:text-error transition-colors p-1 rounded-full hover:bg-grey-100"
+            className="hover:text-error transition-colors p-1 rounded-full hover:bg-gray-100"
             aria-label="Close preview"
           >
             <IoClose size={25} />
@@ -59,7 +59,7 @@ const ViewImage = ({ url, close, alt = "Image preview" }) => {
 
         {/* Image Container */}
         <div
-          className="relative bg-grey-900 flex items-center justify-center p-4"
+          className="relative bg-gray-900 flex items-center justify-center p-4"
           style={{ maxHeight: "calc(90vh - 80px)" }}
         >
           <img
@@ -75,7 +75,7 @@ const ViewImage = ({ url, close, alt = "Image preview" }) => {
         </div>
 
         {/* Footer - Optional Actions */}
-        <div className="flex justify-between items-center p-4 border-t border-grey-200 bg-grey-50">
+        <div className="flex justify-between items-center p-4 border-t border-gray-200 bg-gray-50">
           <a
             href={url}
             target="_blank"
@@ -87,7 +87,7 @@ const ViewImage = ({ url, close, alt = "Image preview" }) => {
           <a
             href={url}
             download
-            className="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-grey-50 rounded text-sm font-medium transition-colors"
+            className="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-gray-50 rounded text-sm font-medium transition-colors"
           >
             Download
           </a>

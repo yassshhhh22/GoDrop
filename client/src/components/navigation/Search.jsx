@@ -4,7 +4,6 @@ import { FaArrowLeft } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TypeAnimation } from "react-type-animation";
 import useProductStore from "../../stores/productStore";
-import useUIStore from "../../stores/uiStore";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -13,7 +12,6 @@ const Search = () => {
   const [searchValue, setSearchValue] = useState("");
 
   const { searchProducts, clearSearch } = useProductStore();
-  const { isMobile } = useUIStore();
 
   // Get search query from URL
   const searchParams = new URLSearchParams(location.search);
@@ -63,16 +61,17 @@ const Search = () => {
   };
 
   return (
-    <div className="w-full min-w-[300px] lg:min-w-[420px] h-11 lg:h-12 rounded-lg border border-grey-200 overflow-hidden flex items-center text-secondary-500 bg-secondary-50 group focus-within:border-primary-500 focus-within:ring-2 focus-within:ring-primary-100 transition-all">
+    <div className="w-full min-w-[300px] lg:min-w-[420px] h-11 lg:h-12 rounded-lg border border-gray-200 overflow-hidden flex items-center text-secondary-500 bg-secondary-50 group focus-within:border-primary-500 focus-within:ring-2 focus-within:ring-primary-100 transition-all">
       <div>
-        {isMobile && isSearchPage ? (
+        {isSearchPage && (
           <Link
             to={"/"}
-            className="flex justify-center items-center h-full p-2 m-1 text-grey-900 group-focus-within:text-primary-600 bg-grey-50 rounded-full shadow-md hover:bg-grey-100 transition-colors"
+            className="hidden sm:flex justify-center items-center h-full p-2 m-1 text-gray-900 group-focus-within:text-primary-600 bg-gray-50 rounded-full shadow-md hover:bg-gray-100 transition-colors"
           >
             <FaArrowLeft size={20} />
           </Link>
-        ) : (
+        )}
+        {!isSearchPage && (
           <button
             className="flex justify-center items-center h-full p-3 text-secondary-500 group-focus-within:text-primary-600 transition-colors"
             aria-label="Search"
@@ -126,7 +125,7 @@ const Search = () => {
               placeholder="Search for groceries, vegetables, fruits..."
               autoFocus
               value={searchValue}
-              className="bg-transparent w-full h-full outline-none text-grey-900 placeholder:text-secondary-400 px-2"
+              className="bg-transparent w-full h-full outline-none text-gray-900 placeholder:text-secondary-400 px-2"
               onChange={handleOnChange}
             />
           </div>

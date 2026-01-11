@@ -18,10 +18,10 @@ const AddFieldComponent = ({
   };
 
   return (
-    <section className="fixed top-0 bottom-0 right-0 left-0 bg-grey-900 bg-opacity-70 z-50 flex justify-center items-center p-4">
-      <div className="bg-grey-50 rounded p-4 w-full max-w-md">
+    <section className="fixed top-0 bottom-0 right-0 left-0 bg-gray-900 bg-opacity-70 z-50 flex justify-center items-center p-4">
+      <div className="bg-gray-50 rounded p-4 w-full max-w-md">
         <div className="flex items-center justify-between gap-3">
-          <h1 className="font-semibold text-grey-900">{title}</h1>
+          <h1 className="font-semibold text-gray-900">{title}</h1>
           <button
             onClick={close}
             className="hover:text-error transition-colors"
@@ -34,7 +34,7 @@ const AddFieldComponent = ({
 
         <form onSubmit={handleSubmit}>
           <input
-            className="bg-secondary-50 my-3 p-2 border border-grey-200 outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500 rounded w-full transition-colors"
+            className="bg-secondary-50 my-3 p-2 border border-gray-200 outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500 rounded w-full transition-colors"
             placeholder={placeholder}
             value={value}
             onChange={onChange}
@@ -45,7 +45,7 @@ const AddFieldComponent = ({
           <button
             type="submit"
             disabled={isLoading || !value.trim()}
-            className="bg-primary-500 hover:bg-primary-600 disabled:bg-grey-300 disabled:cursor-not-allowed px-4 py-2 rounded mx-auto w-fit block text-grey-900 font-medium transition-colors"
+            className="bg-primary-500 hover:bg-primary-600 disabled:bg-gray-300 disabled:cursor-not-allowed px-4 py-2 rounded mx-auto w-fit block text-gray-900 font-medium transition-colors"
           >
             {isLoading ? "Adding..." : "Add Field"}
           </button>

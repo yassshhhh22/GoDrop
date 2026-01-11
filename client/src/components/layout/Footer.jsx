@@ -6,7 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-grey-200 bg-grey-50 mt-auto">
+    <footer className="border-t border-gray-200 bg-gray-50 mt-auto">
       <div className="container mx-auto p-4 text-center flex flex-col lg:flex-row lg:justify-between gap-2">
         <p className="text-secondary-500 text-sm">
           © All Rights Reserved {currentYear} GoDrop.
@@ -44,7 +44,7 @@ const Footer = () => {
       </div>
 
       {/* Additional Footer Links (Optional) */}
-      <div className="border-t border-grey-200 py-3">
+      <div className="border-t border-gray-200 py-3">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-4 text-xs text-secondary-500">
             <Link

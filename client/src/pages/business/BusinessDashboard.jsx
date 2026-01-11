@@ -52,11 +52,11 @@ const BusinessDashboard = () => {
   };
 
   return (
-    <div className="bg-grey-50 min-h-screen flex items-start justify-center pt-6 md:pt-12 pb-4 md:pb-8">
+    <div className="bg-gray-50 min-h-screen flex items-start justify-center pt-6 md:pt-12 pb-4 md:pb-8">
       <div className="w-full max-w-5xl bg-white rounded-2xl shadow-lg p-0 flex flex-col justify-center mx-2">
         {/* Header */}
         <div className="px-4 md:px-8 pt-4 md:pt-8 pb-2">
-          <h1 className="text-3xl md:text-4xl font-bold text-grey-900 mb-2 text-center">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 text-center">
             Business Dashboard
           </h1>
           <p className="text-secondary-500 text-center text-base md:text-lg">
@@ -70,7 +70,7 @@ const BusinessDashboard = () => {
             className={`${getVerificationStatusColor()} border-2 border-current rounded-xl p-6 mb-8 shadow-sm`}
           >
             <div className="flex items-center gap-4">
-              <div className="p-3 bg-grey-50 bg-opacity-20 rounded-full">
+              <div className="p-3 bg-gray-50 bg-opacity-20 rounded-full">
                 {getVerificationIcon()}
               </div>
               <div className="flex-1">
@@ -85,8 +85,8 @@ const BusinessDashboard = () => {
                 )}
                 {user?.verificationStatus === "Pending" && (
                   <p>
-                    Your application is under review. You can browse products but
-                    cannot place orders yet.
+                    Your application is under review. You can browse products
+                    but cannot place orders yet.
                   </p>
                 )}
                 {user?.verificationStatus === "Rejected" && (
@@ -96,7 +96,7 @@ const BusinessDashboard = () => {
                     </p>
                     <Link
                       to="/business/register"
-                      className="inline-block px-4 py-2 bg-grey-50 text-error font-medium rounded-lg hover:bg-opacity-80 transition-colors"
+                      className="inline-block px-4 py-2 bg-gray-50 text-error font-medium rounded-lg hover:bg-opacity-80 transition-colors"
                     >
                       Reapply
                     </Link>
@@ -110,7 +110,7 @@ const BusinessDashboard = () => {
                     </p>
                     <Link
                       to="/business/register"
-                      className="inline-block px-4 py-2 bg-grey-50 font-medium rounded-lg hover:bg-opacity-80 transition-colors"
+                      className="inline-block px-4 py-2 bg-gray-50 font-medium rounded-lg hover:bg-opacity-80 transition-colors"
                     >
                       Complete Registration
                     </Link>
@@ -122,56 +122,58 @@ const BusinessDashboard = () => {
 
           {/* Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-secondary-50 border border-grey-200 rounded-xl p-6 shadow-sm">
+            <div className="bg-secondary-50 border border-gray-200 rounded-xl p-6 shadow-sm">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-medium text-secondary-500">
                   Total Orders
                 </h3>
                 <MdShoppingBag className="text-primary-600" size={24} />
               </div>
-              <p className="text-3xl font-bold text-grey-900">
+              <p className="text-3xl font-bold text-gray-900">
                 {stats.totalOrders}
               </p>
             </div>
 
-            <div className="bg-secondary-50 border border-grey-200 rounded-xl p-6 shadow-sm">
+            <div className="bg-secondary-50 border border-gray-200 rounded-xl p-6 shadow-sm">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-medium text-secondary-500">
                   Pending Orders
                 </h3>
                 <MdPending className="text-warning" size={24} />
               </div>
-              <p className="text-3xl font-bold text-grey-900">
+              <p className="text-3xl font-bold text-gray-900">
                 {stats.pendingOrders}
               </p>
             </div>
 
-            <div className="bg-secondary-50 border border-grey-200 rounded-xl p-6 shadow-sm">
+            <div className="bg-secondary-50 border border-gray-200 rounded-xl p-6 shadow-sm">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-medium text-secondary-500">
                   Completed Orders
                 </h3>
                 <MdVerifiedUser className="text-primary-600" size={24} />
               </div>
-              <p className="text-3xl font-bold text-grey-900">
+              <p className="text-3xl font-bold text-gray-900">
                 {stats.completedOrders}
               </p>
             </div>
           </div>
 
           {/* Quick Actions */}
-          <div className="bg-secondary-50 border border-grey-200 rounded-xl p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-grey-900 mb-4">
+          <div className="bg-secondary-50 border border-gray-200 rounded-xl p-6 shadow-sm">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">
               Quick Actions
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Link
                 to="/business/profile"
-                className="flex items-center gap-3 p-4 border border-grey-200 rounded-lg hover:bg-primary-50 transition-colors"
+                className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:bg-primary-50 transition-colors"
               >
                 <MdStore size={24} className="text-primary-600" />
                 <div>
-                  <h4 className="font-medium text-grey-900">Business Profile</h4>
+                  <h4 className="font-medium text-gray-900">
+                    Business Profile
+                  </h4>
                   <p className="text-sm text-secondary-500">
                     View and edit business details
                   </p>
@@ -180,11 +182,11 @@ const BusinessDashboard = () => {
 
               <Link
                 to="/orders"
-                className="flex items-center gap-3 p-4 border border-grey-200 rounded-lg hover:bg-primary-50 transition-colors"
+                className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:bg-primary-50 transition-colors"
               >
                 <MdReceipt size={24} className="text-primary-600" />
                 <div>
-                  <h4 className="font-medium text-grey-900">Order History</h4>
+                  <h4 className="font-medium text-gray-900">Order History</h4>
                   <p className="text-sm text-secondary-500">
                     View all your orders
                   </p>

@@ -77,8 +77,8 @@ const CouponInput = () => {
   };
 
   return (
-    <div className="bg-grey-50 rounded-lg p-4 border border-grey-200">
-      <h3 className="font-semibold text-grey-900 mb-3 flex items-center gap-2">
+    <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+      <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
         <MdLocalOffer size={20} className="text-primary-600" />
         Apply Coupon
       </h3>
@@ -113,7 +113,7 @@ const CouponInput = () => {
               required: false,
               minLength: { value: 1, message: "Coupon code required" },
             })}
-            className="w-full px-4 py-2 border border-grey-200 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-primary-600 outline-none disabled:bg-secondary-50 disabled:cursor-not-allowed"
+            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-primary-600 outline-none disabled:bg-secondary-50 disabled:cursor-not-allowed"
             disabled={loading}
           />
           {errors.couponCode && (
@@ -125,7 +125,7 @@ const CouponInput = () => {
             disabled={
               loading || !couponCodeInput || couponCodeInput.trim() === ""
             }
-            className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-grey-300 disabled:cursor-not-allowed text-grey-50 py-2 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+            className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-gray-50 py-2 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
           >
             {loading ? (
               <>

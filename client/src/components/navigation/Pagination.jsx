@@ -1,5 +1,4 @@
 import React from "react";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   if (totalPages <= 1) return null;
@@ -23,24 +22,24 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   };
 
   return (
-    <div className="flex items-center justify-center gap-2">
+    <div className="flex items-center justify-center gap-2 mt-8 mb-8">
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="p-2 rounded-lg border border-grey-200 hover:bg-secondary-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         aria-label="Previous page"
       >
-        <MdChevronLeft size={20} />
+        Previous
       </button>
 
       {getPageNumbers().map((page) => (
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={`px-4 py-2 rounded-lg border transition-colors ${
+          className={`w-10 h-10 rounded-lg transition-colors ${
             currentPage === page
-              ? "bg-primary-600 text-grey-50 border-primary-600"
-              : "border-grey-200 hover:bg-secondary-50"
+              ? "bg-primary-600 text-white border border-primary-600"
+              : "border border-gray-300 hover:bg-gray-50"
           }`}
         >
           {page}
@@ -50,10 +49,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="p-2 rounded-lg border border-grey-200 hover:bg-secondary-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         aria-label="Next page"
       >
-        <MdChevronRight size={20} />
+        Next
       </button>
     </div>
   );

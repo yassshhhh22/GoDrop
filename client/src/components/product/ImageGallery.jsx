@@ -57,15 +57,15 @@ const ImageGallery = ({
 
   return (
     <div
-      className="fixed inset-0 bg-grey-900 bg-opacity-90 flex flex-col z-50 animate-fadeIn"
+      className="fixed inset-0 bg-gray-900 bg-opacity-90 flex flex-col z-50 animate-fadeIn"
       onClick={handleBackdropClick}
       role="dialog"
       aria-modal="true"
       aria-label={title}
     >
       {/* Header */}
-      <div className="flex justify-between items-center p-4 bg-grey-900 bg-opacity-95">
-        <div className="text-grey-50">
+      <div className="flex justify-between items-center p-4 bg-gray-900 bg-opacity-95">
+        <div className="text-gray-50">
           <h3 className="font-medium">{title}</h3>
           <p className="text-sm text-secondary-300">
             {currentIndex + 1} / {totalImages}
@@ -73,7 +73,7 @@ const ImageGallery = ({
         </div>
         <button
           onClick={close}
-          className="text-grey-50 hover:text-error transition-colors p-2 rounded-full hover:bg-grey-800"
+          className="text-gray-50 hover:text-error transition-colors p-2 rounded-full hover:bg-gray-800"
           aria-label="Close gallery"
         >
           <IoClose size={28} />
@@ -97,14 +97,14 @@ const ImageGallery = ({
           <>
             <button
               onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-grey-900 bg-opacity-75 hover:bg-opacity-100 text-grey-50 p-3 rounded-full transition-all"
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-900 bg-opacity-75 hover:bg-opacity-100 text-gray-50 p-3 rounded-full transition-all"
               aria-label="Previous image"
             >
               <IoChevronBack size={24} />
             </button>
             <button
               onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-grey-900 bg-opacity-75 hover:bg-opacity-100 text-grey-50 p-3 rounded-full transition-all"
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-900 bg-opacity-75 hover:bg-opacity-100 text-gray-50 p-3 rounded-full transition-all"
               aria-label="Next image"
             >
               <IoChevronForward size={24} />
@@ -115,8 +115,8 @@ const ImageGallery = ({
 
       {/* Thumbnail Strip */}
       {totalImages > 1 && (
-        <div className="bg-grey-900 bg-opacity-95 p-4">
-          <div className="flex gap-2 overflow-x-auto max-w-4xl mx-auto scrollbar-thin scrollbar-thumb-grey-600">
+        <div className="bg-gray-900 bg-opacity-95 p-4">
+          <div className="flex gap-2 overflow-x-auto max-w-4xl mx-auto scrollbar-thin scrollbar-thumb-gray-600">
             {images.map((img, index) => (
               <button
                 key={index}
@@ -127,7 +127,7 @@ const ImageGallery = ({
                 className={`shrink-0 w-20 h-20 rounded overflow-hidden border-2 transition-all ${
                   index === currentIndex
                     ? "border-primary-500 scale-110"
-                    : "border-grey-600 opacity-60 hover:opacity-100"
+                    : "border-gray-600 opacity-60 hover:opacity-100"
                 }`}
               >
                 <img
@@ -142,19 +142,19 @@ const ImageGallery = ({
       )}
 
       {/* Action Buttons */}
-      <div className="flex justify-center gap-4 p-4 bg-grey-900 bg-opacity-95">
+      <div className="flex justify-center gap-4 p-4 bg-gray-900 bg-opacity-95">
         <a
           href={currentImage}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-4 py-2 bg-secondary-600 hover:bg-secondary-700 text-grey-50 rounded text-sm font-medium transition-colors"
+          className="px-4 py-2 bg-secondary-600 hover:bg-secondary-700 text-gray-50 rounded text-sm font-medium transition-colors"
         >
           Open Original
         </a>
         <a
           href={currentImage}
           download={`image-${currentIndex + 1}`}
-          className="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-grey-50 rounded text-sm font-medium transition-colors"
+          className="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-gray-50 rounded text-sm font-medium transition-colors"
         >
           Download
         </a>

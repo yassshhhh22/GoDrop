@@ -119,7 +119,7 @@ const ImageUpload = (props) => {
       <Label>
         {property.label} {property.isRequired && <Text color="error">*</Text>}
       </Label>
-      <Text fontSize="sm" color="grey60" marginBottom="default">
+      <Text fontSize="sm" color="gray60" marginBottom="default">
         Upload up to {maxImages} images. First image will be the primary image.
       </Text>
 
@@ -211,7 +211,7 @@ const ImageUpload = (props) => {
               <Text fontSize="xs">
                 Image {i + 1}: {progress}%
               </Text>
-              <Box bg="grey40" height="4px" borderRadius="2px">
+              <Box bg="gray40" height="4px" borderRadius="2px">
                 <Box
                   bg="primary"
                   height="4px"
@@ -257,7 +257,7 @@ const ImageUpload = (props) => {
         </label>
       </Box>
 
-      <Text fontSize="xs" color="grey60" marginTop="sm">
+      <Text fontSize="xs" color="gray60" marginTop="sm">
         {localImages.length}/{maxImages} images uploaded
       </Text>
     </Box>

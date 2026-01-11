@@ -53,8 +53,11 @@ const LoginPage = () => {
   };
 
   return (
-    <section className="w-full min-h-screen flex items-center justify-center bg-grey-50 px-2">
-      <div className="bg-white w-full max-w-xl rounded-2xl p-0 relative flex flex-col justify-center shadow-md border border-grey-200" style={{ maxHeight: "95vh", minHeight: "480px" }}>
+    <section className="w-full min-h-screen flex items-center justify-center bg-gray-50 px-2">
+      <div
+        className="bg-white w-full max-w-xl rounded-2xl p-0 relative flex flex-col justify-center shadow-md border border-gray-200"
+        style={{ maxHeight: "95vh", minHeight: "480px" }}
+      >
         {/* Logo Row */}
         <div className="flex justify-center items-center w-full mb-6 mt-8 gap-4">
           <img
@@ -72,13 +75,13 @@ const LoginPage = () => {
         <div className="flex flex-col items-center w-full px-2 py-8">
           {/* Login as */}
           <div className="w-full max-w-md flex flex-col items-center mb-2">
-            <label className="text-base font-semibold text-grey-900 mb-2 text-center w-full">
+            <label className="text-base font-semibold text-gray-900 mb-2 text-center w-full">
               Login as:
             </label>
             <select
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              className="w-full bg-secondary-50 border border-grey-200 rounded-lg px-4 py-2 text-base font-medium text-grey-900 focus:outline-none focus:border-primary-600 transition-all duration-200 shadow-sm appearance-none text-center"
+              className="w-full bg-secondary-50 border border-gray-200 rounded-lg px-4 py-2 text-base font-medium text-gray-900 focus:outline-none focus:border-primary-600 transition-all duration-200 shadow-sm appearance-none text-center"
               style={{
                 boxShadow: "0 1px 3px 0 rgba(0,0,0,0.03)",
                 minHeight: 44,
@@ -103,16 +106,16 @@ const LoginPage = () => {
             <div className="w-full mb-2">
               {step === "phone" ? (
                 <div
-                  className="flex items-center bg-secondary-50 border border-grey-200 rounded-xl
+                  className="flex items-center bg-secondary-50 border border-gray-200 rounded-xl
                     transition-all duration-200 focus-within:border-primary-600
                     h-12 px-4"
                 >
-                  <span className="pr-3 text-grey-700 font-medium text-base">
+                  <span className="pr-3 text-gray-700 font-medium text-base">
                     +91
                   </span>
                   <input
                     type="tel"
-                    className="w-full bg-transparent outline-none text-grey-900 text-base font-semibold placeholder:text-grey-400 h-full text-center"
+                    className="w-full bg-transparent outline-none text-gray-900 text-base font-semibold placeholder:text-gray-400 h-full text-center"
                     placeholder="Enter mobile number"
                     style={{
                       textAlign: "center",
@@ -135,7 +138,7 @@ const LoginPage = () => {
                     maxLength={6}
                     className="w-full max-w-[340px] bg-secondary-50 p-4 border rounded-xl 
                                outline-none focus:border-primary-600
-                               transition-all duration-200 text-center text-3xl tracking-[0.7em] font-semibold text-grey-900"
+                               transition-all duration-200 text-center text-3xl tracking-[0.7em] font-semibold text-gray-900"
                     placeholder="------"
                     style={{
                       letterSpacing: "0.7em",
@@ -173,8 +176,8 @@ const LoginPage = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-grey-300 disabled:cursor-not-allowed
-                         text-grey-50 py-3 rounded-xl font-semibold transition-all duration-200
+              className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 disabled:cursor-not-allowed
+                         text-gray-50 py-3 rounded-xl font-semibold transition-all duration-200
                          focus:outline-none text-base"
               style={{ minHeight: "48px" }}
             >
@@ -200,7 +203,7 @@ const LoginPage = () => {
           </form>
         </div>
         {/* Info Text */}
-        <div className="mt-4 p-3 bg-secondary-50 border border-grey-200 rounded-b-2xl">
+        <div className="mt-4 p-3 bg-secondary-50 border border-gray-200 rounded-b-2xl">
           <p className="text-xs text-secondary-600 text-center">
             By continuing, you agree to our{" "}
             <Link to="/terms" className="text-primary-600 hover:underline">

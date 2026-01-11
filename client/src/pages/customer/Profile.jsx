@@ -101,17 +101,17 @@ const Profile = () => {
   // ✅ Show loading state during initial fetch
   if (isLoading && !formData.name) {
     return (
-      <div className="bg-grey-50 min-h-screen p-6 flex items-center justify-center">
+      <div className="bg-gray-50 min-h-screen p-6 flex items-center justify-center">
         <p className="text-secondary-500">Loading profile...</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-grey-50 min-h-screen flex items-start justify-center pt-6 md:pt-12 pb-4 md:pb-8">
+    <div className="bg-gray-50 min-h-screen flex items-start justify-center pt-6 md:pt-12 pb-4 md:pb-8">
       <div className="w-full max-w-xl bg-white rounded-2xl shadow-lg p-0 flex flex-col justify-center mx-2">
         <div className="px-4 md:px-6 pt-2 md:pt-4 pb-2">
-          <h2 className="text-2xl md:text-3xl font-bold text-grey-900 mb-2 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 text-center">
             My Profile
           </h2>
           <p className="text-secondary-500 mb-6 md:mb-8 text-center text-base md:text-lg">
@@ -124,14 +124,14 @@ const Profile = () => {
         >
           {/* Phone (Read-only) */}
           <div>
-            <label className="block text-sm font-medium text-grey-900 mb-2">
+            <label className="block text-sm font-medium text-gray-900 mb-2">
               Phone Number
             </label>
             <input
               type="text"
               value={user?.phone || ""}
               disabled
-              className="w-full px-4 py-3 border border-grey-200 rounded-lg bg-secondary-50 text-secondary-500 cursor-not-allowed"
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg bg-secondary-50 text-secondary-500 cursor-not-allowed"
             />
             <p className="text-xs text-secondary-500 mt-1">
               Phone number cannot be changed
@@ -140,7 +140,7 @@ const Profile = () => {
 
           {/* Name */}
           <div>
-            <label className="block text-sm font-medium text-grey-900 mb-2">
+            <label className="block text-sm font-medium text-gray-900 mb-2">
               Full Name
             </label>
             <input
@@ -149,7 +149,7 @@ const Profile = () => {
               value={formData.name}
               onChange={handleChange}
               disabled={!isEditing}
-              className={`w-full bg-secondary-50 border border-grey-200 rounded-lg px-4 py-3 text-base font-medium text-grey-900 focus:outline-none focus:border-primary-600 transition-all duration-200 shadow-sm ${
+              className={`w-full bg-secondary-50 border border-gray-200 rounded-lg px-4 py-3 text-base font-medium text-gray-900 focus:outline-none focus:border-primary-600 transition-all duration-200 shadow-sm ${
                 isEditing
                   ? "focus:ring-2 focus:ring-primary-500"
                   : "cursor-not-allowed"
@@ -164,7 +164,7 @@ const Profile = () => {
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-grey-900 mb-2">
+            <label className="block text-sm font-medium text-gray-900 mb-2">
               Email Address
             </label>
             <input
@@ -173,7 +173,7 @@ const Profile = () => {
               value={formData.email}
               onChange={handleChange}
               disabled={!isEditing}
-              className={`w-full bg-secondary-50 border border-grey-200 rounded-lg px-4 py-3 text-base font-medium text-grey-900 focus:outline-none focus:border-primary-600 transition-all duration-200 shadow-sm ${
+              className={`w-full bg-secondary-50 border border-gray-200 rounded-lg px-4 py-3 text-base font-medium text-gray-900 focus:outline-none focus:border-primary-600 transition-all duration-200 shadow-sm ${
                 isEditing
                   ? "focus:ring-2 focus:ring-primary-500"
                   : "cursor-not-allowed"
@@ -187,7 +187,7 @@ const Profile = () => {
 
           {/* Role Badge */}
           <div>
-            <label className="block text-sm font-medium text-grey-900 mb-2">
+            <label className="block text-sm font-medium text-gray-900 mb-2">
               Account Type
             </label>
             <div className="flex gap-2">
@@ -216,7 +216,7 @@ const Profile = () => {
               <button
                 type="button"
                 onClick={() => setIsEditing(true)}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-grey-50 rounded-xl font-semibold transition-all duration-200 focus:outline-none text-base"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-gray-50 rounded-xl font-semibold transition-all duration-200 focus:outline-none text-base"
                 style={{ minHeight: "48px" }}
               >
                 <MdEdit size={20} />
@@ -228,7 +228,7 @@ const Profile = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 disabled:bg-grey-300 disabled:cursor-not-allowed text-grey-50 rounded-xl font-semibold transition-all duration-200 focus:outline-none text-base"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-gray-50 rounded-xl font-semibold transition-all duration-200 focus:outline-none text-base"
                   style={{ minHeight: "48px" }}
                 >
                   <MdSave size={20} />
@@ -238,7 +238,7 @@ const Profile = () => {
                   type="button"
                   onClick={handleCancel}
                   disabled={isLoading}
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-secondary-200 hover:bg-secondary-300 text-grey-900 rounded-xl font-semibold transition-all duration-200 focus:outline-none text-base"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-secondary-200 hover:bg-secondary-300 text-gray-900 rounded-xl font-semibold transition-all duration-200 focus:outline-none text-base"
                   style={{ minHeight: "48px" }}
                 >
                   <MdCancel size={20} />

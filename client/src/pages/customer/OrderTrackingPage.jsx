@@ -172,7 +172,7 @@ const OrderTrackingPage = () => {
           <p className="text-secondary-500 mb-4">Order not found</p>
           <Link
             to="/orders"
-            className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-grey-50 rounded-lg font-medium transition-colors inline-block"
+            className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-gray-50 rounded-lg font-medium transition-colors inline-block"
           >
             Back to Orders
           </Link>
@@ -184,7 +184,7 @@ const OrderTrackingPage = () => {
   const order = selectedOrder;
 
   return (
-    <div className="bg-grey-50 min-h-screen p-6">
+    <div className="bg-gray-50 min-h-screen p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-6">
@@ -202,7 +202,7 @@ const OrderTrackingPage = () => {
           </button>
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-grey-900 mb-1">
+              <h1 className="text-2xl font-bold text-gray-900 mb-1">
                 Track Order #{order.orderId}
               </h1>
               <p className="text-secondary-500">Real-time delivery tracking</p>
@@ -214,7 +214,7 @@ const OrderTrackingPage = () => {
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Left: Map */}
           <div className="lg:col-span-2">
-            <div className="bg-grey-50 border border-grey-200 rounded-lg overflow-hidden">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
               <LoadScript googleMapsApiKey={GOOGLE_MAPS_API_KEY}>
                 <GoogleMap
                   mapContainerStyle={mapContainerStyle}
@@ -269,15 +269,15 @@ const OrderTrackingPage = () => {
           <div className="space-y-4">
             {/* Delivery Partner Info */}
             {order.deliveryPartner && (
-              <div className="bg-grey-50 border border-grey-200 rounded-lg p-4">
-                <h3 className="font-semibold text-grey-900 mb-3 flex items-center gap-2">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <MdLocalShipping size={20} />
                   Delivery Partner
                 </h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-secondary-600">Name:</span>
-                    <span className="font-medium text-grey-900">
+                    <span className="font-medium text-gray-900">
                       {order.deliveryPartner.name}
                     </span>
                   </div>
@@ -293,7 +293,7 @@ const OrderTrackingPage = () => {
                   {order.deliveryPartner.vehicleDetails && (
                     <div className="flex justify-between">
                       <span className="text-secondary-600">Vehicle:</span>
-                      <span className="font-medium text-grey-900">
+                      <span className="font-medium text-gray-900">
                         {order.deliveryPartner.vehicleDetails.type}
                       </span>
                     </div>
@@ -303,8 +303,8 @@ const OrderTrackingPage = () => {
             )}
 
             {/* Delivery Address */}
-            <div className="bg-grey-50 border border-grey-200 rounded-lg p-4">
-              <h3 className="font-semibold text-grey-900 mb-3 flex items-center gap-2">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+              <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                 <MdMyLocation size={20} />
                 Delivery Address
               </h3>
@@ -323,26 +323,26 @@ const OrderTrackingPage = () => {
             </div>
 
             {/* Order Summary */}
-            <div className="bg-grey-50 border border-grey-200 rounded-lg p-4">
-              <h3 className="font-semibold text-grey-900 mb-3">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+              <h3 className="font-semibold text-gray-900 mb-3">
                 Order Summary
               </h3>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span className="text-secondary-600">Items Total:</span>
-                  <span className="font-medium text-grey-900">
+                  <span className="font-medium text-gray-900">
                     {formatPrice(order.itemsTotal)}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-secondary-600">Delivery Fee:</span>
-                  <span className="font-medium text-grey-900">
+                  <span className="font-medium text-gray-900">
                     {formatPrice(order.deliveryFee)}
                   </span>
                 </div>
-                <div className="flex justify-between border-t border-grey-200 pt-2">
-                  <span className="font-semibold text-grey-900">Total:</span>
-                  <span className="font-bold text-grey-900">
+                <div className="flex justify-between border-t border-gray-200 pt-2">
+                  <span className="font-semibold text-gray-900">Total:</span>
+                  <span className="font-bold text-gray-900">
                     {formatPrice(order.totalPrice)}
                   </span>
                 </div>
@@ -352,7 +352,7 @@ const OrderTrackingPage = () => {
             {/* Estimated Time */}
             {directions && (
               <div className="bg-primary-50 border border-primary-200 rounded-lg p-4">
-                <p className="text-sm text-grey-900">
+                <p className="text-sm text-gray-900">
                   <strong>Estimated Arrival:</strong>
                   <br />
                   {directions.routes[0].legs[0].duration.text} (

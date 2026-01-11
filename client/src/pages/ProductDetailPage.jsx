@@ -52,7 +52,7 @@ const ProductDetailPage = () => {
           <p className="text-secondary-500 mb-4">Product not found</p>
           <button
             onClick={() => navigate("/")}
-            className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-grey-50 rounded-lg font-medium transition-colors"
+            className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-gray-50 rounded-lg font-medium transition-colors"
           >
             Go to Home
           </button>
@@ -76,12 +76,12 @@ const ProductDetailPage = () => {
       : 0;
 
   return (
-    <section className="bg-grey-50 min-h-screen">
+    <section className="bg-gray-50 min-h-screen">
       <div className="container mx-auto p-4 grid lg:grid-cols-2 gap-6">
         {/* Left Section - Images */}
         <div>
           {/* Main Image */}
-          <div className="bg-grey-50 border border-grey-200 lg:min-h-[65vh] lg:max-h-[65vh] rounded min-h-56 max-h-56 h-full w-full flex items-center justify-center">
+          <div className="bg-gray-50 border border-gray-200 lg:min-h-[65vh] lg:max-h-[65vh] rounded min-h-56 max-h-56 h-full w-full flex items-center justify-center">
             <img
               src={images[selectedImageIndex] || "/placeholder.png"}
               alt={product.name}
@@ -98,7 +98,7 @@ const ProductDetailPage = () => {
                 className={`w-3 h-3 lg:w-4 lg:h-4 rounded-full transition-colors ${
                   index === selectedImageIndex
                     ? "bg-primary-600"
-                    : "bg-grey-300"
+                    : "bg-gray-300"
                 }`}
               />
             ))}
@@ -116,8 +116,8 @@ const ProductDetailPage = () => {
                   className={`w-20 h-20 min-h-20 min-w-20 cursor-pointer border-2 rounded ${
                     index === selectedImageIndex
                       ? "border-primary-600"
-                      : "border-grey-200"
-                  } bg-grey-50`}
+                      : "border-gray-200"
+                  } bg-gray-50`}
                   onClick={() => setSelectedImageIndex(index)}
                 >
                   <img
@@ -134,13 +134,13 @@ const ProductDetailPage = () => {
               <div className="w-full -ml-3 h-full hidden lg:flex justify-between absolute items-center pointer-events-none">
                 <button
                   onClick={handleScrollLeft}
-                  className="z-10 bg-grey-50 border border-grey-200 p-2 rounded-full shadow-lg pointer-events-auto hover:bg-secondary-50"
+                  className="z-10 bg-gray-50 border border-gray-200 p-2 rounded-full shadow-lg pointer-events-auto hover:bg-secondary-50"
                 >
                   <FaAngleLeft />
                 </button>
                 <button
                   onClick={handleScrollRight}
-                  className="z-10 bg-grey-50 border border-grey-200 p-2 rounded-full shadow-lg pointer-events-auto hover:bg-secondary-50"
+                  className="z-10 bg-gray-50 border border-gray-200 p-2 rounded-full shadow-lg pointer-events-auto hover:bg-secondary-50"
                 >
                   <FaAngleRight />
                 </button>
@@ -149,15 +149,15 @@ const ProductDetailPage = () => {
           </div>
 
           {/* Product Details (Desktop) */}
-          <div className="my-6 hidden lg:grid gap-4 bg-grey-50 border border-grey-200 rounded-lg p-4">
+          <div className="my-6 hidden lg:grid gap-4 bg-gray-50 border border-gray-200 rounded-lg p-4">
             <div>
-              <p className="font-semibold text-grey-900 mb-1">Description</p>
+              <p className="font-semibold text-gray-900 mb-1">Description</p>
               <p className="text-secondary-600">{product.description}</p>
             </div>
 
             {product.unit && product.quantity && (
               <div>
-                <p className="font-semibold text-grey-900 mb-1">Unit</p>
+                <p className="font-semibold text-gray-900 mb-1">Unit</p>
                 <p className="text-secondary-600">
                   {product.quantity} {product.unit}
                 </p>
@@ -166,7 +166,7 @@ const ProductDetailPage = () => {
 
             {customerType === "Business" && product.moq && (
               <div>
-                <p className="font-semibold text-grey-900 mb-1">
+                <p className="font-semibold text-gray-900 mb-1">
                   Minimum Order Quantity (MOQ)
                 </p>
                 <p className="text-secondary-600">{product.moq} units</p>
@@ -175,7 +175,7 @@ const ProductDetailPage = () => {
 
             {product.tags && product.tags.length > 0 && (
               <div>
-                <p className="font-semibold text-grey-900 mb-2">Tags</p>
+                <p className="font-semibold text-gray-900 mb-2">Tags</p>
                 <div className="flex flex-wrap gap-2">
                   {product.tags.map((tag, index) => (
                     <span
@@ -194,62 +194,63 @@ const ProductDetailPage = () => {
         {/* Right Section - Product Info */}
         <div className="p-4 lg:pl-7">
           {/* Quick Info Badge */}
-          <div className="flex items-center gap-3 mb-3">
-            <span className="bg-primary-600 text-grey-50 px-3 py-1 rounded-full text-sm font-medium">
+          <div className="flex items-center gap-3 mb-4 flex-wrap">
+            <span className="bg-green-600 text-white px-4 py-2 rounded-full text-xs font-semibold">
               Quick Delivery
             </span>
             {product.inStock && (
-              <span className="bg-primary-100 text-primary-600 px-3 py-1 rounded-full text-sm font-medium">
+              <span className="bg-green-100 text-green-700 border border-green-200 px-4 py-2 rounded-full text-xs font-semibold">
                 In Stock
               </span>
             )}
           </div>
 
           {/* Product Name */}
-          <h1 className="text-2xl lg:text-3xl font-bold text-grey-900 mb-2">
+          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
             {product.name}
           </h1>
 
           {/* Unit */}
           {product.unit && product.quantity && (
-            <p className="text-secondary-500 mb-4">
+            <p className="text-gray-600 text-lg mb-4">
               {product.quantity} {product.unit}
             </p>
           )}
 
           {/* Rating */}
           {product.rating && (
-            <div className="flex items-center gap-2 mb-4">
-              <div className="flex items-center gap-1 text-warning">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-1 text-yellow-500">
                 <FaStar />
-                <span className="font-semibold">{product.rating}</span>
+                <span className="font-semibold text-gray-900">
+                  {product.rating}
+                </span>
               </div>
-              <span className="text-secondary-400 text-sm">
+              <span className="text-gray-500 text-sm">
                 ({product.reviewCount || 0} reviews)
               </span>
             </div>
           )}
 
-          <div className="h-px bg-grey-200 my-4" />
+          <div className="h-px bg-gray-200 my-6" />
 
           {/* Price Section */}
           <div className="mb-6">
-            <p className="text-secondary-500 mb-2">Price</p>
-            <div className="flex items-center gap-3 flex-wrap">
-              <div className="border-2 border-primary-600 px-4 py-2 rounded-lg bg-primary-50">
-                <p className="font-bold text-2xl text-grey-900">
+            <p className="text-gray-600 text-sm mb-3">Price</p>
+            <div className="flex items-end gap-4 flex-wrap">
+              <div className="bg-green-50 border-2 border-green-600 px-6 py-3 rounded-lg">
+                <p className="font-bold text-3xl text-green-600">
                   {formatPrice(currentPrice)}
                 </p>
               </div>
 
               {originalPrice && discount > 0 && (
                 <>
-                  <p className="text-lg text-secondary-400 line-through">
+                  <p className="text-lg text-gray-400 line-through">
                     {formatPrice(originalPrice)}
                   </p>
-                  <p className="font-bold text-primary-600 text-xl">
-                    {discount}%{" "}
-                    <span className="text-sm text-secondary-500">OFF</span>
+                  <p className="font-bold text-green-600 text-2xl">
+                    {discount}% OFF
                   </p>
                 </>
               )}
@@ -257,80 +258,80 @@ const ProductDetailPage = () => {
 
             {/* Savings Info */}
             {discount > 0 && (
-              <p className="text-sm text-primary-600 mt-2">
-                You save {formatPrice(originalPrice - currentPrice)}!
+              <p className="text-sm text-green-600 font-semibold mt-3">
+                ✓ You save {formatPrice(originalPrice - currentPrice)}!
               </p>
             )}
           </div>
 
           {/* Stock Status & Add to Cart */}
           {!product.inStock ? (
-            <div className="my-4 p-4 bg-error bg-opacity-10 border border-error rounded-lg">
-              <p className="text-error font-semibold">Out of Stock</p>
-              <p className="text-sm text-secondary-600 mt-1">
+            <div className="my-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-red-700 font-semibold">Out of Stock</p>
+              <p className="text-sm text-red-600 mt-1">
                 This product is currently unavailable
               </p>
             </div>
           ) : (
-            <div className="my-4">
+            <div className="my-6">
               <AddToCartButton data={product} />{" "}
               {/* ✅ FIX: Changed from product to data */}
             </div>
           )}
 
-          <div className="h-px bg-grey-200 my-6" />
+          <div className="h-px bg-gray-200 my-8" />
 
           {/* Why Shop Section */}
-          <h2 className="font-semibold text-grey-900 text-lg mb-4">
+          <h2 className="font-bold text-gray-900 text-xl mb-6">
             Why shop from GoDrop?
           </h2>
 
           <div className="space-y-4">
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
               <img
                 src={image1}
                 alt="Superfast delivery"
-                className="w-16 h-16 shrink-0"
+                className="w-14 h-14 shrink-0 object-contain"
               />
               <div>
-                <div className="font-semibold text-grey-900">
+                <div className="font-semibold text-gray-900 text-sm">
                   Superfast Delivery
                 </div>
-                <p className="text-sm text-secondary-600">
+                <p className="text-xs text-gray-600 mt-1">
                   Get your order delivered to your doorstep at the earliest from
                   dark stores near you.
                 </p>
               </div>
             </div>
 
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
               <img
                 src={image2}
                 alt="Best prices offers"
-                className="w-16 h-16 shrink-0"
+                className="w-14 h-14 shrink-0 object-contain"
               />
               <div>
-                <div className="font-semibold text-grey-900">
+                <div className="font-semibold text-gray-900 text-sm">
                   Best Prices & Offers
                 </div>
-                <p className="text-sm text-secondary-600">
+                <p className="text-xs text-gray-600 mt-1">
                   Best price destination with offers directly from the
                   manufacturers.
                 </p>
               </div>
             </div>
 
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
               <img
                 src={image3}
                 alt="Wide Assortment"
-                className="w-16 h-16 shrink-0"
+                className="w-14 h-14 shrink-0 object-contain"
               />
               <div>
-                <div className="font-semibold text-grey-900">
+                <div className="font-semibold text-gray-900 text-sm">
                   Wide Assortment
                 </div>
-                <p className="text-sm text-secondary-600">
+                <p className="text-xs text-gray-600 mt-1">
                   Choose from 5000+ products across food, personal care,
                   household & other categories.
                 </p>
@@ -339,15 +340,15 @@ const ProductDetailPage = () => {
           </div>
 
           {/* Product Details (Mobile) */}
-          <div className="my-6 lg:hidden grid gap-4 bg-grey-50 border border-grey-200 rounded-lg p-4">
+          <div className="my-6 lg:hidden grid gap-4 bg-gray-50 border border-gray-200 rounded-lg p-4">
             <div>
-              <p className="font-semibold text-grey-900 mb-1">Description</p>
+              <p className="font-semibold text-gray-900 mb-1">Description</p>
               <p className="text-secondary-600">{product.description}</p>
             </div>
 
             {product.unit && product.quantity && (
               <div>
-                <p className="font-semibold text-grey-900 mb-1">Unit</p>
+                <p className="font-semibold text-gray-900 mb-1">Unit</p>
                 <p className="text-secondary-600">
                   {product.quantity} {product.unit}
                 </p>
@@ -356,7 +357,7 @@ const ProductDetailPage = () => {
 
             {customerType === "Business" && product.moq && (
               <div>
-                <p className="font-semibold text-grey-900 mb-1">
+                <p className="font-semibold text-gray-900 mb-1">
                   Minimum Order Quantity
                 </p>
                 <p className="text-secondary-600">{product.moq} units</p>
@@ -365,7 +366,7 @@ const ProductDetailPage = () => {
 
             {product.tags && product.tags.length > 0 && (
               <div>
-                <p className="font-semibold text-grey-900 mb-2">Tags</p>
+                <p className="font-semibold text-gray-900 mb-2">Tags</p>
                 <div className="flex flex-wrap gap-2">
                   {product.tags.map((tag, index) => (
                     <span

@@ -10,7 +10,6 @@ import {
 
 const ProductCard = ({ data }) => {
   if (!data) {
-    console.error("❌ ProductCard: data prop is missing");
     return null;
   }
 
@@ -22,7 +21,6 @@ const ProductCard = ({ data }) => {
   const { getCustomerType } = useAuthStore();
   const customerType = getCustomerType();
 
-  // ✅ FIXED: Calculate prices and discount
   const currentPrice =
     customerType === "Business" && data.businessPrice
       ? data.businessPrice
@@ -35,91 +33,75 @@ const ProductCard = ({ data }) => {
       ? Math.round(((originalPrice - currentPrice) / originalPrice) * 100)
       : 0;
 
-  // ✅ FIX: Define hasDiscount
   const hasDiscount = discount > 0;
 
   return (
-    <Link
-      to={url}
-      onClick={() => {
-        window.scrollTo({ top: 0, behavior: "instant" });
-      }}
-      className="py-2 px-2 grid gap-2 min-w-20 max-w-40 rounded-lg cursor-pointer bg-white shadow-sm relative"
-    >
-      {/* Discount Badge */}
-      {hasDiscount && (
-        <div className="absolute top-0 left-0 z-10 bg-primary-500 text-white text-xs font-bold px-2 py-1 rounded-tr-xl rounded-bl-xl">
-          {discount}% OFF
-        </div>
-      )}
-      {/* Product Image */}
-      <div className="min-h-16 w-full max-h-20 rounded-lg overflow-hidden bg-white flex items-center justify-center">
-        <img
-          src={data.images?.[0] || "/placeholder.png"}
-          alt={data.name}
-          className="w-full h-full object-scale-down"
-          loading="lazy"
-        />
-      </div>
-
-      {/* Delivery Time & MOQ Badge */}
-      <div className="flex items-center gap-2 px-4 mt-2">
-        {customerType === "Business" && data.moq && data.moq > 1 && (
-          <p className="text-xs text-secondary-600 bg-secondary-100 px-2 rounded-full">
-            MOQ: {data.moq}
-          </p>
-        )}
-      </div>
-
-      {/* Product Name */}
-      <div
-        className="text-left font-medium tracking-tight text-ellipsis text-sm line-clamp-2 text-grey-900 mt-1"
-        style={{ paddingLeft: "6px" }}
+    <div className="p-4 bg-white hover:bg-gray-50 transition-colors cursor-pointer">
+      <Link
+        to={url}
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: "instant" });
+        }}
+        className="py-2 px-2 grid gap-2 min-w-32 max-w-36 bg-transparent transition-colors relative"
       >
-        {data.name}
-      </div>
-
-      {/* Unit/Quantity */}
-      <div
-        className="text-xs text-secondary-500 mb-1"
-        style={{ paddingLeft: "7px" }}
-      >
-        {data.quantity
-          ? `${data.quantity} ${data.unit || "piece"}`
-          : data.unit || "piece"}
-      </div>
-
-      {/* Price & Add to Cart */}
-      <div className="flex items-center justify-between gap-2 text-sm mt-2 px-2">
-        <div className="flex items-center gap-2 flex-nowrap">
-          <div className="font-semibold text-grey-900 text-base whitespace-nowrap">
-            {formatPrice(currentPrice)}
+        {hasDiscount && (
+          <div className="absolute -top-2 -left-2 z-10 bg-white text-primary-600 text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg border border-primary-600">
+            {discount}% OFF
           </div>
-          {hasDiscount && (
-            <div className="text-secondary-400 line-through text-xs whitespace-nowrap">
-              {formatPrice(originalPrice)}
-            </div>
-          )}
+        )}
+        <div className="min-h-20 w-full rounded-lg overflow-hidden bg-gray-50 flex items-center justify-center">
+          <img
+            src={data.images?.[0] || "/placeholder.png"}
+            alt={data.name}
+            className="w-full h-full object-scale-down"
+            loading="lazy"
+          />
         </div>
-        <div className="">
-          {!data.inStock || data.stock === 0 ? (
-            <p className="text-error text-xs text-center font-medium">
-              Out of stock
+
+        <div className="flex items-center gap-2 px-3 mt-2">
+          {customerType === "Business" && data.moq && data.moq > 1 && (
+            <p className="text-xs text-secondary-600 bg-secondary-50 px-2 py-1 rounded-full">
+              MOQ: {data.moq}
             </p>
-          ) : (
-            <div
-              style={{ paddingRight: "8px", paddingBottom: "4px" }}
-              className="w-20 min-w-20 flex justify-center"
-            >
-              <AddToCartButton
-                data={data}
-                className="bg-[#f8fff8] border border-green-600 rounded-md h-7 px-2 py-1 text-green-700 font-semibold shadow-none hover:bg-[#f0fff0] transition flex items-center justify-center w-full text-xs"
-              />
-            </div>
           )}
         </div>
-      </div>
-    </Link>
+
+        <div className="text-left font-medium text-sm line-clamp-2 text-gray-900 px-3 mt-2">
+          {data.name}
+        </div>
+
+        <div className="text-xs text-secondary-500 px-3 mt-1">
+          {data.quantity
+            ? `${data.quantity} ${data.unit || "piece"}`
+            : data.unit || "piece"}
+        </div>
+
+        <div className="flex items-center justify-between gap-2 text-sm px-3 mt-3">
+          <div className="flex items-center gap-1 flex-nowrap">
+            <div className="font-semibold text-gray-900 text-base">
+              {formatPrice(currentPrice)}
+            </div>
+            {hasDiscount && (
+              <div className="text-secondary-400 line-through text-xs">
+                {formatPrice(originalPrice)}
+              </div>
+            )}
+          </div>
+          <div>
+            {!data.inStock || data.stock === 0 ? (
+              <p className="text-error text-xs font-medium">Out of stock</p>
+            ) : (
+              <div className="w-20 flex justify-center">
+                <AddToCartButton
+                  data={data}
+                  className="bg-primary-50 border border-primary-600 rounded-md h-7 px-2 py-1 text-primary-600 font-semibold shadow-none hover:bg-primary-100 transition flex items-center justify-center w-full text-xs"
+                />
+              </div>
+            )}
+          </div>
+        </div>
+      </Link>
+    </div>
   );
 };
 

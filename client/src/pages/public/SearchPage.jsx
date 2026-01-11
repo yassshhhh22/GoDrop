@@ -69,20 +69,27 @@ const SearchPage = () => {
   const loadingArrayCard = new Array(10).fill(null);
 
   return (
-    <section className="bg-grey-50 min-h-screen">
+    <section className="bg-white min-h-screen">
+      {/* Sticky Header */}
+      <header className="sticky top-16 z-30 bg-white border-b border-gray-100 shadow-sm">
+        <div className="container mx-auto px-4 py-4">
+          {searchQuery && !searchError && (
+            <div>
+              <h1 className="text-2xl font-semibold text-gray-900 mb-1">
+                Search Results for "{searchQuery}"
+              </h1>
+              <p className="text-sm text-gray-600">
+                {searchResults.length} product
+                {searchResults.length !== 1 ? "s" : ""} found
+              </p>
+            </div>
+          )}
+        </div>
+      </header>
+
       <div className="container mx-auto p-4">
         {/* Search Results Header */}
-        {searchQuery && !searchError && (
-          <div className="mb-6">
-            <h1 className="text-2xl font-bold text-grey-900 mb-2">
-              Search Results for "{searchQuery}"
-            </h1>
-            <p className="text-secondary-500">
-              {searchResults.length} product
-              {searchResults.length !== 1 ? "s" : ""} found
-            </p>
-          </div>
-        )}
+        {searchQuery && !searchError && <div className="mb-6" />}
 
         {/* Infinite Scroll Results */}
         <InfiniteScroll
@@ -96,13 +103,13 @@ const SearchPage = () => {
           }
           endMessage={
             searchResults.length > 0 && (
-              <p className="text-center text-secondary-500 py-6">
+              <p className="text-center text-gray-600 py-6 text-sm">
                 No more products to load
               </p>
             )
           }
         >
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-0">
             {/* Search Results */}
             {searchResults.map((product, index) => (
               <ProductCard
@@ -116,14 +123,14 @@ const SearchPage = () => {
               loadingArrayCard.map((_, index) => (
                 <div
                   key={"loadingsearchpage" + index}
-                  className="bg-grey-50 border border-grey-200 rounded-lg p-3 animate-pulse"
+                  className="m-2 bg-white rounded-lg shadow-sm p-4 animate-pulse"
                 >
-                  <div className="bg-secondary-100 h-40 rounded mb-3"></div>
-                  <div className="bg-secondary-100 h-4 rounded mb-2"></div>
-                  <div className="bg-secondary-100 h-4 rounded w-2/3 mb-3"></div>
+                  <div className="bg-gray-100 h-40 rounded-lg mb-3"></div>
+                  <div className="bg-gray-100 h-4 rounded mb-2"></div>
+                  <div className="bg-gray-100 h-4 rounded w-2/3 mb-3"></div>
                   <div className="flex justify-between items-center">
-                    <div className="bg-secondary-100 h-6 rounded w-20"></div>
-                    <div className="bg-secondary-100 h-8 w-8 rounded"></div>
+                    <div className="bg-gray-100 h-6 rounded w-20"></div>
+                    <div className="bg-gray-100 h-8 w-8 rounded"></div>
                   </div>
                 </div>
               ))}
@@ -132,16 +139,16 @@ const SearchPage = () => {
 
         {/* No Results Found */}
         {!searchResults.length && !loading && searchQuery && (
-          <div className="flex flex-col justify-center items-center w-full mx-auto py-12">
+          <div className="flex flex-col justify-center items-center w-full mx-auto py-16">
             <img
               src={noDataImage}
               alt="No results found"
               className="w-full h-full max-w-xs max-h-xs block mb-6"
             />
-            <h2 className="text-xl font-semibold text-grey-900 mb-2">
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">
               No products found
             </h2>
-            <p className="text-secondary-500 text-center mb-6">
+            <p className="text-gray-600 text-center mb-6 text-sm">
               We couldn't find any products matching "{searchQuery}"
             </p>
             <button
@@ -149,7 +156,7 @@ const SearchPage = () => {
                 setLocalSearchQuery("");
                 navigate("/");
               }}
-              className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-grey-50 rounded-lg font-medium transition-colors"
+              className="px-6 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-colors duration-200"
             >
               Browse All Products
             </button>
@@ -159,11 +166,11 @@ const SearchPage = () => {
         {/* Empty Search State */}
         {!searchQuery && (
           <div className="flex flex-col justify-center items-center w-full mx-auto py-12 h-[60vh]">
-            <MdSearch size={80} className="text-secondary-300 mb-4" />
-            <h2 className="text-xl font-semibold text-grey-900 mb-2 text-center">
+            <MdSearch size={80} className="text-gray-300 mb-4" />
+            <h2 className="text-xl font-semibold text-gray-900 mb-2 text-center">
               Start Searching
             </h2>
-            <p className="text-secondary-500 text-center">
+            <p className="text-gray-600 text-center text-sm">
               Enter a product name to search
             </p>
           </div>

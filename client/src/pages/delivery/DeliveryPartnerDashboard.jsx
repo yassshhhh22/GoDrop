@@ -75,7 +75,7 @@ const DeliveryPartnerDashboard = () => {
       delivered: "bg-green-100 text-green-600",
       cancelled: "bg-error bg-opacity-20 text-error",
     };
-    return colors[status] || "bg-grey-200 text-grey-600";
+    return colors[status] || "bg-gray-200 text-gray-600";
   };
 
   const getNextStatus = (currentStatus) => {
@@ -115,11 +115,11 @@ const DeliveryPartnerDashboard = () => {
   }
 
   return (
-    <div className="bg-grey-50 min-h-screen">
+    <div className="bg-gray-50 min-h-screen">
       <div className="container mx-auto p-4 lg:p-6">
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-2xl lg:text-3xl font-bold text-grey-900 mb-2">
+          <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
             Welcome, {user?.name || "Delivery Partner"}
           </h1>
           <p className="text-secondary-500">
@@ -129,11 +129,11 @@ const DeliveryPartnerDashboard = () => {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <div className="bg-grey-50 border border-grey-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-secondary-500 text-sm">Active Orders</p>
-                <p className="text-2xl font-bold text-grey-900">
+                <p className="text-2xl font-bold text-gray-900">
                   {activeOrders}
                 </p>
               </div>
@@ -141,11 +141,11 @@ const DeliveryPartnerDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-grey-50 border border-grey-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-secondary-500 text-sm">Completed Today</p>
-                <p className="text-2xl font-bold text-grey-900">
+                <p className="text-2xl font-bold text-gray-900">
                   {completedOrders}
                 </p>
               </div>
@@ -153,11 +153,11 @@ const DeliveryPartnerDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-grey-50 border border-grey-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-secondary-500 text-sm">Total Earnings</p>
-                <p className="text-2xl font-bold text-grey-900">
+                <p className="text-2xl font-bold text-gray-900">
                   {formatPrice(totalEarnings)}
                 </p>
               </div>
@@ -167,17 +167,17 @@ const DeliveryPartnerDashboard = () => {
         </div>
 
         {/* Location Tracking Toggle */}
-        <div className="bg-grey-50 border border-grey-200 rounded-lg p-4 mb-6">
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <MdLocationOn
                 className={
-                  locationEnabled ? "text-primary-600" : "text-grey-400"
+                  locationEnabled ? "text-primary-600" : "text-gray-400"
                 }
                 size={24}
               />
               <div>
-                <p className="font-semibold text-grey-900">
+                <p className="font-semibold text-gray-900">
                   Live Location Tracking
                 </p>
                 <p className="text-sm text-secondary-500">
@@ -191,8 +191,8 @@ const DeliveryPartnerDashboard = () => {
               onClick={toggleLocationTracking}
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                 locationEnabled
-                  ? "bg-error text-grey-50 hover:bg-error/90"
-                  : "bg-primary-600 text-grey-50 hover:bg-primary-700"
+                  ? "bg-error text-gray-50 hover:bg-error/90"
+                  : "bg-primary-600 text-gray-50 hover:bg-primary-700"
               }`}
             >
               {locationEnabled ? "Stop Tracking" : "Start Tracking"}
@@ -208,8 +208,8 @@ const DeliveryPartnerDashboard = () => {
               onClick={() => setFilter(tab)}
               className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-colors ${
                 filter === tab
-                  ? "bg-primary-600 text-grey-50"
-                  : "bg-grey-50 border border-grey-200 text-grey-900 hover:bg-secondary-50"
+                  ? "bg-primary-600 text-gray-50"
+                  : "bg-gray-50 border border-gray-200 text-gray-900 hover:bg-secondary-50"
               }`}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -220,12 +220,12 @@ const DeliveryPartnerDashboard = () => {
         {/* Orders List */}
         <div className="space-y-4">
           {filteredOrders.length === 0 ? (
-            <div className="bg-grey-50 border border-grey-200 rounded-lg p-12 text-center">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-12 text-center">
               <MdLocalShipping
                 className="mx-auto text-secondary-300 mb-4"
                 size={64}
               />
-              <h3 className="text-lg font-semibold text-grey-900 mb-2">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 No Orders Found
               </h3>
               <p className="text-secondary-500">
@@ -240,12 +240,12 @@ const DeliveryPartnerDashboard = () => {
             filteredOrders.map((order) => (
               <div
                 key={order._id}
-                className="bg-grey-50 border border-grey-200 rounded-lg p-4 hover:shadow-md transition-shadow"
+                className="bg-gray-50 border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow"
               >
                 {/* Order Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="font-bold text-grey-900 mb-1">
+                    <h3 className="font-bold text-gray-900 mb-1">
                       Order #{order.orderId}
                     </h3>
                     <p className="text-sm text-secondary-500">
@@ -266,7 +266,7 @@ const DeliveryPartnerDashboard = () => {
 
                 {/* Customer Info */}
                 <div className="mb-4 p-3 bg-secondary-50 rounded-lg">
-                  <p className="text-sm font-medium text-grey-900 mb-1">
+                  <p className="text-sm font-medium text-gray-900 mb-1">
                     Customer: {order.customer?.name || "N/A"}
                   </p>
                   <p className="text-sm text-secondary-600">
@@ -276,7 +276,7 @@ const DeliveryPartnerDashboard = () => {
 
                 {/* Delivery Address */}
                 <div className="mb-4">
-                  <p className="text-sm font-semibold text-grey-900 mb-1 flex items-center gap-2">
+                  <p className="text-sm font-semibold text-gray-900 mb-1 flex items-center gap-2">
                     <MdLocationOn size={16} />
                     Delivery Address
                   </p>
@@ -299,19 +299,19 @@ const DeliveryPartnerDashboard = () => {
                 <div className="flex items-center justify-between mb-4 p-3 bg-primary-50 rounded-lg">
                   <div>
                     <p className="text-sm text-secondary-600">Total Amount</p>
-                    <p className="font-bold text-grey-900">
+                    <p className="font-bold text-gray-900">
                       {formatPrice(order.totalPrice)}
                     </p>
                   </div>
                   <div>
                     <p className="text-sm text-secondary-600">Delivery Fee</p>
-                    <p className="font-bold text-grey-900">
+                    <p className="font-bold text-gray-900">
                       {formatPrice(order.deliveryFee || 0)}
                     </p>
                   </div>
                   <div>
                     <p className="text-sm text-secondary-600">Payment</p>
-                    <p className="font-bold text-grey-900">
+                    <p className="font-bold text-gray-900">
                       {order.payment?.method === "cod" ? "COD" : "Paid"}
                     </p>
                   </div>
@@ -325,7 +325,7 @@ const DeliveryPartnerDashboard = () => {
                         state: { orderType: order.orderType },
                       })
                     } // ✅ Pass orderType in state
-                    className="flex-1 px-4 py-2 bg-secondary-100 text-grey-900 rounded-lg font-medium hover:bg-secondary-200 transition-colors"
+                    className="flex-1 px-4 py-2 bg-secondary-100 text-gray-900 rounded-lg font-medium hover:bg-secondary-200 transition-colors"
                   >
                     View Details
                   </button>
@@ -338,7 +338,7 @@ const DeliveryPartnerDashboard = () => {
                           getNextStatus(order.status)
                         )
                       }
-                      className="flex-1 px-4 py-2 bg-primary-600 text-grey-50 rounded-lg font-medium hover:bg-primary-700 transition-colors"
+                      className="flex-1 px-4 py-2 bg-primary-600 text-gray-50 rounded-lg font-medium hover:bg-primary-700 transition-colors"
                     >
                       Mark as {getNextStatus(order.status)}
                     </button>

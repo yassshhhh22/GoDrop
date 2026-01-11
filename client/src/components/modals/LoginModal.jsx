@@ -61,7 +61,7 @@ const LoginModal = () => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 bg-grey-900/30 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 bg-gray-900/30 backdrop-blur-sm"
       onClick={handleBackdropClick}
     >
       <div
@@ -72,7 +72,7 @@ const LoginModal = () => {
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 p-2 hover:bg-grey-100 rounded-full transition-all duration-200 text-grey-600 hover:text-grey-900 z-10"
+          className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition-all duration-200 text-gray-600 hover:text-gray-900 z-10"
           aria-label="Close modal"
         >
           <IoClose size={26} />
@@ -96,13 +96,13 @@ const LoginModal = () => {
         <div className="flex flex-col items-center w-full px-2 py-8">
           {/* Login as */}
           <div className="w-full max-w-md flex flex-col items-center mb-2">
-            <label className="text-base font-semibold text-grey-900 mb-2 text-center w-full">
+            <label className="text-base font-semibold text-gray-900 mb-2 text-center w-full">
               Login as:
             </label>
             <select
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              className="w-full bg-secondary-50 border border-grey-200 rounded-lg px-4 py-2 text-base font-medium text-grey-900 focus:outline-none focus:border-primary-600 transition-all duration-200 shadow-sm appearance-none text-center"
+              className="w-full bg-secondary-50 border border-gray-200 rounded-lg px-4 py-2 text-base font-medium text-gray-900 focus:outline-none focus:border-primary-600 transition-all duration-200 shadow-sm appearance-none text-center"
               style={{
                 boxShadow: "0 1px 3px 0 rgba(0,0,0,0.03)",
                 minHeight: 44,
@@ -130,16 +130,16 @@ const LoginModal = () => {
             <div className="w-full mb-2">
               {step === "phone" ? (
                 <div
-                  className="flex items-center bg-secondary-50 border border-grey-200 rounded-xl
+                  className="flex items-center bg-secondary-50 border border-gray-200 rounded-xl
                     transition-all duration-200 focus-within:border-primary-600
                     h-12 px-4" // Reduced height from h-14 to h-12
                 >
-                  <span className="pr-3 text-grey-700 font-medium text-base">
+                  <span className="pr-3 text-gray-700 font-medium text-base">
                     +91
                   </span>
                   <input
                     type="tel"
-                    className="w-full bg-transparent outline-none text-grey-900 text-base font-semibold placeholder:text-grey-400 h-full text-center"
+                    className="w-full bg-transparent outline-none text-gray-900 text-base font-semibold placeholder:text-gray-400 h-full text-center"
                     placeholder="Enter mobile number"
                     style={{
                       textAlign: "center",
@@ -162,7 +162,7 @@ const LoginModal = () => {
                     maxLength={6}
                     className="w-full max-w-[340px] bg-secondary-50 p-4 border rounded-xl 
                                outline-none focus:border-primary-600
-                               transition-all duration-200 text-center text-3xl tracking-[0.7em] font-semibold text-grey-900"
+                               transition-all duration-200 text-center text-3xl tracking-[0.7em] font-semibold text-gray-900"
                     placeholder="------"
                     style={{
                       letterSpacing: "0.7em",
@@ -202,8 +202,8 @@ const LoginModal = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-grey-300 disabled:cursor-not-allowed
-                         text-grey-50 py-3 rounded-xl font-semibold transition-all duration-200
+              className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 disabled:cursor-not-allowed
+                         text-gray-50 py-3 rounded-xl font-semibold transition-all duration-200
                          focus:outline-none text-base"
               style={{ minHeight: "48px" }}
             >

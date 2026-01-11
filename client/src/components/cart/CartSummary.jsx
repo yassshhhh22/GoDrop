@@ -58,13 +58,13 @@ const CartSummary = ({ onCheckout, showCouponSection = true }) => {
     <div className="p-4 space-y-3">
       {/* Bill Details */}
       <div className="space-y-2 text-sm">
-        <div className="flex justify-between text-grey-900">
+        <div className="flex justify-between text-gray-900">
           <span>Item Total ({cartCount} items)</span>
           <span className="font-medium">{formatPrice(subtotal)}</span>
         </div>
 
         {deliveryFee > 0 && (
-          <div className="flex justify-between text-grey-900">
+          <div className="flex justify-between text-gray-900">
             <span>Delivery Fee</span>
             <span className="font-medium">{formatPrice(deliveryFee)}</span>
           </div>
@@ -97,7 +97,7 @@ const CartSummary = ({ onCheckout, showCouponSection = true }) => {
         )}
 
         {giftWrap.enabled && (
-          <div className="flex justify-between text-grey-900">
+          <div className="flex justify-between text-gray-900">
             <span>Gift Wrap</span>
             <span className="font-medium">{formatPrice(giftWrapFee)}</span>
           </div>
@@ -115,10 +115,10 @@ const CartSummary = ({ onCheckout, showCouponSection = true }) => {
       </div>
 
       {/* Total */}
-      <div className="pt-3 border-t border-grey-200">
+      <div className="pt-3 border-t border-gray-200">
         <div className="flex justify-between items-center mb-3">
-          <span className="font-semibold text-grey-900">To Pay</span>
-          <span className="font-bold text-xl text-grey-900">
+          <span className="font-semibold text-gray-900">To Pay</span>
+          <span className="font-bold text-xl text-gray-900">
             {formatPrice(total)}
           </span>
         </div>
@@ -127,7 +127,7 @@ const CartSummary = ({ onCheckout, showCouponSection = true }) => {
         <button
           onClick={onCheckout}
           disabled={cartCount === 0}
-          className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-grey-300 disabled:cursor-not-allowed text-grey-50 py-3 rounded-lg font-semibold transition-colors"
+          className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-gray-50 py-3 rounded-lg font-semibold transition-colors"
         >
           Proceed to Checkout
         </button>

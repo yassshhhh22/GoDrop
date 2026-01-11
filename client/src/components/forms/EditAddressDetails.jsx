@@ -44,10 +44,10 @@ const EditAddressDetails = ({ close, data }) => {
   };
 
   return (
-    <section className="bg-grey-900 fixed top-0 left-0 right-0 bottom-0 z-50 bg-opacity-70 h-screen overflow-auto">
-      <div className="bg-grey-50 p-4 w-full max-w-lg mt-8 mx-auto rounded shadow-lg relative">
+    <section className="bg-gray-900 fixed top-0 left-0 right-0 bottom-0 z-50 bg-opacity-70 h-screen overflow-auto">
+      <div className="bg-gray-50 p-4 w-full max-w-lg mt-8 mx-auto rounded shadow-lg relative">
         <div className="flex justify-between items-center gap-4">
-          <h2 className="font-semibold text-grey-900">Edit Address</h2>
+          <h2 className="font-semibold text-gray-900">Edit Address</h2>
           <button
             onClick={close}
             className="hover:text-error transition-colors"
@@ -59,7 +59,7 @@ const EditAddressDetails = ({ close, data }) => {
         </div>
 
         {isLoading && (
-          <div className="absolute inset-0 bg-grey-50 bg-opacity-90 flex items-center justify-center rounded z-10">
+          <div className="absolute inset-0 bg-gray-50 bg-opacity-90 flex items-center justify-center rounded z-10">
             <Loading size={150} />
           </div>
         )}
@@ -67,12 +67,12 @@ const EditAddressDetails = ({ close, data }) => {
         <form className="mt-4 grid gap-4" onSubmit={handleSubmit(onSubmit)}>
           {/* Address Type */}
           <div className="grid gap-1">
-            <label htmlFor="label" className="text-grey-900 font-medium">
+            <label htmlFor="label" className="text-gray-900 font-medium">
               Address Type : <span className="text-error">*</span>
             </label>
             <select
               id="label"
-              className="border border-grey-200 bg-secondary-50 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="border border-gray-200 bg-secondary-50 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
               {...register("label", { required: "Address type is required" })}
             >
               <option value="Home">Home</option>
@@ -86,13 +86,13 @@ const EditAddressDetails = ({ close, data }) => {
 
           {/* Complete Address */}
           <div className="grid gap-1">
-            <label htmlFor="address" className="text-grey-900 font-medium">
+            <label htmlFor="address" className="text-gray-900 font-medium">
               Complete Address : <span className="text-error">*</span>
             </label>
             <textarea
               id="address"
               rows={3}
-              className="border border-grey-200 bg-secondary-50 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="border border-gray-200 bg-secondary-50 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
               placeholder="House/Flat no, Building, Area, Street"
               {...register("address", {
                 required: "Address is required",
@@ -115,13 +115,13 @@ const EditAddressDetails = ({ close, data }) => {
 
           {/* Landmark */}
           <div className="grid gap-1">
-            <label htmlFor="landmark" className="text-grey-900 font-medium">
+            <label htmlFor="landmark" className="text-gray-900 font-medium">
               Landmark :
             </label>
             <input
               type="text"
               id="landmark"
-              className="border border-grey-200 bg-secondary-50 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="border border-gray-200 bg-secondary-50 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
               placeholder="Nearby landmark (optional)"
               {...register("landmark")}
             />
@@ -129,13 +129,13 @@ const EditAddressDetails = ({ close, data }) => {
 
           {/* City */}
           <div className="grid gap-1">
-            <label htmlFor="city" className="text-grey-900 font-medium">
+            <label htmlFor="city" className="text-gray-900 font-medium">
               City :
             </label>
             <input
               type="text"
               id="city"
-              className="border border-grey-200 bg-secondary-50 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="border border-gray-200 bg-secondary-50 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
               placeholder="City name"
               {...register("city")}
             />
@@ -143,13 +143,13 @@ const EditAddressDetails = ({ close, data }) => {
 
           {/* State */}
           <div className="grid gap-1">
-            <label htmlFor="state" className="text-grey-900 font-medium">
+            <label htmlFor="state" className="text-gray-900 font-medium">
               State :
             </label>
             <input
               type="text"
               id="state"
-              className="border border-grey-200 bg-secondary-50 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="border border-gray-200 bg-secondary-50 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
               placeholder="State name"
               {...register("state")}
             />
@@ -157,13 +157,13 @@ const EditAddressDetails = ({ close, data }) => {
 
           {/* Pincode */}
           <div className="grid gap-1">
-            <label htmlFor="pincode" className="text-grey-900 font-medium">
+            <label htmlFor="pincode" className="text-gray-900 font-medium">
               Pincode :
             </label>
             <input
               type="text"
               id="pincode"
-              className="border border-grey-200 bg-secondary-50 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="border border-gray-200 bg-secondary-50 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
               placeholder="6-digit pincode"
               {...register("pincode", {
                 pattern: {
@@ -183,7 +183,7 @@ const EditAddressDetails = ({ close, data }) => {
           <button
             type="submit"
             disabled={isLoading}
-            className="bg-primary-600 hover:bg-primary-700 disabled:bg-grey-300 disabled:cursor-not-allowed w-full py-2 font-semibold mt-4 rounded text-grey-50 transition-colors"
+            className="bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 disabled:cursor-not-allowed w-full py-2 font-semibold mt-4 rounded text-gray-50 transition-colors"
           >
             {isLoading ? "Updating..." : "Update Address"}
           </button>
